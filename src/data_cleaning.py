@@ -2,27 +2,89 @@
 Data cleaning module
  Clean and normalize text data.
 """
+import os
+import pandas as pd
+import re
+import fuzzywuzzy
+
 
 def load_text_to_df(files, columns=None):
-    """Load text files into a pandas DataFrame"""
-    pass
+    """Load text files into a pandas DataFrame
+    files - list of file paths
+    columns - list of column names, default ["filename", "text"]
+    df: pd.DataFrame, dataframe with each row containg a filename and text
+    """
+    if columns is None:
+        columns - ["filename", "text"]
+
+    data = []
+    for file in files:
+        filename = os.path.basename(file)
+        with open(file, 'r') as f:
+            text = f.read()
+        data.append([filename, text])
+
+    df = pd.DataFrame(data, columns=columns)
+    return df
 
 def handle_missing_values(df, text_column):
     """Handle missing values in text data"""
-    pass
+    df[text_column].replace('', pd.NA, inplace=True)
+    df.dropna(subset=[text_column], inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    return df
 
-def remove_duplicates(df, text_column):
-    """Detect and remove duplicate texts"""
-    pass
+def remove_duplicates_fuzzy(df, text_column, threshold = 90):
+    """Detect and remove duplicate texts
+    df - pandas dataframe
+    text_column - name of the column containing text data
+    threshold = threshold for fuzzy matching, higher = stricter
 
-def normalize_text(text):
+    Uses a nested loop where each row i is compared with every row j, (i+1, i+2...)
+    if the fuzzy ratio is above the threshold, the row is dropped.
+    """
+    drop = set()
+
+    for i in range(len(df)):
+        if i in drop:
+            continue
+        text_i = df.loc[i, text_column]
+
+        for j in range(i + 1, len(df)):
+            if j in drop:
+                continue
+            text_j = df.loc[j, text_column]
+            fuzzy_ratio = fuzzywuzzy.ratio(text_i, text_j)
+
+            if fuzzy_ratio > threshold:
+                drop.add(j)
+    df.drop(drop, inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    return df
+
+def normalize_text(df, text_column):
     """Basic text normalization (lowercase, remove punctuation, etc.)"""
-    pass
 
-def remove_stopwords(text, custom_stopwords=None):
-    """Remove common stopwords"""
-    pass
+    # Convert to lowercase
+    df[text_column] = df[text_column].str.lower()
+
+    # Remove Punctuation
+    df[text_column] = df[text_column].str.replace(r'[^\w\s]', '', regex=True)
+
+    # Remove Whitespaces
+    df[text_column] = df[text_column].str.replace(r'\s+', ' ', regex=True)
+
+    return df
 
 def clean_dataframe(df, text_column):
     """Apply all cleaning steps to a dataframe"""
-    pass
+    # Handle Missing Values
+    df = handle_missing_values(df, text_column)
+
+    # Remove_Duplicates
+    df = remove_duplicates_fuzzy(df, text_column, threshold=90)
+
+    # Normalize Text
+    df = normalize_text(df, text_column)
+
+    return df
