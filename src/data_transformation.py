@@ -15,6 +15,10 @@ def split_data(df, train_size=0.7, val_size=0.15, test_size=0.15):
     """Split data into training, validation, and testing sets"""
     pass
 
+def remove_stopwords(df, text_column, custom_stopwords=None):
+    """Remove common stopwords"""
+    pass
+
 def vectorize_text(text_series, method='tfidf'):
     """Convert text to numerical vectors"""
     pass
