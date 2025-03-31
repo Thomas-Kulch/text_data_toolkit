@@ -120,7 +120,7 @@ def delete_files(directory, extension):
 
 def list_files(directory, extension=None):
     """List all files in a directory with optional extension filtering"""
-    files_list = []
+    files_list = [] # initiate empty files list
 
     # ensure directory exists
     if not os.path.exists(directory):
@@ -141,6 +141,6 @@ def list_files(directory, extension=None):
             continue
 
         files_list.append(file)
-        print(file)
+        print(file) # print file for user
 
     return files_list
