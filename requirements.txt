@@ -1,2 +1,3 @@
 # Project dependencies
 git+ssh://git@github.com/seatgeek/fuzzywuzzy.git@0.18.0#egg=fuzzywuzzy
+pandas==2.2.3
