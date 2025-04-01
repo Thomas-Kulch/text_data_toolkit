@@ -21,6 +21,7 @@ def load_text_to_df(files, columns=None):
     for file in files:
         filename = os.path.basename(file)
         extension = os.path.splitext(filename)[-1]
+        print("DEBUG:", file, "| basename:", filename, "| extension:", extension)
 
         if extension == '.csv':
             df_temp = pd.read_csv(file)
