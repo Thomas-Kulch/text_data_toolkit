@@ -14,45 +14,29 @@ def load_text_to_df(files, columns=None):
     columns - list of column names, default ["filename", "text"]
     df: pd.DataFrame, dataframe with each row containing a filename and text
     """
-    if columns is None:
-        columns = ["filename", "text"]
+    all_dfs = []
 
-    data = []
     for file in files:
         filename = os.path.basename(file)
         extension = os.path.splitext(filename)[-1].lower()
 
         if extension == '.csv':
-
             df_temp = pd.read_csv(file, quoting = 3)
-
-            for index, row in df_temp.iterrows():
-                row_values = []
-                for i in row:
-                    row_values.append(str(i))
-
-                row_str = ",".join(row_values)
-                data.append([filename, row_str])
 
         elif extension == '.tsv':
             df_temp = pd.read_csv(file, sep="\t", quoting = 3)
-            for index, row in df_temp.iterrows():
-                row_values = []
-
-                for i in row:
-                    row_values.append(str(i))
-
-                row_str = "\t".join(str(i))
-
-                data.append([filename, row_str])
 
         else:
-            with open(file, 'r', encoding = 'utf-8') as f:
-                lines  = f.read().splitlines()
-                for line in lines:
-                    data.append([filename, line])
+           df_temp = pd.read_csv(file, quoting = 3)
 
-    df = pd.DataFrame(data, columns=columns)
+    if columns is not None and len(columns) == len(df_temp.columns):
+        df_temp.columns = columns
+
+    all_dfs.append(df_temp)
+
+    if all_dfs:
+        df = pd.concat(all_dfs, ignore_index=True)
+
     return df
 
 def handle_missing_values(df, text_column):
