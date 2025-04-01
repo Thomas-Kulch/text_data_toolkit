@@ -12,7 +12,7 @@ def load_text_to_df(files, columns=None):
     """Load text files into a pandas DataFrame
     files - list of file paths
     columns - list of column names, default ["filename", "text"]
-    df: pd.DataFrame, dataframe with each row containg a filename and text
+    df: pd.DataFrame, dataframe with each row containing a filename and text
     """
     if columns is None:
         columns = ["filename", "text"]
@@ -20,9 +20,23 @@ def load_text_to_df(files, columns=None):
     data = []
     for file in files:
         filename = os.path.basename(file)
-        with open(file, 'r') as f:
-            text = f.read()
-        data.append([filename, text])
+        extension = os.path.splitext(filename)[1]
+
+        if extension == '.csv':
+            df_temp = pd.read_csv(file)
+            text = df_temp.to_csv(index=False)
+            data.append([filename, text])
+
+        elif extension == '.tsv':
+            df_temp = pd.read_csv(file, sep="\t")
+            text = df_temp.to_csv(index=False, sep="\t")
+            data.append([filename, text])
+
+        else:
+            with open(file, 'r', encoding = 'utf-8') as f:
+                lines  = f.read().splitlines()
+                for line in lines:
+                    data.append([filename, line])
 
     df = pd.DataFrame(data, columns=columns)
     return df
