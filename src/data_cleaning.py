@@ -5,7 +5,8 @@ Data cleaning module
 import os
 import pandas as pd
 import re
-import fuzzywuzzy
+from fuzzywuzzy import fuzz
+import numpy as np
 
 
 def load_text_to_df(files, columns=None):
@@ -21,7 +22,7 @@ def load_text_to_df(files, columns=None):
         extension = os.path.splitext(filename)[-1].lower()
 
         if extension == '.csv':
-            df_temp = pd.read_csv(file, quoting = 3)
+            df_temp = pd.read_csv(file, sep=',', quoting = 3)
 
         elif extension == '.tsv':
             df_temp = pd.read_csv(file, sep="\t", quoting = 3)
@@ -37,13 +38,6 @@ def load_text_to_df(files, columns=None):
     if all_dfs:
         df = pd.concat(all_dfs, ignore_index=True)
 
-    return df
-
-def handle_missing_values(df, text_column):
-    """Handle missing values in text data"""
-    df[text_column].replace('', pd.NA, inplace=True)
-    df.dropna(subset=[text_column], inplace=True)
-    df.reset_index(drop=True, inplace=True)
     return df
 
 def remove_duplicates_fuzzy(df, text_column, threshold = 90):
@@ -66,7 +60,7 @@ def remove_duplicates_fuzzy(df, text_column, threshold = 90):
             if j in drop:
                 continue
             text_j = df.loc[j, text_column]
-            fuzzy_ratio = fuzzywuzzy.ratio(text_i, text_j)
+            fuzzy_ratio = fuzz.ratio(text_i, text_j)
 
             if fuzzy_ratio > threshold:
                 drop.add(j)
@@ -88,15 +82,26 @@ def normalize_text(df, text_column):
 
     return df
 
+def handle_missing_values(df, text_column):
+    """Handle missing values in text data (NaN, empty strings)
+    Run after text data is normalized to remove whitespace"""
+
+    df[text_column] = df[text_column].replace(r'^\s*$', np.nan, regex=True)
+    df.dropna(subset=[text_column], inplace=True)
+    df.reset_index(drop=True, inplace=True)
+
+    return df
 def clean_dataframe(df, text_column):
     """Apply all cleaning steps to a dataframe"""
-    # Handle Missing Values
-    df = handle_missing_values(df, text_column)
+
 
     # Remove_Duplicates
     df = remove_duplicates_fuzzy(df, text_column, threshold=90)
 
     # Normalize Text
     df = normalize_text(df, text_column)
+
+    # Handle Missing Values
+    df = handle_missing_values(df, text_column)
 
     return df
