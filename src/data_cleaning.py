@@ -25,16 +25,20 @@ def load_text_to_df(files, columns=None):
         if extension == '.csv':
             df_temp = pd.read_csv(file)
             for index, row in df_temp.iterrows():
+                row_values = []
                 for i in row:
-                    row_str = ", ".join(str(i))
+                    row_values.append(str(i))
+                row_str = ",".join(row_values)
 
                 data.append([filename, row_str])
 
         elif extension == '.tsv':
             df_temp = pd.read_csv(file, sep="\t")
             for index, row in df_temp.iterrows():
+                row_values = []
                 for i in row:
-                    row_str = "\t".join(str(i))
+                    row_values.append(str(i))
+                row_str = "\t".join(str(i))
 
                 data.append([filename, row_str])
 
