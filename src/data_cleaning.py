@@ -15,7 +15,7 @@ def load_text_to_df(files, columns=None):
     df: pd.DataFrame, dataframe with each row containg a filename and text
     """
     if columns is None:
-        columns - ["filename", "text"]
+        columns = ["filename", "text"]
 
     data = []
     for file in files:
