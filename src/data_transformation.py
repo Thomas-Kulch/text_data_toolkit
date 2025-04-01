@@ -14,10 +14,13 @@ def tokenize_text(text):
     for i in tokens:
         if i == '':
             tokens.remove(i)
-
     return tokens
 
-def remove_stopwords(df, text_column, custom_stopword):
+def tokenize_dataframe(df, column, new_column = "Tokenized Text"):
+    df[new_column] = df[column].apply(tokenize_text)
+    return df
+
+def remove_stopwords(df, text_column, custom_stopword = None, new_column = "Removed Stopwords"):
     """Remove common stopwords"""
     base_stopwords = {
         'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
@@ -31,17 +34,18 @@ def remove_stopwords(df, text_column, custom_stopword):
     if custom_stopword is not None:
         base_stopwords.update(custom_stopword)
 
-    df[text_column] = clean_dataframe(df, text_column)
-
     def remove_singular_stopword(text):
         tokens = tokenize_text(text)
+        filtered_tokens = []
         for t in tokens:
-            if t in base_stopwords:
-                tokens.remove(t)
+            if t not in base_stopwords:
+                filtered_tokens.append(t)
+        return filtered_tokens
 
-    df[text_column] = df[text_column].apply(remove_singular_stopword)
+    df[new_column] = df[text_column].apply(remove_singular_stopword)
+    return df
 
-def label_data_sentiment(df, text_column, method='lexicon'):
+def label_data_sentiment(df, text_column, new_column = "Sentiment"):
     """Label text data into categories (sentiment analysis)"""
     positive_words = {"amazing", "love", "like", "good", "great", "awesome", "amazingly"}
     negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant"}
@@ -63,7 +67,7 @@ def label_data_sentiment(df, text_column, method='lexicon'):
         else:
             return "Neutral"
 
-    df["sentiment"] = df[text_column].apply(lexicon_score)
+    df[new_column] = df[text_column].apply(lexicon_score)
     return df
 
 def label_job_skills(job_description_text):
