@@ -20,18 +20,23 @@ def load_text_to_df(files, columns=None):
     data = []
     for file in files:
         filename = os.path.basename(file)
-        extension = os.path.splitext(filename)[-1]
-        print("DEBUG:", file, "| basename:", filename, "| extension:", extension)
+        extension = os.path.splitext(filename)[-1].lower()
 
         if extension == '.csv':
             df_temp = pd.read_csv(file)
-            text = df_temp.to_csv(index=False)
-            data.append([filename, text])
+            for index, row in df_temp.iterrows():
+                for i in row:
+                    row_str = ", ".join(str(i))
+
+                data.append([filename, row_str])
 
         elif extension == '.tsv':
             df_temp = pd.read_csv(file, sep="\t")
-            text = df_temp.to_csv(index=False, sep="\t")
-            data.append([filename, text])
+            for index, row in df_temp.iterrows():
+                for i in row:
+                    row_str = "\t".join(str(i))
+
+                data.append([filename, row_str])
 
         else:
             with open(file, 'r', encoding = 'utf-8') as f:
