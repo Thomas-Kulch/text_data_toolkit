@@ -20,7 +20,7 @@ def load_text_to_df(files, columns=None):
     data = []
     for file in files:
         filename = os.path.basename(file)
-        extension = os.path.splitext(filename)[1]
+        extension = os.path.splitext(filename)[-1]
 
         if extension == '.csv':
             df_temp = pd.read_csv(file)
