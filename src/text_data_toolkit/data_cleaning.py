@@ -113,8 +113,6 @@ def handle_missing_values(df, text_column):
 
 def clean_dataframe(df, text_column):
     """Apply all cleaning steps to a dataframe"""
-
-
     # Remove_Duplicates
     df = remove_duplicates_fuzzy(df, text_column, threshold=90)
 
