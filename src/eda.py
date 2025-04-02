@@ -1,6 +1,8 @@
 """
 Exploratory Data Analysis module
  Generate exploratory data analysis summaries.
+
+ # how to improve -- get rid of punctuation from inputs
 """
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
@@ -8,18 +10,21 @@ import seaborn as sns
 import pandas as pd
 from collections import Counter
 import src.data_transformation as dt
+from nltk.util import ngrams
 
-def generate_wordcloud(data, custom_stopwords=None):
-    """Generate a word cloud from text data"""
-
-    # handle stopwords
-    base_stopwords = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
+STOPWORDS = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
         'at', 'from', 'by', 'up', 'about', 'into', 'over', 'after', 'under',
         'above', 'below', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
         'have', 'has', 'had', 'do', 'does', 'did', 'but', 'what', 'why',
         'can', 'could', 'should', 'would', 'how', 'when', 'where', 'who', 'whom',
         'this', 'that', 'these', 'those', 'am', 'i', 'he', 'she', 'it', 'they',
         'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours'}
+
+def generate_wordcloud(data, custom_stopwords=None):
+    """Generate a word cloud from text data"""
+
+    # handle stopwords
+    base_stopwords = STOPWORDS
 
     if custom_stopwords is not None:
         # homogenize stopwords and update list
@@ -63,7 +68,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     # document stats
     output_dict["document_stats"]["total_docs"] = df[text_column].shape[0]
-    output_dict["document_stats"]["empty_docs"] = df[text_column].isnull().sum()
+    output_dict["document_stats"]["empty_docs"] = int(df[text_column].isnull().sum())
     output_dict["document_stats"]["unique_docs"] = df[text_column].nunique()
 
     # length stats
@@ -118,13 +123,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     # frequent words
     # handle stopwords
-    base_stopwords = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
-        'at', 'from', 'by', 'up', 'about', 'into', 'over', 'after', 'under',
-        'above', 'below', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
-        'have', 'has', 'had', 'do', 'does', 'did', 'but', 'what', 'why',
-        'can', 'could', 'should', 'would', 'how', 'when', 'where', 'who', 'whom',
-        'this', 'that', 'these', 'those', 'am', 'i', 'he', 'she', 'it', 'they',
-        'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours'}
+    base_stopwords = STOPWORDS
 
     if custom_stopwords is not None:
         # homogenize stopwords and update list
@@ -154,6 +153,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     return output_dict
 
+
 def plot_sentiment_distribution(df, text_column):
     """Visualize sentiment distribution"""
     if text_column is None:
@@ -170,6 +170,48 @@ def plot_sentiment_distribution(df, text_column):
     plt.show()
 
 
-def top_ngrams(text_data, n=2, top_k=10):
-    """Find most common n-grams in text"""
-    pass
+def top_ngrams(data, n=2, top_k=10, custom_stopwords=None):
+    """Extract and count the most frequent word combinations (n-grams) from text data to
+    identify common phrases and collocations."""
+
+    base_stopwords = STOPWORDS
+
+    if custom_stopwords is not None:
+        # homogenize stopwords and update list
+        if isinstance(custom_stopwords, str):
+            custom_stopwords = custom_stopwords.lower()
+        else:
+            for i in range(len(custom_stopwords)):
+                custom_stopwords[i] = custom_stopwords[i].lower()
+
+        base_stopwords.update(custom_stopwords)
+
+    # handle case where data is a list of strings or a pd series
+    if isinstance(data, pd.Series):
+        final_text_data = " ".join(data.dropna())
+    elif isinstance(data, list):
+        final_text_data = " ".join(data)
+    elif isinstance(data, str):
+        final_text_data = data
+    else:
+        raise TypeError("Data must be a string, list, or pandas series")
+
+    # tokenize text
+    tokenized_final_text_data = dt.tokenize_text(final_text_data)
+
+    # remove stop words
+    filtered_text_data = [word for word in tokenized_final_text_data if word not in base_stopwords]
+
+    # generate n-grams from tokens
+    ngrams_list = list(ngrams(filtered_text_data, n=n))
+
+    if not ngrams_list:
+        return []
+
+    ngram_counts = Counter(ngrams_list)
+
+    # get top k ngrams
+    top_ngram_counts = ngram_counts.most_common(top_k)
+
+    return top_ngram_counts
+
