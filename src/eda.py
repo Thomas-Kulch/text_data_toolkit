@@ -4,8 +4,10 @@ Exploratory Data Analysis module
 """
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 from collections import Counter
+import src.data_transformation as dt
 
 def generate_wordcloud(data, custom_stopwords=None):
     """Generate a word cloud from text data"""
@@ -152,9 +154,21 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     return output_dict
 
-def plot_sentiment_distribution(df, sentiment_column):
+def plot_sentiment_distribution(df, text_column):
     """Visualize sentiment distribution"""
-    pass
+    if text_column is None:
+        raise ValueError("text_column cannot be None")
+    else:
+        if df[text_column].dtype != "object":
+            raise TypeError("Text column must be of type 'object'")
+
+    df_plot = dt.label_data_sentiment(df, text_column)
+
+    sns.catplot(data=df_plot, x="Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
+
+    plt.title("Sentiment Count Distribution")
+    plt.show()
+
 
 def top_ngrams(text_data, n=2, top_k=10):
     """Find most common n-grams in text"""

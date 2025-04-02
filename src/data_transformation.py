@@ -48,7 +48,7 @@ def remove_stopwords(df, text_column, custom_stopword = None, new_column = "Remo
 def label_data_sentiment(df, text_column, new_column = "Sentiment"):
     """Label text data into categories (sentiment analysis)"""
     positive_words = {"amazing", "love", "like", "good", "great", "awesome", "amazingly"}
-    negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant"}
+    negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible", "disappointing"}
 
     def lexicon_score(text):
         tokens = tokenize_text(text)
