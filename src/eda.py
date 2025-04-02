@@ -18,7 +18,8 @@ STOPWORDS = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on
         'have', 'has', 'had', 'do', 'does', 'did', 'but', 'what', 'why',
         'can', 'could', 'should', 'would', 'how', 'when', 'where', 'who', 'whom',
         'this', 'that', 'these', 'those', 'am', 'i', 'he', 'she', 'it', 'they',
-        'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours'}
+        'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours',
+        "we", "so"}
 
 def generate_wordcloud(data, custom_stopwords=None):
     """Generate a word cloud from text data"""
@@ -152,7 +153,6 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     output_dict["frequent_words"] = {word: count for word, count in top_10_counts}
 
     return output_dict
-
 
 def plot_sentiment_distribution(df, text_column):
     """Visualize sentiment distribution"""

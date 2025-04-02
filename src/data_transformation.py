@@ -29,7 +29,8 @@ def remove_stopwords(df, text_column, custom_stopword = None, new_column = "Remo
         'have', 'has', 'had', 'do', 'does', 'did', 'but', 'what', 'why',
         'can', 'could', 'should', 'would', 'how', 'when', 'where', 'who', 'whom',
         'this', 'that', 'these', 'those', 'am', 'i', 'he', 'she', 'it', 'they',
-        'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours'}
+        'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours',
+        "we", "so"}
 
     if custom_stopword is not None:
         base_stopwords.update(custom_stopword)
