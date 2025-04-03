@@ -9,7 +9,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 from collections import Counter
-import src.data_transformation as dt
+import data_transformation as dt
+import data_cleaning as dc
+import re
 from nltk.util import ngrams
 
 STOPWORDS = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
@@ -47,6 +49,10 @@ def generate_wordcloud(data, custom_stopwords=None):
     else:
         raise TypeError("Data must be a string, list, or pandas series")
 
+    # homogenize string and get rid of punctuation
+    final_text_data = re.sub(r'[^\w\s]', '', final_text_data.lower())
+
+
     # create word cloud object and return it
     word_cloud = WordCloud(width=800, height=400, background_color="white", max_words=100, stopwords=base_stopwords)
     word_cloud.generate_from_text(final_text_data.lower())
@@ -66,6 +72,9 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
             raise TypeError("Text column must be of type 'object'")
 
     output_dict = {"document_stats": {}, "length_stats": {}, "word_stats": {}, "frequent_words": {}}
+
+    # normalize data using method from data_cleaning
+    df = dc.normalize_text(df, text_column)
 
     # document stats
     output_dict["document_stats"]["total_docs"] = df[text_column].shape[0]
@@ -162,6 +171,9 @@ def plot_sentiment_distribution(df, text_column):
         if df[text_column].dtype != "object":
             raise TypeError("Text column must be of type 'object'")
 
+    # normalize data using method from data_cleaning
+    df = dc.normalize_text(df, text_column)
+
     df_plot = dt.label_data_sentiment(df, text_column)
 
     sns.catplot(data=df_plot, x="Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
@@ -196,7 +208,10 @@ def top_ngrams(data, n=2, top_k=10, custom_stopwords=None):
     else:
         raise TypeError("Data must be a string, list, or pandas series")
 
-    # tokenize text
+    # homogenize string and get rid of punctuation
+    final_text_data = re.sub(r'[^\w\s]', '', final_text_data.lower())
+
+    # tokenize text using method from data_transformation
     tokenized_final_text_data = dt.tokenize_text(final_text_data)
 
     # remove stop words
