@@ -1,0 +1,956 @@
+"job_link","job_summary"
+"https://www.linkedin.com/jobs/view/senior-machine-learning-engineer-at-jobs-for-humanity-3804053819","Company Description
+Jobs for Humanity is partnering with Capital One to build an inclusive and just employment ecosystem. Therefore, we prioritize individuals coming from the following communities: Refugee, Neurodivergent, Single Parent, Blind or Low Vision, Deaf or Hard of Hearing, Black, Hispanic, Asian, Military Veterans, the Elderly, the LGBTQ, and Justice Impacted individuals. This position is open to candidates who reside in and have the legal right to work in the country where the job is located.
+Company Name: Capital One
+Job Description
+Locations: NY - New York, United States of America, New York, New York
+Senior Machine Learning Engineer
+Senior Machine Learning Engineer
+As a Capital One Machine Learning Engineer (MLE), you'll be part of an Agile team dedicated to productionizing machine learning applications and systems at scale. You’ll participate in the detailed technical design, development, and implementation of machine learning applications using existing and emerging technology platforms. You’ll focus on machine learning architectural design, develop and review model and application code, and ensure high availability and performance of our machine learning applications. You'll have the opportunity to continuously learn and apply the latest innovations and best practices in machine learning engineering.
+What you’ll do in the role:
+The MLE role overlaps with many disciplines, such as Ops, Modeling, and Data Engineering. In this role, you'll be expected to perform many ML engineering activities, including one or more of the following:
+Design, build, and/or deliver ML models and components that solve real-world business problems, while working in collaboration with the Product and Data Science teams.
+Inform your ML infrastructure decisions using your understanding of ML modeling techniques and issues, including choice of model, data, and feature selection, model training, hyperparameter tuning, dimensionality, bias/variance, and validation).
+Solve complex problems by writing and testing application code, developing and validating ML models, and automating tests and deployment.
+Collaborate as part of a cross-functional Agile team to create and enhance software that enables state-of-the-art big data and ML applications.
+Retrain, maintain, and monitor models in production.
+Leverage or build cloud-based architectures, technologies, and/or platforms to deliver optimized ML models at scale.
+Construct optimized data pipelines to feed ML models.
+Leverage continuous integration and continuous deployment best practices, including test automation and monitoring, to ensure successful deployment of ML models and application code.
+Ensure all code is well-managed to reduce vulnerabilities, models are well-governed from a risk perspective, and the ML follows best practices in Responsible and Explainable AI.
+Use programming languages like Python, Scala, or Java.
+Basic Qualifications:
+Bachelor’s degree.
+At least 4 years of experience programming with Python, Scala, or Java (Internship experience does not apply)
+At least 3 years of experience designing and building data-intensive solutions using distributed computing
+At least 2 years of on-the-job experience with an industry recognized ML frameworks (scikit-learn, PyTorch, Dask, Spark, or TensorFlow)
+At least 1 year of experience productionizing, monitoring, and maintaining models
+Preferred Qualifications:
+1+ years of experience building, scaling, and optimizing ML systems
+1+ years of experience with data gathering and preparation for ML models
+2+ years of experience developing performant, resilient, and maintainable code
+Experience developing and deploying ML solutions in a public cloud such as AWS, Azure, or Google Cloud Platform
+Master's or doctoral degree in computer science, electrical engineering, mathematics, or a similar field
+3+ years of experience with distributed file systems or multi-node database paradigms
+Contributed to open source ML software
+Authored/co-authored a paper on a ML technique, model, or proof of concept
+3+ years of experience building production-ready data pipelines that feed ML models
+Experience designing, implementing, and scaling complex data pipelines for ML models and evaluating their performance
+At this time, Capital One will not sponsor a new applicant for employment authorization for this position.
+The minimum and maximum full-time annual salaries for this role are listed below, by location. Please note that this salary information is solely for candidates hired to perform work within one of these locations, and refers to the amount Capital One is willing to pay at the time of this posting. Salaries for part-time roles will be prorated based upon the agreed upon number of hours to be regularly worked.
+New York City (Hybrid On-Site): $161,900 - $184,800 for Senior Machine Learning Engineer
+Candidates hired to work in other locations will be subject to the pay range associated with that location, and the actual annualized salary amount offered to any candidate at the time of hire will be reflected solely in the candidate’s offer letter.
+Capital One offers a comprehensive, competitive, and inclusive set of health, financial and other benefits that support your total well-being. Learn more at the Capital One Careers website. Eligibility varies based on full or part-time status, exempt or non-exempt status, and management level.
+This role is expected to accept applications for a minimum of 5 business days.
+No agencies please. Capital One is an equal opportunity employer committed to diversity and inclusion in the workplace. All qualified applicants will receive consideration for employment without regard to sex (including pregnancy, childbirth or related medical conditions), race, color, age, national origin, religion, disability, genetic information, marital status, sexual orientation, gender identity, gender reassignment, citizenship, immigration status, protected veteran status, or any other basis prohibited under applicable federal, state or local law. Capital One promotes a drug-free workplace. Capital One will consider for employment qualified applicants with a criminal history in a manner consistent with the requirements of applicable laws regarding criminal background inquiries, including, to the extent applicable, Article 23-A of the New York Correction Law; San Francisco, California Police Code Article 49, Sections 4901-4920; New York City’s Fair Chance Act; Philadelphia’s Fair Criminal Records Screening Act; and other applicable federal, state, and local laws and regulations regarding criminal background inquiries.
+If you have visited our website in search of information on employment opportunities or to apply for a position, and you require an accommodation, please contact Capital One Recruiting at 1-800-304-9102 or via email at RecruitingAccommodation@capitalone.com. All information you provide will be kept confidential and will be used only to the extent required to provide needed reasonable accommodations.
+For technical support or questions about Capital One's recruiting process, please send an email to Careers@capitalone.com
+Capital One does not provide, endorse nor guarantee and is not liable for third-party products, services, educational tools or other information available through this site.
+Capital One Financial is made up of several different entities. Please note that any position posted in Canada is for Capital One Canada, any position posted in the United Kingdom is for Capital One Europe and any position posted in the Philippines is for Capital One Philippines Service Corp. (COPSSC).
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/principal-software-engineer-ml-accelerators-at-aurora-3703455068","Who We Are
+Aurora (Nasdaq: AUR) is delivering the benefits of self-driving technology safely, quickly, and broadly to make transportation safer, increasingly accessible, and more reliable and efficient than ever before. The Aurora Driver is a self-driving system designed to operate multiple vehicle types, from freight-hauling semi-trucks to ride-hailing passenger vehicles, and underpins Aurora Horizon and Aurora Connect, its driver-as-a-service products for trucking and ride-hailing. Aurora is working with industry leaders across the transportation ecosystem, including Toyota, FedEx, Volvo Trucks, PACCAR, Uber, Uber Freight, U.S. Xpress, Werner, Covenant, Schneider, and Ryder. For Aurora’s latest news, visit aurora.tech and @aurora_inno on Twitter.
+Aurora hires talented people with diverse backgrounds who are ready to help build a transportation ecosystem that will make our roads safer, get crucial goods where they need to go, and make mobility more efficient and accessible for all. We’re searching for a Software Engineer to focus on ML Accelerators
+In this role, you will
+Work closely with our autonomy and hardware teams to understand our on-vehicle ML technology
+Develop perspectives on where opportunities and gaps might be in our machine learning software and hardware strategy with a longer-term horizon in mind
+Maintain relationships and intel across the ML ecosystem including both established players and start-ups (accelerators, software modules, etc.) for both existing and future products
+Execute internal research and development of ML software and hardware technology
+Surface high-impact findings to relevant Engineering leadership, keeping feedback loop going to influence Aurora’s ML strategy
+Help drive value to key engineering stakeholders
+Required Qualifications
+Minimum 5+ years of professional experience
+BS, MS, or PhD in Computer Science or related field
+Strong programming skills in C++, Python
+Familiarity with at least one deep learning framework (PyTorch, TensorFlow, MXNet, etc.)
+Basic understanding of computer vision deep learning models.
+Strong analytical skills, especially for performance troubleshooting (e.g. profiling, roofline model)
+Familiarity with CUDA, OpenCL, OpenVX, Halide or other SIMD programming models
+Familiarity with ML-specific accelerators (NPUs, TPUs, IPUs, etc…)
+Ability to quickly learn and adapt to new technology
+Ability to work on large code bases and a fast growing environment.
+Strong communication skills
+Comfortable with Linux/other unix environments
+Desirable Qualifications
+Experience with inference on edge platforms
+Experience with cloud ML training pipelines
+HPC experience
+Pay Range
+The base salary range for this position is $247,000 - $395,000. Aurora’s pay ranges are determined by role, level, and location. Within the range, the successful candidate’s starting base pay will be determined based on factors including job-related skills, experience, qualifications, relevant education or training, and market conditions. These ranges may be modified in the future. The successful candidate will also be eligible for an annual bonus, equity compensation, and benefits.
+#Director
+Working at Aurora
+At Aurora, we bring together extraordinarily talented and experienced people united by the strength of our values. We operate with integrity, set outrageous goals, and build a culture where we win together — all without any jerks.
+We have offices in several locations across the United States, where we encourage team and cross-functional collaboration. Aurora offers competitive medical, dental, and vision benefits, and additional healthcare support including medical transportation reimbursement, fertility, adoption, and surrogacy benefits. We empower our employees and their families with options to further their unique physical, mental, and financial well-being.
+Our Learning and Development offerings include Aurora Academy, where our people learn, develop, and practice the essential skills that drive Aurora’s mission, continually up-leveling our team along the way. Our Careers page provides insight into career opportunities at Aurora, and you can find all the latest news on our Blog.
+Safety is central to everything we do. Every employee at Aurora has a role in contributing to safety, every step of the way. We seek candidates who take active responsibility, can contribute to building an atmosphere of trust, and invest in the organization's long-term success by working safely — no matter what.
+We believe that self-driving technology has broad benefits – including increased access to transportation. To realize those benefits, we need a workforce with diverse experiences, insights, and perspectives — a workforce that reflects the communities our technology will serve.
+Aurora is committed to providing access to anyone who seeks information from our website. We invite anyone using assistive technologies, such as a screen reader or Braille reader, to email us at careersiteaccommodations@aurora.tech if they experience difficulty using our website. Please describe the accessibility problem and include a URL (if available).
+Aurora considers candidates without regard to their race, color, religion, national origin, age, sex, gender, gender identity, gender expression, sexual orientation, marital status, pregnancy status, parent or caregiver status, ancestry, political affiliation, veteran and/or military status, physical or mental disability, or any other status protected by federal or state law. Aurora considers qualified applicants with criminal histories, consistent with applicable federal, state and local law. We are also committed to providing reasonable accommodations for qualified individuals with disabilities and disabled veterans in our job application procedures. If you need assistance or an accommodation due to a disability, you may contact us at careersiteaccommodations@aurora.tech.
+For California applicants, information collected and processed as part of your application and any job applications you choose to submit is subject to
+Aurora’s California Employment Privacy Policy
+.
+Diversity, Equity and Inclusion
+At Aurora, every employee is empowered to take an active role in building an inclusive, collaborative, and unified culture that leverages our diverse strengths, perspectives, and backgrounds.
+Transforming how the world moves people and goods involves seeking to understand backgrounds, insights, and lived experiences that differ from our own. One way we accomplish that is with our 15 employee-led Aurora Unified Groups, which support diverse voices and drive inclusive collaboration. We believe that teamwork, belonging, and trust motivate and support our employees to do their best work. As our team grows, we strive to attract and retain exceptional talent that adds new perspectives and experiences and continues to drive innovation. Learn more on our Culture Page.
+We are committed to helping qualified military community members leverage their talents in service of our mission. To understand how your military experience aligns with career opportunities at Aurora, review your military job classification at MyNextMove.org and consider applying for open positions corresponding to your identified skills and experiences!
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/senior-etl-data-warehouse-specialist-at-adame-services-llc-3765023888","Location: New York City, NY
+Position Summary
+Our company is seeking a highly skilled and experienced Senior ETL Data Warehouse Specialist with a strong background in the Financial/Banking domain. As a key member of our Data Management team, you will play a crucial role in designing, implementing, and optimizing ETL processes to support the organization's data warehousing and business intelligence initiatives.
+Responsibilities
+Data Integration and ETL Development:
+Design, develop, and maintain scalable ETL processes for extracting, transforming, and loading data from various sources into the data warehouse.
+Collaborate with cross-functional teams to understand business requirements and translate them into ETL workflows.
+Data Modeling and Architecture:
+Work closely with data architects to design and implement data models that support the organization's data warehousing needs.
+Ensure data quality and integrity throughout the ETL process, implementing best practices for data validation and cleansing.
+Performance Optimization:
+Identify and implement optimizations to enhance the performance of ETL processes and ensure timely delivery of high-quality data.
+Conduct thorough performance tuning and troubleshooting of ETL workflows.
+Documentation and Reporting:
+Create and maintain comprehensive documentation for ETL processes, data models, and workflows.
+Generate reports and provide insights to stakeholders, ensuring data accuracy and relevance.
+Collaboration and Communication:
+Collaborate with business analysts, data scientists, and other stakeholders to understand data requirements and deliver solutions.
+Communicate effectively with team members, providing technical guidance and support.
+Qualifications
+Bachelor's degree in Computer Science, Information Systems, or a related field.
+Proven experience as an ETL Developer or Data Warehouse Specialist in the Financial/Banking domain.
+Strong proficiency in ETL tools such as Informatica, Talend, or Apache NiFi.
+Expertise in SQL, data modeling, and performance optimization.
+Familiarity with data warehousing concepts and best practices.
+Excellent problem-solving and analytical skills.
+Effective communication and collaboration skills.
+Preferred Qualifications
+Master's degree in a relevant field.
+Certification in relevant technologies or methodologies.
+Experience with cloud-based data platforms (e.g., AWS Redshift, Azure SQL Data Warehouse).
+Knowledge of regulatory and compliance requirements in the Financial/Banking industry.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/senior-data-warehouse-developer-architect-at-morph-enterprise-3794602483","Responsibilities:
+Candidate must have significant, hands-on technical experience and expertise with data lakes, data bricks, Azure data factory pipelines, Spark, and Python.
+Significant, hands-on technical experience and expertise with leading the design, implementation and maintenance of business intelligence and data warehouse solutions, with expertise in using the SQL Server and Azure.
+Producing ETL/ELT using SQL Server Integration Services and other tools.
+Experience with SQL Server, T-SQL, scripts, queries.
+Experience with data formatting, capture, search, retrieval, extraction, classification, and information filtering techniques.
+Experience with data mining architectures, modeling standards, reporting and data analysis methodologies.
+Experience with data engineering, database file systems optimization, API’s, and analytics as a service.
+Analyzing and translating business requirements and use cases into optimized designs and developing sound solutions.
+Advanced knowledge of relational databases, dimensional databases, entity relationships, data warehousing, facts, dimensions, and star schema concepts and terminology.
+Ability to balance work between multiple projects and possess good organizational skills, with minimal or no direct supervision.
+Ability to work and communicate collaboratively and effectively with colleagues, and as a member of a team.
+Ability to present complex technical concepts and data to a varied audience effectively.
+More than 12 years of relevant experience.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/lead-data-engineer-at-dice-3805948138","Dice is the leading career destination for tech experts at every stage of their careers. Our client, Capital One, is seeking the following. Apply via Dice today!
+Plano 1 (31061), United States of America, Plano, Texas
+Lead Data Engineer
+Do you love building and pioneering in the technology space? Do you enjoy solving complex business problems in a fast-paced, collaborative, iinclusive, and iterative delivery environment? At Capital One, you'll be part of a big group of makers, breakers, doers and disruptors, who solve real problems and meet real customer needs. We are seeking Data Engineers who are passionate about marrying data with emerging technologies. As a Capital One Lead Data Engineer, you'll have the opportunity to be on the forefront of driving a major transformation within Capital One.
+On this team, we are building a suite of products to help our dealers connect with potential car buyers! This team is focusing on building the data infrastructure (right from ingestion to consumption) for all of our products from ground up. We build intelligence for scaling to more dealers and build personalized customer experience.
+What You'll Do:
+Collaborate with and across Agile teams to design, develop, test, implement, and support technical solutions in full-stack development tools and technologies
+Work with a team of developers with deep experience in machine learning, distributed microservices, and full stack systems
+Utilize programming languages like Java, Scala, Python and Open Source RDBMS and NoSQL databases and Cloud based data warehousing services such as Redshift and Snowflake
+Share your passion for staying on top of tech trends, experimenting with and learning new technologies, participating in internal & external technology communities, and mentoring other members of the engineering community
+Collaborate with digital product managers, and deliver robust cloud-based solutions that drive powerful experiences to help millions of Americans achieve financial empowerment
+Perform unit tests and conduct reviews with other team members to make sure your code is rigorously designed, elegantly coded, and effectively tuned for performance
+Basic Qualifications:
+Bachelor's Degree
+At least 6 years of experience in application development (Internship experience does not apply)
+At least 2 years of experience in big data technologies
+At least 1 year experience with cloud computing (AWS, Microsoft Azure, Google Cloud)
+Preferred Qualifications:
+7+ years of experience in application development including Python, SQL, Scala, or Java
+4+ years of experience with a public cloud (AWS, Microsoft Azure, Google Cloud)
+4+ years experience with Distributed data/computing tools (MapReduce, Hadoop, Hive, EMR, Kafka, Spark, Gurobi, or MySQL)
+4+ year experience working on real-time data and streaming applications
+4+ years of experience with NoSQL implementation (Mongo, Cassandra)
+4+ years of data warehousing experience (Redshift or Snowflake)
+4+ years of experience with UNIX/Linux including basic commands and shell scripting
+2+ years of experience with Agile engineering practices
+At this time, Capital One will not sponsor a new applicant for employment authorization for this position.
+Capital One offers a comprehensive, competitive, and inclusive set of health, financial and other benefits that support your total well-being. Learn more at the . Eligibility varies based on full or part-time status, exempt or non-exempt status, and management level.
+This role is expected to accept applications for a minimum of 5 business days.
+No agencies please. Capital One is an equal opportunity employer committed to diversity and inclusion in the workplace. All qualified applicants will receive consideration for employment without regard to sex (including pregnancy, childbirth or related medical conditions), race, color, age, national origin, religion, disability, genetic information, marital status, sexual orientation, gender identity, gender reassignment, citizenship, immigration status, protected veteran status, or any other basis prohibited under applicable federal, state or local law. Capital One promotes a drug-free workplace. Capital One will consider for employment qualified applicants with a criminal history in a manner consistent with the requirements of applicable laws regarding criminal background inquiries, including, to the extent applicable, Article 23-A of the New York Correction Law; San Francisco, California Police Code Article 49, Sections 4901-4920; New York City's Fair Chance Act; Philadelphia's Fair Criminal Records Screening Act; and other applicable federal, state, and local laws and regulations regarding criminal background inquiries.
+If you have visited our website in search of information on employment opportunities or to apply for a position, and you require an accommodation, please contact Capital One Recruiting at 1- or via email at . All information you provide will be kept confidential and will be used only to the extent required to provide needed reasonable accommodations.
+For technical support or questions about Capital One's recruiting process, please send an email to
+Capital One does not provide, endorse nor guarantee and is not liable for third-party products, services, educational tools or other information available through this site.
+Capital One Financial is made up of several different entities. Please note that any position posted in Canada is for Capital One Canada, any position posted in the United Kingdom is for Capital One Europe and any position posted in the Philippines is for Capital One Philippines Service Corp. (COPSSC).
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/senior-data-engineer-at-university-of-chicago-3798206502","Department
+F&A ITS - Business Intelligence Solutions
+About The Department
+IT Services collaborates with campus partners to support the mission of the University of Chicago through the consistent delivery of high-quality solutions and services.
+We provide secure, stable, and reliable infrastructure and applications to support the mission of the University.
+We support and enable faculty research and teaching with the effective use of technology.
+We simplify the technology experience for faculty, students, alumni, and staff, and we ensure technology is mobile-friendly and accessible.
+We identify, manage, and mitigate the technology risks of the University.
+Job Summary
+The Senior Data Engineer is the technical lead on projects to design, develop, and QA Data Warehouse (DW) and extract/transform/load (ETL) environments, and other database environments, to enable analytics. This role follows the prescribed project and development methodology. Under the direction of a Project Manager, this role will work closely with the Lead Architect, BI Lead, DW developers, source application developers, and subject matter experts (SMEs). The Senior Data Engineer will support, maintain, and enhance these environments to achieve a cross-functional, integrated reporting and analysis environment for University users.
+Responsibilities
+Works closely with business analysts and subject matter experts to understand data analysis requirements, data definitions, and to develop data mappings, data rules, and data transformations for reporting related to a particular data warehouse and/or analytic subject area.
+Finalizes the conceptual data models developed by the BI Lead, most often a dimensional model with facts and dimensions. Documents and communicates model design to project team.
+Leads development of logical data models. Documents, communicates, and maintains model design for the project team.
+Leads design and implementation of physical databases including index definitions, partitioning, parallelism, tuning, and space management.
+Utilizes database design and documentation tools to document, analyze, and communicate database information.
+Designs DW security.
+Implements test and QA strategies and prepares for rollout, including assuring data validation and integrity.
+Coordinates development resources to ensure that project timelines are met.
+Leads the design of ETL processing modules based on transformation rules, mapping rules, processing requirements and database model.
+Leads the design of ETL auditing steps to ensure data integrity and completeness of the ETL process.
+Leads the design of ETL process flow including module dependencies and parallel processing opportunities.
+Provides documentation for and works with job scheduling team to automate ETL processing.
+Leads the design of programming specifications for each ETL component.
+Leads the design of testing plans for each phase of the development process. Plans must ensure accuracy and quality of program code as well as thorough data validation procedures.
+Develops efficient code that meets analysis and design criteria.
+Coordinates ETL development resources to ensure that project timelines are met.
+Provides break/fix support and communicates outages as defined by IT Services standards.
+Troubleshoots and tunes DW and analytic systems.
+Coordinates testing of software patches and upgrades.
+Works closely with BIS colleagues to implement DW best practices, supporting integration of information from different subject areas.
+Promulgates DW, ETL and related development standards, processes, and best practices throughout BIS.
+Participates in the selection of DW, ETL and related enabling tools, including software and consulting.
+Deep expertise in DW, ETL and analytic systems best practices and emerging trends is imperative
+Works with users to ensure deliverables are meeting or exceeding expectations. Provides support and communicates issues to users as defined by IT standards.
+Plans, tests and guides roll-out of patches and upgrades to the BI and analytic software. Solves problems in the development and interpretation of BI and analytics system standards and procedures.
+Performs other related work as needed.
+Education:
+Minimum Qualifications
+Minimum requirements include a college or university degree in related field.
+Work Experience:
+Minimum requirements include knowledge and skills developed through 5-7 years of work experience in a related job discipline.
+Certifications:
+Preferred Qualifications
+Education:
+Bachelor's degree.
+Advanced study or professional certifications in database, data management, DW, or ETL disciplines.
+Experience:
+Four years experience designing and building ETL using ODI.
+Four years experience designing and building Data Warehouse systems using Oracle and VPD.
+One year of experience building MuleSoft applications.
+Five to seven years of database and application development experience with a formal software development life cycle.
+Three years Hadoop experience with Cloudera Apache Hadoop Ecosystem (Nifi, Zeppelin, Oozie, Spark, Impala, Kafka, et al).
+A minimum of five years of data warehouse development experience including expert knowledge of data warehousing methodologies (e.g. Kimball).
+A minimum of four years of experience designing and building dimensional data warehouses with Oracle db, Oracle Stored Procedures and Packages.
+A minimum of four years or more designing and developing ETL processes for data warehouse implementations using Oracle OWB or equivalent ETL tools.
+Experience as lead DW/ETL designer on two successful enterprise data warehouse initiatives, using both formal software lifecycle development and project management.
+Two years experience working within the ITIL framework including incident, service, problem, and change management processes and procedures.
+Technical Skills Or Knowledge:
+Programming environments, languages, and systems built using (Java, Python, R).
+AI/ML and predictive analytic algorithms.
+Knowledge of reporting and analytic systems based on current-generation ERP systems.
+Familiarity with Business Objects, Tableau or OBIA/OBIEE.
+Oracle Cloud Financials.
+Familiarity with higher education administrative systems and data.
+Working knowledge of Java Applications.
+Expertise with data query, analysis, reporting techniques, and OLAP.
+Expertise in Database Design and tools (e.g. Power Designer or Erwin).
+Expertise to develop and administer UNIX-based relational database architectures (ODBC, JDBC, Perl DBI, shell scripting, PL/SQL, SQL Developer, SQL Plus, SQL Loader, TOAD, Java).
+Expert skills in data profiling, source-target mapping, implementation of transformations and business rules.
+Superior ETL design and development skills including maps, process flows, auditing, and scheduling using vendor tools (OWB, ODI, Data Stage, or Informatica).
+Expertise in SQL coding techniques, performance monitoring and tuning.
+Working with Unix Server, and Windows Workstation and Server environments.
+Microsoft Office application suite, especially Excel.
+Preferred Competencies
+Excellent analytic skills to quickly synthesize technical, functional, and user inputs, and manage problem-solving to issue resolution.
+Leads joint design sessions, documenting the results using business process design tools.
+Strong oral and written communication skills, including developing standards and procedures, and presenting technical concepts to non-technical audiences.
+Commitment to working and sharing expertise in a collaborative team environment.
+Strong sense of accountability for completing work within defined scope and timeline, with ability to multi-task effectively.
+Very high attention to detail and accuracy.
+Working Conditions
+Standard office environment.
+On-call responsibilities.
+Application Documents
+Resume/CV (required)
+Cover Letter (required)
+When applying, the document(s)
+MUST
+be uploaded via the
+My Experience
+page, in the section titled
+Application Documents
+of the application.
+Job Family
+Information Technology
+Role Impact
+Individual Contributor
+FLSA Status
+Exempt
+Pay Frequency
+Monthly
+Scheduled
+Weekly Hours
+37.5
+Benefits Eligible
+Yes
+Drug Test Required
+No
+Health Screen Required
+No
+Motor Vehicle Record Inquiry Required
+No
+Posting Statement
+The University of Chicago is an Affirmative Action/Equal Opportunity/Disabled/Veterans and does not discriminate on the basis of race, color, religion, sex, sexual orientation, gender, gender identity, national or ethnic origin, age, status as an individual with a disability, military or veteran status, genetic information, or other protected classes under the law. For additional information please see the University's Notice of Nondiscrimination.
+Staff Job seekers in need of a reasonable accommodation to complete the application process should call 773-702-5800 or submit a request via Applicant Inquiry Form.
+We seek a diverse pool of applicants who wish to join an academic community that places the highest value on rigorous inquiry and encourages a diversity of perspectives, experiences, groups of individuals, and ideas to inform and stimulate intellectual challenge, engagement, and exchange.
+All offers of employment are contingent upon a background check that includes a review of conviction history. A conviction does not automatically preclude University employment. Rather, the University considers conviction information on a case-by-case basis and assesses the nature of the offense, the circumstances surrounding it, the proximity in time of the conviction, and its relevance to the position.
+The University of Chicago's Annual Security & Fire Safety Report (Report) provides information about University offices and programs that provide safety support, crime and fire statistics, emergency response and communications plans, and other policies and information. The Report can be accessed online at: http://securityreport.uchicago.edu. Paper copies of the Report are available, upon request, from the University of Chicago Police Department, 850 E. 61st Street, Chicago, IL 60637.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/manager-cyber-risk-analysis-machine-learning-at-jobs-for-humanity-3792356406","Company Description
+Jobs for Humanity is partnering with Capital One to build an inclusive and just employment ecosystem. Therefore, we prioritize individuals coming from the following communities: Refugee, Neurodivergent, Single Parent, Blind or Low Vision, Deaf or Hard of Hearing, Black, Hispanic, Asian, Military Veterans, the Elderly, the LGBTQ, and Justice Impacted individuals. This position is open to candidates who reside in and have the legal right to work in the country where the job is located.
+Company Name: Capital One
+Job Description
+Job Title: Manager, Cyber Risk & Analysis (Machine Learning) Location: McLean, Virginia, United States of America (Center 3, 19075) Organization: Enterprise Services Business Risk Office About Us: At Capital One, we are on a journey to build a technology company that operates in a complex, highly regulated business. We believe that Machine Learning (ML) represents a huge opportunity to revolutionize the financial services industry. The Enterprise ML Program is at the forefront of this effort, working towards building responsible and impactful tools, platforms, and solutions that leverage ML and Generative AI. Job Description: As a Risk Guide supporting the Enterprise ML Program, you will work with various teams and risk advisors across the organization to deliver results that directly impact customer experience. Your role is vital in implementing risk solutions to ensure the stability and success of Capital One. This dynamic role requires the ability to manage multiple tasks simultaneously, pay attention to detail, and communicate clearly. Responsibilities: - Collaborate with the IMPACT risk team to execute the risk office vision and achieve enterprise and team objectives. - Partner with the IMPACT Risk and Product & Tech teams to identify and manage risks, issues, and mitigation plans. - Develop and deliver senior-level risk management reporting and communications. - Foster effective collaboration with colleagues, stakeholders, and leaders across different organizations. - Coordinate program-related activities and deliverables to promote collaboration within the team and across stakeholder groups. - Continuously seek ways to improve and innovate in risk management approaches. - Establish and maintain relationships with Enterprise Services process owners, process managers, and vertical risk advisors. Requirements: - Bachelor's Degree or Military Experience. - At least 3 years of experience in Process Management, Project Management, Risk Management, or Cloud Risk Management. - At least 3 years of Compliance, Legal, Regulatory, or Operations experience. - At least 2 years of experience in Technology or Cybersecurity. Preferred Qualifications: - Business Process Management certification, Lean, or Green Belt Certification. - Knowledge of PRIME system and data model. - At least 3 years of experience in Process management. - At least 3 years of experience in Change or Risk Management. - At least 3 years of experience as a Risk Guide. - Ability to drive results and communicate effectively across all levels. - Deep understanding of appropriate controls to secure cloud-based services (SaaS) products. - Risk Certifications (CRISC, CISM, CRCM, CIPP, ABA Risk Mgmt Certification). - Knowledge of Machine Learning. - Knowledge of Generative AI. Salary: The minimum and maximum full-time annual salaries for this position in the New York City (Hybrid On-Site) location are $160,200 - $182,800. Benefits: At Capital One, we offer a comprehensive and inclusive set of health, financial, and other benefits to support your well-being. To learn more about our benefits, visit the Capital One Careers website. Eligibility may vary based on employment status and management level. Application Process: We will accept applications for a minimum of 5 business days. Equal Opportunity: Capital One is an equal opportunity employer committed to diversity and inclusion in the workplace. We embrace individuals from all walks of life and do not discriminate based on sex, race, color, age, national origin, religion, disability, genetic information, marital status, sexual orientation, gender identity, gender reassignment, citizenship, immigration status, protected veteran status, or any other basis prohibited by applicable laws. Accommodation: If you require accommodation during the application process, please contact Capital One Recruiting at 1-800-304-9102 or via email at RecruitingAccommodation@capitalone.com. We will ensure all information provided is kept confidential and used only to provide necessary accommodations. Support: For technical support or questions about the recruiting process, please email Careers@capitalone.com. Note: Capital One does not endorse or guarantee third-party products, services, educational tools, or other information available through this site. Disclaimer: Capital One Financial consists of various entities. Please note that any position posted in Canada is for Capital One Canada, any position posted in the United Kingdom is for Capital One Europe, and any position posted in the Philippines is for Capital One Philippines Service Corp. (COPSSC).
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/principal-associate-data-loss-prevention-dlp-engineer-at-jobs-for-humanity-3789001363","Company Description
+Jobs for Humanity is partnering with Capital One to build an inclusive and just employment ecosystem. Therefore, we prioritize individuals coming from the following communities: Refugee, Neurodivergent, Single Parent, Blind or Low Vision, Deaf or Hard of Hearing, Black, Hispanic, Asian, Military Veterans, the Elderly, the LGBTQ, and Justice Impacted individuals. This position is open to candidates who reside in and have the legal right to work in the country where the job is located.
+Company Name: Capital One
+Job Description
+Location: McLean, Virginia, United States Job Title: Data Loss Prevention (DLP) Engineer Capital One is looking for a cybersecurity expert to join our team and help create innovative solutions to protect data. We are a technology-driven company that delivers financial products using cutting-edge technology and constant innovation. As a part of our team, you will work with other cybersecurity professionals to implement DLP controls using software and cloud-based solutions to reduce risk and enforce our information security policy. We value curiosity, teamwork, and the ability to think critically. We believe that cybersecurity should enable the business and we prioritize the needs of our developers and business partners. If you are excited about working in a fast-paced and technologically advanced environment, this opportunity is for you. What you'll do: - Use your expertise in data loss prevention technology to design and implement tools that protect data in various states. - Analyze problems and work with architecture to develop target state architecture. - Collaborate with cross-functional teams to execute technical solutions. - Maintain relationships with stakeholders, developers, and engineers to ensure our services align with their needs. - Communicate with product and engineering teams across the organization. - Collaborate with different teams to resolve dependencies with data loss prevention products. - Design, build, and maintain cloud-based infrastructure to meet organizational requirements. About You: - You are a subject matter expert in data loss prevention tools. - You have a strong understanding of web proxy, email, and endpoint solutions. - You pay attention to detail and can clearly articulate key information. - You can lead technical initiatives and engage with customers using your cybersecurity and software engineering knowledge. - You can build strong relationships with technology groups and stakeholders. - You have excellent communication skills and can interact effectively with different levels of an organization. - You have experience managing high-visibility cybersecurity projects. - You are passionate about technical delivery, product security, software development practices, or platform engineering. - You have hands-on knowledge and expertise in building and securing technology. Basic Qualifications: - High School Diploma or equivalent - At least 4 years of experience in cybersecurity or information technology - At least 3 years of experience in the data protection field - At least 1 year of experience with Symantec Data Loss Prevention (DLP) infrastructure engineering Preferred Qualifications: - Bachelor's Degree in Cybersecurity, Systems Engineering, or Computer Science - 3+ years of experience in scripting and solving cyber technical challenges - 3+ years of experience with agile delivery - 3+ years of experience in public cloud security and multi-cloud environments - 2+ years of experience in IT delivery projects and technical writing - 2+ years of hands-on experience with JIRA - 1 or more professional cybersecurity certifications (CISSP, GIAC, CISM, CCSP, CISA, Security+) - 1 or more professional cloud certifications (AWS Cloud Practitioner, AWS Solution Architect - Associate, AWS Developer - Associate, AWS Security - Specialty, AWS Solution Architect - Professional) Salary Range: - New York City (Hybrid On-Site): $161,900 - $184,800 for Principal Associate, Cyber Technical - San Francisco, California (Hybrid On-Site): $171,500 - $195,800 for Principal Associate, Cyber Technical Benefits: Capital One offers a comprehensive set of health, financial, and other benefits to support your well-being. Please visit the Capital One Careers website for more information on eligibility and benefits. Note: This position is open for a minimum of 5 business days. We are an equal opportunity employer committed to diversity and inclusion in the workplace. All qualified applicants will receive consideration for employment without regard to sex, race, color, age, national origin, religion, disability, genetic information, marital status, sexual orientation, gender identity, gender reassignment, citizenship, immigration status, protected veteran status, or any other basis prohibited by applicable law. If you need an accommodation during the application process, please contact Capital One Recruiting at 1-800-304-9102 or RecruitingAccommodation@capitalone.com. All information will be kept confidential and used only for providing reasonable accommodations. For technical support or questions about the recruiting process, please email Careers@capitalone.com. Note: Capital One does not provide, endorse, or guarantee third-party products, services, or information available through this site. Please be aware that Capital One Financial consists of different entities. Positions posted in different countries are specific to those entities.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/senior-financial-data-analyst-at-the-walt-disney-company-3787686471","Enterprise Technology/Telecom is looking for someone with the ability identify and solve complex problems and integrate requirements, including recognizing patterns and conceptualizing opportunities. You are a thought partner who has a strong desire and determination to succeed. The Senior Data Analyst must have a robust background in accounting/finance to address operational and financial risk associated with Managed Service Providers.
+You will report to Manager-Telecom Business Office.
+You Will:
+Strong problem-solving skills; ability to identify patterns or trends by focusing on the right types of data, recognizing the most revealing method of analysis and catching gaps in the work
+Ability to perform descriptive, diagnostic, and predictive analyses
+Identify improvement opportunities (proactive and reactive) by recognizing trends
+Contribute to the definition, monitoring and communication of success metrics by service area On an ongoing basis, monitor the metrics of all service areas for deviations
+Effectively and concisely communicate problems, issues, risks, and solutions both by written and oral methods to appropriate stakeholders and leadership
+Develop models and ad hoc reports, sharing observations and recommendations with senior management, executives, and stakeholders for further consideration
+You Have:
+Prior Telecom experience
+5+ years of experience as an Analyst with 2+ years demonstrated experience in finance or business processes
+Strong written and speaking skills to convey data and analysis to our customers; able to extract and explain the ""story"" from the data
+Preferred Qualifications:
+Advanced experience with Excel (can perform complex functions), Visio, Smartsheet, SNOW
+Familiarity with the features (physical attributes), functions (useful for), and transaction processes in SAP, Tableau, SQL, R and Power BI
+Experience collaborating with a range of partners while understanding multiple perspectives
+Demonstrated leadership qualities
+Required Education:
+Bachelor's Degree from a 4-year college or equivalent work experience; professional certification desired but not required (CDP-DM, Data Analytics Boot Camp)
+Preferred Education:
+Graduate degree in statistics, mathematics, or computer science related field (MBA, MSA, etc.)
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/machine-learning-infrastructure-engineer-at-l-t-technology-services-3784021144","JD:
+Responsibilities
+Design and develop systems to support Machine Learning algorithm development within the team.
+Own the system design that will cater to multi-modal input, quick prototyping of algorithms, visualization tools and state-of-the-art ML algorithm architecture development.
+Build distributed systems and pipelines for data management, ensuring scalability, reliability and performance.
+Demonstrate a deep understanding of DevOps practices and apply them to ML operations.
+Handle the complexities of designing and implementing ML infrastructure systems in a dynamic and fast-paced environment.
+Contribute to the overall impact of the team by delivering robust and efficient ML infrastructure.
+Minimum Qualifications
+Bachelor's degree in Computer Science or a related field.
+Minimum 5+ years of experience in software engineering, with a focus on infrastructure design.
+5+ years experience in Python and C++.
+Proven experience in designing complex systems and strong software engineering skills.
+Strong understanding and experience with distributed systems and infrastructure design.
+Demonstrated expertise in DevOps practices, with a focus on ML.
+Preferred Qualifications
+Experience with ML pipeline automation and data management in ML workflows.
+Previous experience building ML systems and working on ML adjacent teams.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/sr-workforce-management-data-analyst-at-wisemen-multimedia-llc-3756883410","Sr. Workforce Management Data Analyst - Alvaria
+Job Description
+Wisemen Multimedia Corporation, LLC (WMC) is seeking a skilled SQL Database Administrator to join our Contact Center Support team. Our team supports the management of the largest private, secured civilian government toll-free telephony infrastructure in the United States. Responsible for database administration for the IRS Contact Data Center environment. Provided database technical support to multiple user groups located at 30+ local and remote IRS service centers.
+The WFM Data Analyst in this role is accountable for supporting the development of accurate operational forecasts for volumes, average handle time, and shrinkage based on historical patterns and predictive analytics utilizing multiple forecasting techniques. The selected candidate will be charged with identifying, researching, and data abnormalities. This person will also be charged with creating and maintaining advanced projection models that support our client’s decision-making ability. These models will include advanced statistical analysis. This position will work closely with business leaders to gain insight into the day-to-day operations of the organization and project impact of future initiatives. As such, partnership with all areas of the business and quantifying impact will be a critical requirement of this role. Candidates should be experienced in analytical and critical-thinking skills, leadership communication, contact workforce management experience, and have a proven track record of collaboration within cross-functional organizations.
+Primary Duties & Responsibilities
+Develop and maintain statistical forecast models for workload and staffing requirements, including forecast vs actual trends, and forecasting for trend changes due to seasonal variations and other operational variables.
+Utilize performance analytics tools to identify agent and volume behaviors for future forecast and schedule scenarios and recommend action items to drive efficiencies and improve workflow.
+Utilizes advanced SQL programming to manipulate, forecast, and project models that operationalize, optimize, and drive business performance.
+Ensure governance and compliance for best-in-class standard operating procedures (SOPs) related to forecasting, scheduling, and performance analytics.
+Create scenarios and present comprehensive recommendations for strategic staffing and hiring plans to ensure cost center optimization.
+Identify and communicate areas for continual improvement of service levels across the operation, recommending and initiating improvements necessary to attain expected targets.
+Review and analyze results and report on deviations from forecasts for data validation and root cause analysis.
+Review and identify trends or patterns of practices/activities that impact operational service level results.
+Measure and provide hindsight analysis for forecast accuracy and scheduling efficiency used for operational planning.
+Establish a regular cadence with business leaders to share insights/recommendations regarding volumes, average handle time, shrinkage, and hiring plans.
+Additional duties and responsibilities as assigned.
+Qualifications
+Bachelor’s degree in business, accounting, finance, statistics, or economics, or an equivalent combination of education and work experience.
+Minimum of 5 plus years’ experience in call-center forecasting.
+Advanced experience with databases, building reporting, utilizing SQL, etc.
+Advanced Excel skills and experience in formulas, arrays, table formatting, conditional formatting, graphs, and pivot table reporting.
+Understanding of forecasting and value-maximization techniques.
+Strong understanding of Automatic Call Distribution (ACD) and/or Back-Office Work Routing platforms.
+Experience with WFM Software(s), experience with Alvaria are a definite plus.
+Must have a high degree of personal initiative and self-motivation.
+Ability to be responsive to changing business needs, manage and prioritize concurrent assignments, and handle ambiguity.
+Strong verbal and written skills with demonstrated ability to communicate complex and technical concepts in general terms to broad audiences.
+Strong analytical abilities in decision-making and problem-solving.
+About The Company
+Founded in 2010, we are a minority-owned, HUBZone certified, small business concern and GSA Schedule holder, based in Atlanta, GA. As an enterprise solutions provider, we offer a wide range of consulting and solutions development services designed to help you deploy the right resources at the right time, the first time. With decades of experience, our leadership team leverages modern technology and future concepts to deliver our flagship services with excellence. We specialize in helping commercial clients enhance their capabilities while improving operational efficiency, and we champion efforts to help modernize agencies and reduce government burden. We value all employees and job candidates as unique individuals, and we welcome the variety of experiences they bring to our company. As such, we have a strict non-discrimination policy. We believe everyone should be treated equally regardless of race, sex, gender identification, sexual orientation, national origin, native language, religion, age, disability, marital status, citizenship, genetic information, pregnancy, or any other characteristic protected by law.
+About Wisemen Multimedia, LLC
+Founded in 2010, we are a minority owned, HUBZone certified, small business concern and GSA Schedule holder, based in Atlanta, GA. As an enterprise solutions provider, we offer a wide range of consulting and solutions development services designed to help you deploy the right resources at the right time the first time. With decades of experience, our leadership team leverages modern technology and future concepts to deliver our flagship services with excellence. We specialize in helping commercial clients enhance their capabilities while improving operational efficiency, and we champion efforts to help modernize agencies and reduce government burden.We value all employees and job candidates as unique individuals, and we welcome the variety of experiences they bring to our company. As such, we have a strict non-discrimination policy. We believe everyone should be treated equally regardless of race, sex, gender identification, sexual orientation, national origin, native language, religion, age, disability, marital status, citizenship, genetic information, pregnancy, or any other characteristic protected by law.Wisemen Multimedia LLC (“Wisemen”) is seeking qualified candidates to fill several full-time, part-time, and intern positions. Wisemen embraces diversity and strongly encourages all qualified individuals, including people of varied ethnicity, gender identity, sexual orientation, and physical abilities, to apply, especially if you live in a Historically Underutilized Business Zone (HUBZone). Please copy and paste the link below and enter your home address to determine if you live in a HUBZone. https://maps.certify.sba.gov/hubzone/map#center=39.828200,-98.579500&zoom=5
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/master-data-management-data-process-analyst-at-opentext-3737391805","Opentext - The Information Company
+As the Information Company, our mission at OpenText is to create software solutions and deliver services that redefine the future of digital. Be part of a winning team that leads the way in Enterprise Information Management.
+The Opportunity
+We're looking for a strong Master Data Analyst to support the Customer/Partner, Product, Vendor, and Contacts business domains. The role will focus on working alongside our business areas to provide solution support for the Master Data Management (MDM) program functionality. You must have data/master data experience, be used to working in ambiguous/complex programs, and have polished people and senior stakeholder engagement skills.
+The Master Data Analyst will be responsible for assessing requirements, and designing and implementing successful Master Data Management solutions that comprise data cleansing, data ingestion pipelines, business process workflow, data matching & de-duplication, and standardization. You will work with a team to create a robust, sustainable, and flexible design and contribute towards technical delivery using a semi-agile delivery framework.
+The Master Data Analyst should understand both technical and functional design and bring perspective from process, application, integration, data, technology, and security together into an overall solution design of Master Data Management capabilities.
+You Are Great At
+Approach: Responsible for applying MDM strategies, requirements, and policies aligned to the business vision, and leading MDM functional implementation
+Requirements: Plan and lead MDM requirement analysis sessions with business users and a thorough understanding of deterministic and probabilistic matching methodologies and master data hierarchy management
+High-Level Design: Translate master data requirements into high-level design and oversee the delivery of functional components for master data solutions
+Process: Responsible for the rationalization and management of master data across the full lifecycle, and accountable for MDM change processes
+Partnership: Collaborate with key stakeholders to understand their environment with its opportunities and challenges to identify and drive fit-for-purpose solutions
+MDM Solution: Create enrichment solutions that include logic like validation, match and merge, and survivorship and perform data profiling, data scorecard development, exception management
+Program Support: Develop, enhance, and support large-scale end-to-end MDM project implementation
+Thought Leadership: Open to expressing and discussing ideas or issues with a range of technical stakeholders – such as leads, architects, and business/technical SMEs to drive best-in-class solutions
+Data Quality: Provide guidance on Data Quality analysis on large and complex data sets
+Data Governance: Collaborate with Data Governance team to design and build the policies in MDM
+Data Transformation: Collaborate with Data Architects to design the data model and develop ETL flows for MDM solutions
+What It Takes
+At least 10 years of experience in leading MDM implementations
+Well-versed with Data Enrichment (e.g. Dun & Bradstreet)
+Completed at least 3 full life cycle experiences in MDM/DG projects using any tools like Informatica
+Strong in SQL and experience in Informatica MDM/DG and SAP MDM
+Understand and assess sources to target map documents
+Experience with business-facing activities such as gathering requirements, facilitating meetings, creating persuasive presentations, and the ability to prepare business-ready deliverables
+Understand Governance and data harmonization concepts, practices, and their implementation
+Experience of Agile and traditional SDLC delivery methodologies
+Work independently, efficiently, and effectively under tight timelines to deliver results by critical deadlines
+Experience with high-level designs and overseeing the delivery of functional components for master data solutions
+Excellent business communication skills and a collaborative approach
+Strong analytical and problem-solving skills
+This job is expected to pay in the range of $102,000 to $130,000 USD in addition to a comprehensive and competitive group benefit and healthcare plan. Individual compensation will be determined based on skills and experience comparable to the job requirements.
+OpenText's efforts to build an inclusive work environment go beyond simply complying with applicable laws. Our Employment Equity and Diversity Policy provides direction on maintaining a working environment that is inclusive of everyone, regardless of culture, national origin, race, color, gender, gender identification, sexual orientation, family status, age, veteran status, disability, religion, or other basis protected by applicable laws. If you need assistance and/or a reasonable accommodation due to a disability during the application or recruiting process, please contact us at hr@opentext.com.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/4-corporate-associate-positions-amlaw-at-lhh-3798676411","Job #1: Corporate Associate
+The ideal candidate will have at least 3 years of experience handling corporate, private equity, venture capital, and M&A matters
+The firm is widely regarded for its corporate practice
+The firm’s practice and partners receive rankings from
+U.S. News Best Lawyers
+,
+The Legal 500,
+and
+Chambers USA
+Job #2: Corporate Securities Associate
+The ideal candidate will have least 3
+years
+of experience handling a wide range of corporate securities matters
+Expertise in guiding public companies regarding their SEC periodic reporting obligations, compliance with stock exchange rules, and corporate governance matters, along with hands-on experience in registered and exempt capital-raising transactions
+Job #3: Mid to Senior Level Corporate Securities Associate
+The ideal candidate will have a background in mergers and acquisitions, equity and debt offerings, and securities law
+Excellent work environment, professional development, recognition for its great reputation nationally and internationally, reasonable track to partnership, and
+great salary
+Job #4: Mid to Senior Level Corporate & Securities Associate
+Collaborative environment working with members of all offices
+Experience handling corporate governance, exchange regulations, and more
+Highly regarded for its banking and finance, corporate m&a, and litigation practice areas
+Firm provides closing costs or temporary housing for a new home if you need to relocate!
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/sr-database-administrator-at-dice-3805944749","Dice is the leading career destination for tech experts at every stage of their careers. Our client, Jobot, is seeking the following. Apply via Dice today!
+Sr. Database Administrator needed for Information Technology services firm that specializes in creating customized turn-key solutions for our clients
+This Jobot Job is hosted by: Joseph Calabrese
+Are you a fit? Easy Apply now by clicking the ""Apply Now"" button and sending us your resume.
+Salary: $90,000 - $130,000 per year
+A bit about us:
+We are a Information Technology services firm that specializes in creating customized turn-key solutions for our clients
+Why join us?
+Strong benefits
+Medical
+Dental
+Vision
+401k
+Job Details
+We are seeking a highly skilled and motivated Sr. Database Administrator to join our dynamic team. The ideal candidate will be responsible for the performance, integrity, and security of our database. They will also be involved in the planning and development of the database, as well as troubleshooting any issues on behalf of the users. This is an exciting opportunity to work in a fast-paced environment where innovative ideas are celebrated and collaboration is paramount.
+Responsibilities:
+Design and implement database in accordance to end users' information needs and views.
+Define users and enable data distribution to the right user, in appropriate format and in a timely manner.
+Use high-speed transaction recovery techniques and backup data.
+Minimize database downtime and manage parameters to provide fast query responses.
+Provide proactive and reactive data management support and training to users.
+Determine, enforce and document database policies, procedures and standards.
+Perform tests and evaluations regularly to ensure data security, privacy and integrity.
+Monitor database performance, implement changes and apply new patches and versions when required.
+Execute SQL server programming and be responsible for data imports, exports, and reporting.
+Collaborate with IT team and developers to optimize in-application SQL statements as necessary, and establishing best practices.
+Qualifications:
+Proven working experience as a Database Administrator for 5+ years.
+Hands-on experience with database standards and end user applications.
+Excellent knowledge of data backup, recovery, security, integrity and SQL.
+Familiarity with database design, documentation and coding.
+Strong experience with AWS
+Previous experience with DBA case tools (frontend/backend) and third-party tools.
+Familiarity with programming languages API.
+Problem-solving skills and ability to think algorithmically.
+BS degree in a computer discipline or relevant certification.
+Proficiency in SSRS and SQL Server is a must.
+Understanding of structured query language (SQL).
+Experience with Performance Tuning and Optimization (PTO), using native monitoring and troubleshooting tools.
+Knowledge of High Availability (HA) and Disaster Recovery (DR) options for SQL Server.
+Experience in implementing operational automation using scripts.
+Knowledge of indexes, index management, and statistics.
+Ability to handle multiple projects and deadlines.
+Strong attention to detail and accuracy.
+Excellent communication and interpersonal skills.
+Interested in hearing more? Easy Apply now by clicking the ""Apply Now"" button.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/senior-mlops-engineer-at-recruiting-from-scratch-3783324565","Who is Recruiting from Scratch :
+Recruiting from Scratch is a premier talent firm that focuses on placing the best product managers, software, and hardware talent at innovative companies. Our team is 100% remote and we work with teams across the United States to help them hire. We work with companies funded by the best investors including Sequoia Capital, Lightspeed Ventures, Tiger Global Management, A16Z, Accel, DFJ, and more.
+https://www.recruitingfromscratch.com/
+Our Client
+Our client is an AI platform for accounting firms, providing accountants with a team of AI assistants. Accounting teams integrate our client as part of their team, delegating core workflows and automating time-consuming, manual work.
+We recently closed a multi-fold oversubscribed - and yet unannounced - seed round backed by top VCs. Our client is already in use at several leading, large accounting firms in the US.
+Location
+: NYC, Flatiron office. Fully In-person team.
+The Role:
+Build
+Design evaluation experimentation, and monitoring processes for ML
+Engineer ops systems on cutting edge of complex ML workflows
+Take ownership
+Report directly to co-founders
+Oversee end-to-end ML ops
+Set culture and practice
+Shape our early engineering culture and processes
+Wear multiple hats
+Help hire and build out the rest of the early engineering team - there will be no shortage of responsibility
+Balance long-term thinking and smart abstractions with shipping fast and iteratively
+Essentials
+ML Ops + Engineering: Experience building out production ML systems around complex workflows
+Workflow orchestration, monitoring + visibility, experimentation + A/B testing
+Data engineering/ ETL pipeline experience
+Has owned systems at small and medium scales
+Interest in LLMs, NLP, Reinforcement Learning, Probabilistic Graphs, deep learning a plus
+Experience: 5-10 years of experience in the field; open to exceptional candidates with fewer years but strong experience
+Vision: Thoughts on how to evolve processes for new ML paradigms
+Scrappy: Ability to iterate quickly in near-term while planning for long-term
+Autonomy: Exercise a high-degree of autonomy and technical authority
+Flexibility: Willing and interested to jump across multiple disciplines
+Team-first mentality: you are interested in building for the long-term alongside founding team members, and committed to mentoring others and being mentored
+Passion for vision: Genuinely excited about our tech and its impact on accounting, finance, and economy
+NYC-based: Seeking in-person environment; working from office most days of week
+All-in: This is not a 9-5, we have a massive opportunity ahead of us and are looking to multiply our engineering speed. We are optimizing for the best folks and happy to compensate generously
+A little something extra You know it when you see it
+Bonus points
+Hiring: A knack for spotting and recruiting engineering talent
+Experience with financial workflows: Worked with corporate financial data/products geared to finance professionals
+Product ownership: Experience owning a product end-to-end
+Salary range: $160,000 - $200,000 annually
+https://www.recruitingfromscratch.com/
+Show more
+Show less"
+"https://uk.linkedin.com/jobs/view/data-engineer-manager-at-energy-jobline-3793277333","Join Our Team as a Data Engineering Manager!
+Are you a Data Engineering professional with a passion for leading-edge technology and a knack for turning data into strategic assets? Look no further! We're on the hunt for a skilled Data Engineering Manager to drive the delivery of our cutting-edge data strategy.
+As a key player in our team, you will wield significant influence in shaping and implementing our data strategy. Leading a dynamic team, you'll spearhead the construction, implementation, and maintenance of our data lake and data solutions. If you're prepared to leverage your expertise in technologies, methodologies, and processes to meet business requirements, we eagerly await your application!
+In this invigorating position, you'll take the helm of our data revolution, guiding a team of adept data engineers armed with an in-depth understanding of data modelling, data warehousing, ETL (Extract, Transform, Load) processes, and data pipeline design. If you're fuelled by a passion for transforming data into strategic assets and ready to tackle the challenge of steering our data initiatives to unparalleled heights, your place is with us! Join our team and be a driving force in the world of data innovation!
+Please take a moment to review the role requirements and specifications attached at the bottom of this advert before submitting your application.
+Join us for a full-time adventure in our 'roaming' position. Based in Wolverhampton with travel to Tewkesbury, Lichfield, or Chipping Sodbury, you'll enjoy a flexible week split between workspaces and home. A Full UK Driving Licence and access to your vehicle are a must for this dynamic role.
+Expect a mix of office and remote work, offering the perfect balance. Due to the nature of the role, a Basic DBS check will be required to ensure a secure environment. Ready to embark on this versatile journey? Apply now!
+Benefits of belonging at Bromford
+Benefits
+Joining Bromford isn't just about a job; it's about a community that values you. Here's a glimpse of the benefits you'll enjoy:
+27 days annual leave, plus bank holidays
+Option to buy or sell up to 5 days annual leave
+£500 personal allowance for your preferred benefits (think private medical cover, critical health insurance, dental treatment, or even gym membership!)
+Annual bonus, reaching up to 10% of your salary
+️ Retail discount schemes for savvy spending on food shops, clothing, and technology
+A choice between two pension schemes
+Free breakfast to kickstart your day
+As a certified Great Place To Work, we value your well-being and offer a comprehensive benefits package. Apply now, and let's make Bromford the next exciting chapter in your career!
+ACt fast - the closing date for applications is 19th January 2024
+Show more
+Show less"
+"https://ca.linkedin.com/jobs/view/data-analyst-part-time-at-toyandsons-3757203932","Summary:
+Data Analyst Part Time will be responsible for analyzing and interpreting large datasets to provide valuable insights and recommendations to the business. They will work closely with cross-functional teams to gather and analyze data, develop reports, and provide customized solutions to help the organization gain a competitive edge.
+Responsibilities:
+Analyze large data sets using advanced statistical techniques and tools to uncover trends, opportunities, and insights.
+Develop, maintain and analyze performance metrics and reports that support data-driven decision-making processes.
+Collaborate with stakeholders to identify business questions and translate them into data and analysis requirements.
+Develop models and algorithms to help optimize business processes and drive efficiencies.
+Design and execute A/B tests and experiments to identify opportunities for optimization.
+Identify data quality issues and help to develop solutions to improve data integrity, accuracy, and completeness.
+Manage data collection, cleansing, and manipulation processes to ensure data is readily accessible and easy to work with.
+Prepare and present data-driven reports and insights to stakeholders, highlighting key findings and recommendations.
+Qualifications:
+1+ years of relevant experience in data analysis, preferably in the Internet and New Media industry.
+Proven experience in analyzing large and complex datasets using SQL, R, Python, or related tools.
+Strong analytical, critical thinking, and problem-solving skills.
+Excellent communication and collaboration skills, with the ability to work effectively in a team environment.
+Experience with data visualization tools such as Tableau, Power BI, or related tools.
+Knowledge of statistical modeling, hypothesis testing, and A/B testing methodologies.
+Familiarity with data management and ETL processes.
+If you are interested in this position, please send your resume, contact information and salary requirements to : hiring@jobsai.live
+Powered by Webbtree
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/summer-2024-datacenter-hardware-validation-engineer-undergrad-co-op-intern-at-amd-3792253704","WHAT YOU DO AT AMD CHANGES EVERYTHING
+We care deeply about transforming lives with AMD technology to enrich our industry, our communities, and the world. Our mission is to build great products that accelerate next-generation computing experiences – the building blocks for the data center, artificial intelligence, PCs, gaming and embedded. Underpinning our mission is the AMD culture. We push the limits of innovation to solve the world’s most important challenges. We strive for execution excellence while being direct, humble, collaborative, and inclusive of diverse perspectives.
+AMD together we advance_
+As a Co-op student, you can make an immediate contribution to AMD's next generation of technology innovations. We have a dynamic, high-energy work environment, filled with expert employees, and unique opportunities for developing your career. You will have the opportunity to connect with AMD leaders, receive one-on-one mentorship, attend amazing networking events and much more. With AMD, you can get hands-on experience that will give you a competitive edge in the workforce.
+Get a jumpstart on an exciting career - apply today!
+Location:
+Austin, Texas, US
+This is a hybrid role (remote & in-office) as the hiring team will require the student to come to the Austin office approximately 2 days a week.
+PROGRAM TERM
+May 20, 2024 – August 9, 2024
+About The Team
+The Datacenter Hardware Validation Team delivers industry-leading semiconductor products for AI Machine Learning and High-Performance Computing. Our customers include industry leaders in AI such as Microsoft and Facebook, cloud providers such as Amazon and Google, and research labs such as Oak Ridge National Labs. The DC Hardware Validation Team is responsible for validating various GPU and CPU features, hardware platforms, and emerging industry technologies prior to mass production.
+About The Role
+The Datacenter Hardware Validation Team is looking for dynamic and energetic engineers-in-training to join our internship program. As a key contributor to the time-to-market success of AMD’s GPU based accelerators, you will work in collaborative teams to ensure quality of industry leading products for Machine Learning and High-Performance Computing applications. With a strong track record of re-hiring previous interns, our team fosters continuous innovation and is committed to nurturing your career growth.
+POSITION PURPOSE
+You will be a key member of the Datacenter Hardware Validation Team responsible for many aspects of hardware validation. This includes test execution, automation development, and issue debug involving AMD’s industry leading datacenter products. Past interns have had the opportunity to contribute to AMD’s success on the Frontier supercomputer, the world’s first to break the exascale barrier.
+Key Responsibilities
+Hands-on execution on datacenter platforms for test and debug
+Create and execute test procedures to validate the silicon design and software stack of datacenter products
+Debug failures in collaboration with various engineering teams to deliver quality products to customers
+Develop and maintain automation framework in Python
+What You Will Learn
+Exposure to datacenter and silicon industry engineering product life cycle
+Hands-on experience in silicon validation and debug techniques
+Strong understanding of GPU and accelerated computer architecture
+Effective communication with silicon design and other cross-functional teams
+Key Qualifications
+Knowledge of computer architecture
+Processors
+Data traffic and management
+High Speed Interfaces and Interconnects
+Knowledge of computer software architecture (BIOS, firmware, OS and driver)
+Comfortable operating in Linux command line
+Knowledge of scripting languages (Python) and programming languages (C/C++)
+Hands-on experience with electrical laboratory equipment (multimeters, digital oscilloscopes, logic analyzer, ...)
+Good understanding of circuit design, schematics, and other technical documentation
+Excellent verbal and written communication skills
+Pursuing a BS (3rd or 4th year) in EE, Electrical/Electronics, CE, CS
+What Would Set You Apart
+ML/AI Framworks, Models and Workloads
+Intern Benefits
+Healthcare, dental and vision coverage
+Paid holidays
+Internship stipend for interns working in an AMD office
+Potential education assistance for required Co-op/Intern course
+By submitting your application, you are indicating your interest in AMD internship positions. If your experience aligns with any of our internship opportunities, a recruiter will contact you.
+At AMD, your base pay is one part of your total rewards package. Your base pay will depend on where your skills, qualifications, experience, and location fit into the hiring range for the position. You may be eligible for incentives based upon your role such as either an annual bonus or sales incentive. Many AMD employees have the opportunity to own shares of AMD stock, as well as a discount when purchasing AMD stock if voluntarily participating in AMD’s Employee Stock Purchase Plan. You’ll also be eligible for competitive benefits described in more detail here.
+AMD does not accept unsolicited resumes from headhunters, recruitment agencies, or fee-based recruitment services. AMD and its subsidiaries are equal opportunity, inclusive employers and will consider all applicants without regard to age, ancestry, color, marital status, medical condition, mental or physical disability, national origin, race, religion, political and/or third-party affiliation, sex, pregnancy, sexual orientation, gender identity, military or veteran status, or any other characteristic protected by law. We encourage applications from all qualified candidates and will accommodate applicants’ needs under the respective laws throughout all stages of the recruitment and selection process.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/enterprise-data-manager-product-owner-at-dmvtek-3742043410","Enterprise Data Manager/Product owner(Only local to PA)
+BACKGROUND/PROBLEM STATEMENT
+The Department of Health (DOH) has established a short-term contracted position to manage and promote an integrated and readily accessible data ecosystem for the Department serving as the Enterprise Data Manager (EDM) for the Public Health Data Modernization Initiative (DMI). This position will report to the Director of Data Modernization and have a strong partnership with the IT Solutions Management Director who supports the DOH.
+RESOURCES
+The contractor will be permitted to work from home, but office space for the contractor will be provided as needed. In addition, DOH will supply all necessary hardware and software for daily use that are needed to complete assigned work items.
+OBJECTIVES OF ENGAGEMENT
+The Enterprise Data Manager (EDM) leads the Department of Health’s core data governance team who understands core governance principles, concepts of data lineage, and the data interdependencies across programs and systems to drive standards and consistency. The EDM will establish governance rules, controls, and processes to provide public health decision makers with accessible, timely, reliable, and meaningful data to drive policies and interventions.
+The EDM will work with program leaders and other stakeholders on discovery and business requirement sessions and understand the data flows across the department. The EDM will be involved with understanding the capabilities of analytics and business intelligence using the data lakes available within the DOH Enterprise Data Warehouse (EDW). Additionally, the EDM will monitor the usage of data on an on-going basis to provide for suggestions for continuous process improvement and improvements to our governance rules and standards.
+Knowledge and experience of data governance processes and frameworks.
+Strong communication and interpersonal skills to be able to interact with all levels of the Department.
+Ability to accurately capture business requirements and effectively convey business needs to IT counterparts, while ensuring that IT projects are in sync with business goals and that their end results satisfactorily meet business needs.
+Interface with cross-functional teams and management to establish, implement, and ensure adherence to data policies and processes.
+Strong analytical and computation skills and understanding of the integration of different data points across systems to present an enterprise view.
+Ability to communicate and present results with a variety of internal and external stakeholders.
+Experience with identifying relevant data gaps for evaluation and evidence needs and developing roadmaps for addressing data gaps.
+Ability to draft current and future workflows of data flows for presentations with various stakeholders.
+Based on data collection needs, works with various stakeholders to obtain input and feedback on final engagement outputs.
+Experienced in creating and maintaining data catalogues.
+Understating of relational databases and experience with transformations and data mappings.
+Strong data modelling knowledge and ability to interpret complete data from multiple data sources and develop findings and recommendations.
+Experienced in consolidating internal and external data to explore patterns and improve outcomes.
+Experience fulfilling an Agile Product Owner role in an IT or data related project.
+Experience with establishing interoperability with healthcare IT systems (such as Electronic Medical Record systems) preferred.
+Knowledge of EDW and Data Maturity Model preferred.
+Experience with Tableau or Power BI preferred.
+Operational Requirements
+The selected contractor must demonstrate effective understanding of data modernization, data governance, data interoperability & integration and data security.
+The Contractor Will Be Required To
+Engage with program leaders and data stewards to document descriptions of datasets, data assets, dashboards, and reports.
+Create a dashboard to track programs of the inventory and descriptions of data assets.
+Review systems and feeds for data quality process sufficiency feeding Enterprise sources and recommend changes.
+Create a dashboard to track data quality process evaluation and progress.
+Document specific data flows when relevant to the enterprise view of metrics and data including using appropriate tools for lineage and profiling to improve data quality.
+Review program requirements and understand the impact on the Enterprise view of data.
+Document decisions that impact the enterprise view of data.
+Engage in reviewing metrics to ensure adequate privacy.
+Drive adoption of data governance policies and participate in data governance meetings and follow up items.
+Drive compliance with established policies.
+Document external data to assist in combining third party data with first party data to create relevant derivative / second party data for analysis.
+Participate in the creation of dashboards and reports to track progress of Data Governance activities.
+Managing and prioritizing the product backlog.
+Serving as a liaison between product and development.
+Ensuring the product backlog is transparent, visible, and understood by DMI stakeholders.
+Contractor Skills And Experience Requirements
+This position requires a high degree of skill, leadership, ability to take initiative, and dedication. Bachelor’s or graduate degree in Health Informatics, Public Health, Data Science, Epidemiology, Biostatistics, Public Policy, Health Policy, Health Services Research, Health Information Sciences, Computer Science, or a closely related field.
+3-5 years of relevant experience in leading data governance efforts and managing data sharing related projects, including experience functioning in the role of an Agile Product Owner.
+Experience setting up an enterprise-wide data governance structure, knowledge of data lakes and data maturity models preferred. Familiarity and experience with programs relative to health and human services is considered helpful.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/it-database-developer-senior-dba-admin-at-experis-3770918380","Our client is seeking a Senior Database Developer for a 12+ month hybrid (1-2 days per week in Minneapolis office) opportunity.
+Senior SQL DBA who supports all aspects of Microsoft SQL Server including tools, processes, and servers.
+Candidate will be responsible for building new SQL Servers as well as perform routine patching.
+He/she will also be a key contributor in recommending, designing and implementing new/complementing technologies.
+Utilizing his/her knowledge for troubleshooting high visibility issues as well as recommending improvements within the environment.
+Will work with project and agile teams to upgrade / enhance the SQL environment according to their needs. Supports SQL Server, SSIS, and Power BI.
+Maintain understanding of the data operating system environment, system utilities, debugging tools and monitoring tools. Also understand the underlying technology architecture and how it affects database code.
+Evaluate and recommend database software and tools for potential acquisition.
+Improve and advocate for adherence to corporate database standards, procedures, and policies for all database platforms.
+Understand current database technologies, strategic database technologies and data management principles and techniques.
+Work with other business areas to actively solve issues and recommend solutions.
+Required Experience
+7+ years’ experience with on premises Microsoft SQL server.
+Azure and/or AWS cloud experience a plus
+Knowledge of operating systems (Windows and Linux) preferred
+PowerShell programming skills required
+Education:
+Four-year degree required: Information Systems, or similar discipline
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/contractor-epic-clarity-data-analyst-revenue-cycle-at-deloitte-3805724958","Position Summary
+Contractor - Remote
+Work you'll do
+Work you’ll do under the Deloitte Project Team
+Seeking a contractor with a focus on revenue cycle to leverage healthcare data and convert it into meaningful information that can be utilized to make sound
+business decisions. The contractor role will involve collaborating directly with data scientists, software engineers, EHR teams, clinical & operational teams, and senior leadership to provide insights and oversee data analysis within revenue cycle projects. This contractor role will identify and develop requirements, project design, and execution to enhance the value and cost-effectiveness of outcomes within revenue cycle operations.
+Key Responsibilities As a Contractor
+Extract, transform, and analyze healthcare data related to revenue cycle operations.
+Create and communicate data analysis reports and visualizations to stakeholders.
+Contribute to the development of Epic Clarity reports.
+Identify opportunities in revenue cycle workflows through user observation, data analysis, and experimentation.
+Ensure data-driven solutions are addressing measurable problems.
+Collaborate with IT staff, clinicians, and faculty to integrate advanced technology and protocols into operational outcomes.
+Conduct hands-on analysis and statistical forecasting to refine and guide revenue cycle informatics, design, and workflow.
+Run usability tests and adapt designs accordingly to ensure a satisfactory user experience.
+Create strategy documents, data dictionaries, and other project documents as needed.
+Collaborate closely with team members to ensure the user experience and informatic foundation is carried through the design and development of digital and health system solutions.
+Qualifications
+Required:
+Bachelor of Science degree
+Minimum of 4 years of relevant experience, with 2 years of that experience tied to data analysis within the healthcare setting.
+Proficiency in Epic Clarity reporting and revenue cycle modules.
+Competent in SQL, Python or R
+Strong grasp of analytic and statistical methods.
+Epic Clarity Data Model certification
+Preferred
+Knowledge and application of project management disciplines in a complex environment.
+Experience observing stakeholders and workflows to learn about underlying problems and potential solutions.
+Clinical experience in the inpatient or outpatient setting.
+Experience with Agile Development methods and tools.
+Excellent written and oral communication skills.
+Excellent organizational and analytical skills with strong technical abilities.
+Epic Revenue Cycle certification
+Certified Health Data Analyst (CHDA) certification.
+Candidates interested in applying for this opportunity must be geographically based in the United States
+and must be legally authorized to work in the United States without the need for employer sponsorship
+We do not accept agency resumes and are not responsible for any fees related to unsolicited resumes.
+Deloitte is not the employer for this role. This work is contracted through a third-party whose employees provides services to Deloitte.
+#Remote
+Expected Work Schedule
+Approximate hours per week
+About Deloitte
+Our inclusive culture empowers our people to be who they are, contribute their unique perspectives, and make a difference individually and collectively. It makes Deloitte one of the most rewarding places to work.
+As used in this posting, “Deloitte” means Deloitte Consulting LLP, a subsidiary of Deloitte LLP. Please see www.deloitte.com/us/about for a detailed description of the legal structure of Deloitte LLP and its subsidiaries.
+Requisition code: 169658
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/data-engineering-architect-at-dice-3805941847","Dice is the leading career destination for tech experts at every stage of their careers. Our client, Kforce Technology Staffing, is seeking the following. Apply via Dice today!
+RESPONSIBILITIES:
+Kforce has a client that is seeking a Data Engineering Architect in Greenwood Village, CO.
+Overview:
+The experimentation program consists of data scientists, data engineers and software developers working collaboratively in our mission to enable our employees to safely test product changes and uncover actional data insights.
+The data architect is responsible for the design and implementation of the data infrastructure and data software solutions used in our internal experimentation platform. The architect will build, deploy, and manage the data solutions in accordance with program needs as part of the experimentation engineering team.
+The experimentation engineering team is responsible for enabling and aggregating new metrics as well maintaining and updating existing metrics for our data science and product stakeholders. The experimentation engineering team facilitates experimentation through AWS S3 buckets storing large amounts of data, AWS EMR jobs pre-processing and aggregating data, and GraphQL APIs exposing the data.
+Responsibilities:
+Data Solutions:
+Architect robust, scalable data solutions, including interfaces, data stores, and data pipelines to meet the needs of our data scientists and other stakeholders
+Develop data solutions and infrastructure that will enable efficient storage and retrieval of the data for use in experimentation platform analysis, stakeholder-led analysis, and data science ad hoc analysis
+Create data solutions that enable data engineers to maintain scalable, reliable, consistent, and repeatable systems that support data operations for data science and analytics tools
+Deploy, test, and troubleshoot data architecture applications
+Builds, maintains, and enhances the datasets and systems for experimentation results
+Hands-on implementation and prototyping of data solutions
+Technical Leadership:
+Guide a team of data engineers and software engineers in the best practices around data engineering
+REQUIREMENTS:
+Bachelor's degree in related field
+5+ years in a data engineering role
+Professional experience designing and building efficient, cost-effective datasets, using petabytes of data from disparate sources, for consumption by data scientists and data analysts
+Strong in data focused programming languages (Python, R, Scala, etc.)
+Experience with both SQL and NoSQL data stores
+Preferred Experience:
+Master's degree or higher in related field
+AWS Certified Cloud Data Engineer
+Professional experience with AWS S3 and Amazon EMR (Elastic MapReduce)
+Professional experience using Spark
+Experience designing and building ETL and ELT systems
+The pay range is the lowest to highest compensation we reasonably in good faith believe we would pay at posting for this role. We may ultimately pay more or less than this range. Employee pay is based on factors like relevant education, qualifications, certifications, experience, skills, seniority, location, performance, union contract and business needs. This range may be modified in the future.
+We offer comprehensive benefits including medical/dental/vision insurance, HSA, FSA, 401(k), and life, disability & ADD insurance to eligible employees. Salaried personnel receive paid time off. Hourly employees are not eligible for paid time off unless required by law. Hourly employees on a Service Contract Act project are eligible for paid sick leave.
+Note: Pay is not considered compensation until it is earned, vested and determinable. The amount and availability of any compensation remains in Kforce's sole discretion unless and until paid and may be modified in its discretion consistent with the law.
+This job is not eligible for bonuses, incentives or commissions.
+Kforce is an Equal Opportunity/Affirmative Action Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, pregnancy, sexual orientation, gender identity, national origin, age, protected veteran status, or disability status.
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/staff-data-engineer-fleet-analytics-at-tesla-3737835058","What To Expect
+Data is deeply embedded in the product and engineering culture at Tesla. We rely on data – lots of it – to improve autopilot, to optimize hardware designs, to proactively detect faults, and to optimize load on the electrical grid. We collect data from each of our cars, Superchargers, and energy storage devices to make these products better and our customers safer.
+We're the Fleet Analytics team, a central team that helps many teams leverage the data we collect. We help engineers through direct support by doing data analysis for them and through applications and tools so they can self-serve those analyses in the future. To do so, we leverage our internal data platform built on top of AWS, S3, Spark, Trino using open source data science tools such as Jupyter notebooks, Pandas, Bokeh, Superset, and Airflow. Our work has a direct impact on Tesla's product, and enables the work of hundreds of engineers across disciplines throughout the company.
+We're looking for a talented staff engineer to develop applications which leverage our wealth of device data. These applications will span the full breadth of data engineering, data analysis, and data science activities, taking a first-principles approach to problem solving to inform future hardware and firmware designs, as well as ensuring that our existing vehicles, chargers, and energy devices continue to perform to Tesla's exacting standards. Applications will include full-stack web applications, software frameworks to enable efficient training and modeling, and complex systems which drive action. You will be responsible for bringing these applications from concept to production in collaboration with other members of Fleet Analytics, as well as providing ongoing maintenance and community support. In addition, you will occasionally partner with a team focusing on another discipline (e.g., mechanical engineering, electrical engineering, or firmware engineering), joining a critical project to help them define product requirements, optimize control algorithms, or otherwise improve the product quality.
+What You'll Do
+Work with stakeholders to develop and maintain complex software systems which elevate the use of device data at Tesla
+Provide guidance to Tesla's data engineering / data science community regarding best practices
+Work with engineers to drive usage of applications and tools
+Write reproducible data analysis over petabytes of data using cutting-edge open source technologies
+Summarize and clearly communicate data analysis assumptions and results
+Build data pipelines to optimize the efficiency and accuracy of analysis work across the company
+Design and implement metrics, applications and tools that will enable engineers by allowing them to self-serve their data insights
+Write clean and tested code that can be maintained and extended by other software engineers
+What You'll Bring
+7+ Years of Software Development experience in a related field
+Strong proficiency in Python, SQL
+Experience with data processing engines like Apache Spark
+Experience with data science tools such as Pandas, Numpy, R, Matlab, Octave
+Experience building data pipelines, web applications, and machine learning models in a professional environment
+Strong foundation in statistics
+Experience building data visualizations
+Strong verbal and written communication skills
+Strong problem-solving skills to help refine problem statements and figure out how to solve them with the available data and from first principles
+Nice To Have
+Strong proficiency in Scala
+Understanding of distributed computing, i.e. how HDFS, Spark and Presto work
+Experience with devops tools - e.g., Linux, Ansible, Docker, Kubernetes
+Experience with complex hardware systems
+Experience with continuous integration and continuous development
+Benefits
+Compensation and Benefits
+Along with competitive pay, as a full-time Tesla employee, you are eligible for the following benefits at day 1 of hire:
+Aetna PPO and HSA plans > 2 medical plan options with $0 payroll deduction
+Family-building, fertility, adoption and surrogacy benefits
+Dental (including orthodontic coverage) and vision plans, both have options with a $0 paycheck contribution
+Company Paid (Health Savings Account) HSA Contribution when enrolled in the High Deductible Aetna medical plan with HSA
+Healthcare and Dependent Care Flexible Spending Accounts (FSA)
+LGBTQ+ care concierge services
+401(k) with employer match, Employee Stock Purchase Plans, and other financial benefits
+Company paid Basic Life, AD&D, short-term and long-term disability insurance
+Employee Assistance Program
+Sick and Vacation time (Flex time for salary positions), and Paid Holidays
+Back-up childcare and parenting support resources
+Voluntary benefits to include: critical illness, hospital indemnity, accident insurance, theft & legal services, and pet insurance
+Weight Loss and Tobacco Cessation Programs
+Tesla Babies program
+Commuter benefits
+Employee discounts and perks program
+Expected Compensation
+$104,000 - $348,000/annual salary + cash and stock awards + benefits
+Pay offered may vary depending on multiple individualized factors, including market location, job-related knowledge, skills, and experience. The total compensation package for this position may also include other elements dependent on the position offered. Details of participation in these benefit plans will be provided if an employee receives an offer of employment.
+Tesla
+Show more
+Show less"
+"https://uk.linkedin.com/jobs/view/senior-data-engineer-azure-python-scala-spark-at-templeton-and-partners-tech-recruitment-3662399726","Description
+URGENT! 12 Month Contract, full-time, contract + likely extensions
+Data Engineers with experience in Azure: ADLS, Databricks, Python, SQL, Scala, Spark-SQL
+£600 to £750 per day - inside ir35, Working Remotely - UK
+Templeton & Partners are looking for an experienced Data Engineer that can build, expand and optimise data and data pipeline architecture, as well as optimizing data flow and collection for cross functional teams.
+Our clients vision is to support the industry to co-create standards that provide trustworthy and transparent insights for our customers and others in the ecosystem on production and/or consumption of green energy products around the clock enabling participants to take informed actions on their journey to decarbonization.
+Responsibilities include:
+Create and maintain optimal data pipeline architecture.
+Assemble data sets that meet functional / non-functional business requirements.
+Identify, design, and implement internal process improvements: automating manual processes, optimizing data delivery, re-designing infrastructure for greater scalability, etc.
+Build the infrastructure required for optimal extraction, transformation, and loading of data from a wide variety of data sources using SQL and Azure, AWS 'big data' technologies.
+Keep our data separated and secure across national boundaries through multiple data centers and Azure, AWS regions.
+Qualiications:
+Advanced experience working with relational databases, query authoring with a variety of databases.
+Experience building and optimizing data pipelines, architectures and data sets.
+Experience performing root cause analysis on internal and external data and processes to answer specific business questions and identify opportunities for improvement.
+Strong analytic skills related to working with unstructured datasets.
+Build processes supporting data transformation, data structures, metadata, dependency and workload management.
+Proven experience in manipulating, processing and extracting value from large disconnected datasets.
+Strong project management and organizational skills.
+Experience supporting and working with cross-functional teams in a dynamic environment.
+They should also have experience using the following software/tools:
+Experience with Azure: ADLS, Databricks, Stream Analytics, SQL DW, COSMOS DB, Analysis Services, Azure Functions, Serverless Architecture, ARM Templates
+Experience with relational SQL and NoSQL databases, including Postgres and Cassandra.
+Experience with object-oriented/object function scripting languages: Python, SQL, Scala, Spark-SQL etc.
+Nice to have experience with big data tools: Hadoop, Spark, Kafka, etc.
+Nice to have experience with data pipeline and workflow management tools: Azkaban, Luigi, Airflow, etc.
+Nice to have experience with stream-processing systems: Storm
+For more information please APPLY NOW!
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/senior-data-engineer-public-company-at-recruiting-from-scratch-3744399380","This is for a client of Recruiting from Scratch.
+Who is Recruiting from Scratch:
+Recruiting from Scratch is a premier talent firm that focuses on placing the best product managers, software, and hardware talent at innovative companies. Our team is 100% remote and we work with teams across the United States to help them hire. We work with companies funded by the best investors including Sequoia Capital, Lightspeed Ventures, Tiger Global Management, A16Z, Accel, DFJ, and more.
+Our Client:
+They are a profitable dating application.
+Location: This is a hybrid role based in their Chicago office and will require you to be in office Tuesdays and Thursdays.
+What’s so interesting about this role?
+Our client is looking to bring on a Senior Data Engineer with chops in cutting edge real-time streaming technologies and ambitions to achieve high quality and reliability with TDD, automation, and continuous delivery. .
+In this role, you will have the opportunity to work with our product teams, building models and APIs to drive new features, delivers analysis to further improve engagement in existing features, and empowers our business with real-time insights to drive growth in market share, engagement, and revenue. We see 1 trillion events per year and process 10TB of data daily.
+What’s the job?
+Design, develop and deliver data products to production, complying with internal data governance, security and scalability of our system.
+Moving implementation to ownership of real-time and batch processing and data governance and policies.
+Maintain and enforce the business contracts on how data should be represented and stored.
+Stay on top of new technologies through R&D and prototyping to continuously improve our big data architectures and systems to streamline how we deliver value with high quality to our end users
+Implementing ETL processes, moving data between systems including S3, Snowflake, Kafka, and Spark.
+Work closely with our Data Scientists, SREs, and Product Managers to ensure software is high quality and meets user requirements.
+What We’ll Love About You
+5+ years of experience working with data at scale, including data engineering, business intelligence, data science, or related field.
+7+ years experience using Python,
+Experience using big data technologies (Snowflake, Airflow, Kubernetes, Docker, Helm, Spark, pySpark, )
+Significant experience with relational databases and query authoring (SQL) in Snowflake or other distributed Databases.
+Experience with agile engineering practices such as TDD, Pair Programming, Continuous Integration, automated testing, and deployment.
+Experience with building stream-processing systems, using solutions such as Kafka, Storm or Spark-Streaming
+Experience with dimensional data modeling and schema design in Data Warehouses
+Familiar with ETL (managing high-quality reliable ETL pipelines)
+Be familiar with legal compliance (with data management tools) data classification, and retention.
+Location
+: This role is twice a week in a hybrid role minimum.
+Salary Range: $165,000-$210,000 USD base.
+Equity. Medical, Dental, Vision.
+https://www.recruitingfromscratch.com/
+Show more
+Show less"
+"https://www.linkedin.com/jobs/view/it-data-lifecycle-manager-at-labella-associates-3745903864","If you're passionate about the design and function of the built environment, find beauty in and want to protect the natural environment, and want to work with others that feel the same, join our team! LaBella’s multi-disciplinary team of architects, designers, engineers, managers, and environmental scientists work every day to make our world more functional, beautiful, and safe.
+LaBella is an employee-owned firm with annual accolades for workplace culture, growth, ethics, and philanthropy. We cultivate each employee’s growth, expand our expertise, and bring out the best in every client project.
+Job Overview
+We are currently hiring a Data Lifecycle Manager to expand our IT Department. This position will be responsible for file system management and overall data governance for our 30+ office locations throughout the USA and Europe. The IT Department at LaBella provides network, hardware, software, and overall IT and Design Tech services to the entire LaBella organization, including all LaBella companies. Successful candidates shall be trustworthy, have a positive attitude, and be self- motivated with the willingness to learn and continue building their knowledge.
+Responsibilities
+Function as the data lifecycle manager for project-based and internal corporate file structure data
+Create and manage network shares in our on-premise and cloud based servers
+Create and manage project folders / file structures for A/E/C projects
+Manage network share and file/folder permissions for various security access controls
+Successfully migrate large data sets between storage systems, coordinating with all project stakeholders
+Efficiently manage data transfer from legacy to modern systems
+Assist in integrating data from non-homogenous file/directory structures
+Qualifications
+Minimum 5 years' experience with Microsoft Distributed File Systems
+5+ years' experience managing large production data sets, and large collections of project data sets
+Data warehouse experience a plus
+Strong administration experience with Windows Server OS, MS Office 365, Active Directory, and granular NTFS File permissions
+Strong experience with Windows File ACLs, NFS shares
+Experience with cloud-based storage systems – Azure, AWS
+Strong communication skills, attention to detail, and the ability to troubleshoot with IT challenged users.
+Strong organizational skills
+Salary Range: $80,000- $90,000
+The specific salary offered may be influenced by a variety of factors including but not limited to the candidate's relevant experience, education, and work location.
+Benefits
+Body, mind, and wallet—LaBella’s benefits support a holistic approach to your health and wellness, creating the foundation for physical, mental, and financial well-being. Our benefit offerings cover the must-haves (healthcare and retirement), the just-in-cases (insurances and employee assistance programs), and the cherry-on-tops (fitness reimbursements, year-end incentive pay, and tuition assistance). Visit our website for more details on benefits listed below.
+Flexible Work Schedule
+Health/Dental Insurance
+401k Plan with Employer Match
+Short & Long Term Disability
+Profit Sharing
+Paid Time Off
+Leadership Development Program
+Fitness Reimbursement
+Tuition Reimbursement
+Referral Bonus Program
+Wellness Program
+Team Building Events
+Community Service Events
+Please note that this job description is not designed to cover or contain a comprehensive listing of activities, duties, or responsibilities that are required of the employee for this job. Duties, responsibilities, and activities may change at any time, with or without notice.
+LaBella is committed to facilitating a culture where diversity, equity, and inclusion are respected, valued, and celebrated by implementing thoughtful, practical, and innovative strategies that support our employees and serve the communities in which we reside. All applicants will be considered for employment without regard to race, color, religion, age, national origin, ancestry, ethnicity, gender (including pregnancy, childbirth, breastfeeding or other related medical conditions), gender identity, gender expression, sexual orientation, marital status, veteran status, disability, genetic information, citizenship status, characteristic or membership in any other group protected by federal, state or local laws.
+LaBella Associates does not accept unsolicited resumes from recruiting professionals or agencies, nor do we accept resumes from any source that does not reference a specific, open position. LaBella Associates will not be responsible for any fees arising from the use of resume submitted by recruiting professionals or agencies that do not have a current placement fee agreement with LaBella Associates. All initial communication with recruiting professionals or agencies must go through human resources.
+Show more
+Show less"
