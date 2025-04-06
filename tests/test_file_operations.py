@@ -1,12 +1,13 @@
 """Unit tests for file operations module"""
 from text_data_toolkit import file_operations as fop
-import pytest
 import os
+import pytest
+
+CONTENT = "Content"
 
 @pytest.fixture
 def create_test_directory(tmp_path):
     """create temp directory with test files"""
-    CONTENT = "Content"
     source_directory = tmp_path / "source"
     target_directory = tmp_path / "target"
     source_directory.mkdir()
@@ -18,7 +19,7 @@ def create_test_directory(tmp_path):
 
     return source_directory, target_directory
 
-
+# bulk_rename testing
 def test_bulk_rename_extension(create_test_directory):
     source, _ = create_test_directory
 
@@ -34,8 +35,9 @@ def test_bulk_rename_no_extension(create_test_directory):
     source, _ = create_test_directory
 
     # testing bulk rename with no extension passed
-    fop.bulk_rename(source, "new")
+    file_count = fop.bulk_rename(source, "new")
     assert all(name.startswith("new") and name.endswith(".txt") for name in os.listdir(source))
+    assert file_count == 3
 
 def test_bulk_rename_directory_exist(create_test_directory):
     source, _ = create_test_directory
@@ -46,17 +48,53 @@ def test_bulk_rename_directory_exist(create_test_directory):
 
 def test_bulk_rename_dup_file_name(create_test_directory):
     source, _ = create_test_directory
-    pass
+    # add new file
+    new_file = source / f"new1.txt"
+    new_file.write_text(CONTENT, encoding="utf-8")
+    # bulk rename the files in the directory to test duplicate naming
+    fop.bulk_rename(source, "new", ".txt")
 
+    # check if duplicate renaming worked
+    assert os.path.exists(source / f"new1_1.txt")
+
+# move_files testing
 def test_move_files(create_test_directory):
     source, target = create_test_directory
-    pass
 
+    file_count = fop.move_files(source, target)
+
+    # check if files got moved
+    source_file = source / "test1.txt"
+    dest_file = target / "test1.txt"
+    assert dest_file.exists(), "File not found in destination"
+
+    # check if file is gone from old location
+    assert not source_file.exists(), "File still exists in source location"
+
+    assert file_count == 3
+
+def test_move_files_duplicates(create_test_directory):
+    source, target = create_test_directory
+    fop.move_files(source, target)
+    new_file = source / f"test1.txt"
+    new_file.write_text(CONTENT, encoding="utf-8")
+    fop.move_files(source, target)
+
+    assert os.path.exists(target / f"test1_1.txt")
+
+# delete_files testing
 def test_delete_files(create_test_directory):
     source, _ = create_test_directory
-    pass
+    file_count = fop.delete_files(source, "txt")
+    assert not os.path.exists(source / f"test2.txt")
+    assert file_count == 3
 
-def test_list_files(create_test_directory):
+def test_list_files_extension(create_test_directory):
     source, _ = create_test_directory
-    pass
+    files_list = fop.list_files(source, ".txt")
+    assert f"test1.txt" in files_list
 
+def test_list_files_no_extension(create_test_directory):
+    source, _ = create_test_directory
+    files_list = fop.list_files(source)
+    assert f"test3.txt" in files_list
