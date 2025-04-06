@@ -13,8 +13,8 @@ def bulk_rename(directory, prefix, extension=None):
         raise FileNotFoundError(f"Directory '{directory}' does not exist.")
 
     # homogenize extension
-    if extension and not extension.startswith('.'):
-        extension = '.' + extension.lower()
+    if extension and not extension.startswith("."):
+        extension = "." + extension.lower()
 
     # loop over files in directory and generate index to add to file name
     for index, file in enumerate(os.listdir(directory)):
