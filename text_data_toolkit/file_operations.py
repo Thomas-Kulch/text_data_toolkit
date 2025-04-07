@@ -141,6 +141,5 @@ def list_files(directory, extension=None):
             continue
 
         files_list.append(file)
-        print(file) # print file for user
 
     return files_list
