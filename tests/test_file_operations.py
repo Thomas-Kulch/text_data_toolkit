@@ -89,6 +89,7 @@ def test_delete_files(create_test_directory):
     assert not os.path.exists(source / f"test2.txt")
     assert file_count == 3
 
+# list files testing
 def test_list_files_extension(create_test_directory):
     source, _ = create_test_directory
     files_list = fop.list_files(source, ".txt")

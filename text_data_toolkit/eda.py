@@ -1,16 +1,14 @@
 """
 Exploratory Data Analysis module
  Generate exploratory data analysis summaries.
-
- # how to improve -- get rid of punctuation from inputs
 """
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 from collections import Counter
-import data_transformation as dt
-import data_cleaning as dc
+from text_data_toolkit import data_transformation as dt
+from text_data_toolkit import data_cleaning as dc
 import re
 from nltk.util import ngrams
 
@@ -32,7 +30,7 @@ def generate_wordcloud(data, custom_stopwords=None):
     if custom_stopwords is not None:
         # homogenize stopwords and update list
         if isinstance(custom_stopwords, str):
-            custom_stopwords = custom_stopwords.lower()
+            custom_stopwords = [custom_stopwords.lower()]
         else:
             for i in range(len(custom_stopwords)):
                 custom_stopwords[i] = custom_stopwords[i].lower()
@@ -66,7 +64,7 @@ def generate_wordcloud(data, custom_stopwords=None):
 def text_summary_stats(df, text_column, custom_stopwords=None):
     """Generate basic statistics for text data"""
     if text_column is None:
-        raise ValueError("text_column cannot be None")
+        raise TypeError("text_column cannot be None")
     else:
         if df[text_column].dtype != "object":
             raise TypeError("Text column must be of type 'object'")
@@ -103,6 +101,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     output_dict["length_stats"]["min_length"] = min(len_list)
     output_dict["length_stats"]["max_length"] = max(len_list)
+    output_dict["length_stats"]["total_length"] = len_total
     output_dict["length_stats"]["char_count_mean"] = mean
     output_dict["length_stats"]["char_count_median"] = median
 
@@ -138,7 +137,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     if custom_stopwords is not None:
         # homogenize stopwords and update list
         if isinstance(custom_stopwords, str):
-            custom_stopwords = custom_stopwords.lower()
+            custom_stopwords = [custom_stopwords.lower()]
         else:
             for i in range(len(custom_stopwords)):
                 custom_stopwords[i] = custom_stopwords[i].lower()
@@ -174,6 +173,7 @@ def plot_sentiment_distribution(df, text_column):
     # normalize data using method from data_cleaning
     df = dc.normalize_text(df, text_column)
 
+    # label sentiments using method from data_cleaning
     df_plot = dt.label_data_sentiment(df, text_column)
 
     sns.catplot(data=df_plot, x="Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
@@ -181,22 +181,12 @@ def plot_sentiment_distribution(df, text_column):
     plt.title("Sentiment Count Distribution")
     plt.show()
 
+    return df_plot
 
-def top_ngrams(data, n=2, top_k=10, custom_stopwords=None):
+
+def top_ngrams(data, n=2, top_k=10):
     """Extract and count the most frequent word combinations (n-grams) from text data to
     identify common phrases and collocations."""
-
-    base_stopwords = STOPWORDS
-
-    if custom_stopwords is not None:
-        # homogenize stopwords and update list
-        if isinstance(custom_stopwords, str):
-            custom_stopwords = custom_stopwords.lower()
-        else:
-            for i in range(len(custom_stopwords)):
-                custom_stopwords[i] = custom_stopwords[i].lower()
-
-        base_stopwords.update(custom_stopwords)
 
     # handle case where data is a list of strings or a pd series
     if isinstance(data, pd.Series):
@@ -214,11 +204,8 @@ def top_ngrams(data, n=2, top_k=10, custom_stopwords=None):
     # tokenize text using method from data_transformation
     tokenized_final_text_data = dt.tokenize_text(final_text_data)
 
-    # remove stop words
-    filtered_text_data = [word for word in tokenized_final_text_data if word not in base_stopwords]
-
     # generate n-grams from tokens
-    ngrams_list = list(ngrams(filtered_text_data, n=n))
+    ngrams_list = list(ngrams(tokenized_final_text_data, n=n))
 
     if not ngrams_list:
         return []
