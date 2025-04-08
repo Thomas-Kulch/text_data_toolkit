@@ -94,3 +94,11 @@ def test_top_ngrams_string():
     count = eda.top_ngrams("hello world this is a test of what this is testing", n=2, top_k=4)
     assert (("this", "is"), 2) in count
 
+def test_top_ngrams_stopwords():
+    count = eda.top_ngrams("hello world this is a test of what this is testing", "this", n=2, top_k=4)
+    assert (("this", "is"), 2) not in count
+
+def test_top_ngrams_stopwords_list():
+    count = eda.top_ngrams("hello world this is a test of what this is testing", ["this", "is"], n=2, top_k=4)
+    assert (("this", "is"), 2) not in count
+

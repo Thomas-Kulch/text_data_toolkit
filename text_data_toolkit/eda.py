@@ -19,7 +19,7 @@ STOPWORDS = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on
         'can', 'could', 'should', 'would', 'how', 'when', 'where', 'who', 'whom',
         'this', 'that', 'these', 'those', 'am', 'i', 'he', 'she', 'it', 'they',
         'them', 'my', 'his', 'her', 'its', 'our', 'their', 'you', 'your', 'yours',
-        "we", "so"}
+        "we", "so", "as"}
 
 def generate_wordcloud(data, custom_stopwords=None):
     """Generate a word cloud from text data"""
@@ -184,28 +184,43 @@ def plot_sentiment_distribution(df, text_column):
     return df_plot
 
 
-def top_ngrams(data, n=2, top_k=10):
+def top_ngrams(data, stopwords=None, n=2, top_k=10):
     """Extract and count the most frequent word combinations (n-grams) from text data to
     identify common phrases and collocations."""
 
+    if stopwords is not None:
+        # homogenize stopwords and update list
+        if isinstance(stopwords, str):
+            stopwords = [stopwords.lower()]
+
+        stopwords_set = set(stopwords)
+
     # handle case where data is a list of strings or a pd series
     if isinstance(data, pd.Series):
-        final_text_data = " ".join(data.dropna())
+        text_data = " ".join(data.dropna())
     elif isinstance(data, list):
-        final_text_data = " ".join(data)
+        text_data = " ".join(data)
     elif isinstance(data, str):
-        final_text_data = data
+        text_data = data
     else:
         raise TypeError("Data must be a string, list, or pandas series")
 
     # homogenize string and get rid of punctuation
-    final_text_data = re.sub(r'[^\w\s]', '', final_text_data.lower())
+    text_data = re.sub(r'[^\w\s]', '', text_data.lower())
+
 
     # tokenize text using method from data_transformation
-    tokenized_final_text_data = dt.tokenize_text(final_text_data)
+    tokenized_final_text_data = dt.tokenize_text(text_data)
+
+    # remove stopwords if necessary
+    if stopwords:
+        filtered_text_data = [word for word in tokenized_final_text_data if word not in stopwords_set]
+    else:
+        filtered_text_data = tokenized_final_text_data
+
 
     # generate n-grams from tokens
-    ngrams_list = list(ngrams(tokenized_final_text_data, n=n))
+    ngrams_list = list(ngrams(filtered_text_data, n=n))
 
     if not ngrams_list:
         return []
