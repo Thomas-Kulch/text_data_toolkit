@@ -72,21 +72,21 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     output_dict = {"document_stats": {}, "length_stats": {}, "word_stats": {}, "frequent_words": {}}
 
     # normalize data using method from data_cleaning
-    df = dc.normalize_text(df, text_column)
+    df_copy = dc.normalize_text(df, text_column)
 
     # document stats
-    output_dict["document_stats"]["total_docs"] = df[text_column].shape[0]
-    output_dict["document_stats"]["empty_docs"] = int(df[text_column].isnull().sum())
-    output_dict["document_stats"]["unique_docs"] = df[text_column].nunique()
+    output_dict["document_stats"]["total_docs"] = df_copy[text_column].shape[0]
+    output_dict["document_stats"]["empty_docs"] = int(df_copy[text_column].isnull().sum())
+    output_dict["document_stats"]["unique_docs"] = df_copy[text_column].nunique()
 
     # length stats
     len_total = 0
     len_list = []
-    for i in df[text_column]:
+    for i in df_copy[text_column]:
         len_total += len(i)
         len_list.append(len(i))
 
-    mean = len_total / df[text_column].shape[0]
+    mean = len_total / df_copy[text_column].shape[0]
 
     len_list.sort()
 
@@ -107,7 +107,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     # word stats
     word_counter = [] # how many words are in each record
-    for i in df[text_column]:
+    for i in df_copy[text_column]:
         word_counter.append(len(i.split()))
 
     # total words
@@ -115,17 +115,17 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     # unique words
     unique_words = set()
-    for i in df[text_column]:
+    for i in df_copy[text_column]:
         for x in i.split():
             unique_words.add(x)
 
     # avg word length
     word_len_list = []
-    for i in df[text_column]:
+    for i in df_copy[text_column]:
         for x in i.split():
             word_len_list.append(len(x))
 
-    output_dict["word_stats"]["avg_words_per_doc"] = word_count_sum / df[text_column].shape[0]
+    output_dict["word_stats"]["avg_words_per_doc"] = word_count_sum / df_copy[text_column].shape[0]
     output_dict["word_stats"]["total_words"] = word_count_sum
     output_dict["word_stats"]["unique_words"] = len(unique_words)
     output_dict["word_stats"]["avg_word_length"] = sum(word_len_list) / len(word_len_list)
@@ -145,7 +145,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
         base_stopwords.update(custom_stopwords)
 
     # get non-NULL records before exploding
-    non_null_texts = df[text_column].dropna()
+    non_null_texts = df_copy[text_column].dropna()
 
     words = non_null_texts.str.split().explode()
     word_counts = Counter(words) # count all words
