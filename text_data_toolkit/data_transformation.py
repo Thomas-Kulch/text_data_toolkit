@@ -71,7 +71,7 @@ def label_data_sentiment(df, text_column, new_column = "Sentiment"):
 
 def label_job_skills(df, text_column, custom_skills = None):
     """Label text data into categories (job skills analysis)"""
-    common_skills = {"python", "nlp", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark"}
+    common_skills = {"python", "nlp", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
     if custom_skills is not None:
         common_skills.update(custom_skills)
 
