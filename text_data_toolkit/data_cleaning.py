@@ -17,7 +17,6 @@ def load_text_to_df(files, columns=None, line_length = 0):
     """
     dfs_dict = {}
 
-
     for file in files:
         filename = os.path.basename(file)
         key_name = os.path.splitext(filename)[0]
@@ -123,11 +122,12 @@ def clean_dataframe_no_dups(df, text_column):
 
 def clean_dataframe(df, text_column):
     """Apply all cleaning steps to a dataframe"""
-    # Remove_Duplicates
-    df = remove_duplicates_fuzzy(df, text_column, threshold=90)
 
     # Normalize Text
     df = normalize_text(df, text_column)
+
+    # Remove_Duplicates
+    df = remove_duplicates_fuzzy(df, text_column, threshold=90)
 
     # Handle Missing Values
     df = handle_missing_values(df, text_column)
