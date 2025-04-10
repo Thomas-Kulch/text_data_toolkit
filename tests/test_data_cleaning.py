@@ -1,4 +1,4 @@
-"""Unit tests for eda module"""
+"""Unit tests for data_cleaning module"""
 import os
 import pytest
 import tempfile

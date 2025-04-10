@@ -3,6 +3,7 @@ Data transformation module
  Transform text data for NLP analysis.
 """
 import re
+import difflib
 import pandas as pd
 
 def tokenize_text(text):
@@ -13,13 +14,14 @@ def tokenize_text(text):
     for i in tokens:
         if i == '':
             tokens.remove(i)
+
     return tokens
 
 def tokenize_dataframe(df, column, new_column = "Tokenized Text"):
     df[new_column] = df[column].apply(tokenize_text).str.join(', ')
     return df
 
-def remove_stopwords(df, text_column, custom_stopword = None, new_column = "Removed Stopwords"):
+def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Removed Stopwords"):
     """Remove common stopwords"""
     base_stopwords = {
         'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
@@ -40,9 +42,68 @@ def remove_stopwords(df, text_column, custom_stopword = None, new_column = "Remo
         for t in tokens:
             if t not in base_stopwords:
                 filtered_tokens.append(t)
-        return filtered_tokens
+        filtered_tokens_string = ", ".join(filtered_tokens)
+        return filtered_tokens_string
 
-    df[new_column] = df[text_column].apply(remove_singular_stopword).str.join(', ')
+    if isinstance(data, str):
+        return remove_singular_stopword(data)
+
+    elif isinstance(data, pd.DataFrame):
+        data[new_column] = data[text_column].apply(remove_singular_stopword).str.join(', ')
+        return data
+
+    else:
+        raise TypeError("Data must be a string or a pandas dataframe")
+
+def basic_stem_words(text):
+    """Stem words returns a string"""
+    suffixes = ['ed', 'ing', 'ly', 's', 'es']
+    word_list = tokenize_text(text)
+    stemmed_words = []
+    for word in word_list:
+        og_word = word
+        for suffix in suffixes:
+            if word.endswith(suffix) and len(word) > len(suffix) + 1 :
+                word = word[:-len(suffix)]
+                break
+        stemmed_words.append(word)
+
+    stemmed_words_string = ", ".join(stemmed_words)
+
+    return stemmed_words_string
+
+def autocorrect_words(text, cutoff = 0.8):
+    """Autocorrect words after rough stemming"""
+    with open("words_alpha.txt") as f:
+        english_words = f.read().splitlines()
+
+    words = text.lower().split()
+    corrected = []
+
+    for w in words:
+        matches = difflib.get_close_matches(w, english_words, n=1, cutoff=cutoff)
+        if matches:
+            corrected.append(matches[0])
+        else:
+            corrected.append(w)
+
+    corrected_string = " ".join(corrected)
+    return corrected_string
+
+
+def textdata_all_transform(text, custom_stopword = None, cutoff = 0.8):
+    """ Takes in text and does all the data transformation steps
+        Removes Stopwords, Stems Words, Autocorrects Words """
+
+    no_stop = remove_stopwords(text, custom_stopword = custom_stopword)
+    stemmed = basic_stem_words(no_stop)
+    autocorrected = autocorrect_words(stemmed, cutoff = cutoff)
+
+    return autocorrected
+def dataframe_all_transform(df, text_column, custom_stopword = None, cutoff = 0.8, new_column = "Transformed Text"):
+    """ Takes in a dataframe and text column and does all the data transformation steps
+        Removes Stopwords, Stems Words, Autocorrects Words """
+    df[new_column] = df[text_column].apply(lambda x: textdata_all_transform(x, custom_stopword = custom_stopword, cutoff = cutoff))
     return df
 
 def label_data_sentiment(df, text_column, new_column = "Sentiment"):
@@ -85,23 +146,3 @@ def label_job_skills(df, text_column, custom_skills = None):
             skill_count_dict[skill] += occurrence
 
     return skill_count_dict
-
-""" Not sure if necessary 
-    # Convert to Dataframe
-    skill_df = pd.DataFrame.from_dict(skill_count_dict, orient='index', columns = ['new_column'])
-    print(skill_count_dict)
-    # Sort by Descending
-    skill_df.reset_index(inplace=True)
-    skill_df.rename(columns={'index', 'skill'}, inplace=True)
-    skill_df.sort_values(by='new_column', ascending=False, inplace=True)
-    skill_df.reset_index(drop=True, inplace=True)"""
-
-
-
-def split_data(df, train_size=0.7, val_size=0.15, test_size=0.15):
-    """Split data into training, validation, and testing sets"""
-    pass
-
-def vectorize_text(text_series, method='tfidf'):
-    """Convert text to numerical vectors"""
-    pass
