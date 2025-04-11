@@ -8,7 +8,6 @@ import pandas as pd
 
 def tokenize_text(text):
     """Split text into tokens (words)"""
-
     tokens = re.split(r'[^A-Za-z0-9]+', text.lower())
     # Remove empty strings
     for i in tokens:
@@ -42,14 +41,14 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
         for t in tokens:
             if t not in base_stopwords:
                 filtered_tokens.append(t)
-        filtered_tokens_string = ", ".join(filtered_tokens)
+        filtered_tokens_string = " ".join(filtered_tokens)
         return filtered_tokens_string
 
     if isinstance(data, str):
         return remove_singular_stopword(data)
 
     elif isinstance(data, pd.DataFrame):
-        data[new_column] = data[text_column].apply(remove_singular_stopword).str.join(', ')
+        data[new_column] = data[text_column].apply(remove_singular_stopword)
         return data
 
     else:
@@ -59,7 +58,8 @@ def basic_stem_words(text):
     """Stem words returns a string"""
     suffixes = ['ed', 'ing', 'ly', 's', 'es']
     word_list = tokenize_text(text)
-    stemmed_words = []
+    stemmed_words, og_words = [], []
+
     for word in word_list:
         og_word = word
         for suffix in suffixes:
@@ -67,17 +67,18 @@ def basic_stem_words(text):
                 word = word[:-len(suffix)]
                 break
         stemmed_words.append(word)
+        og_words.append(og_word)
 
-    stemmed_words_string = ", ".join(stemmed_words)
+    stemmed_words_string = " ".join(stemmed_words)
 
     return stemmed_words_string
 
-def autocorrect_words(text, cutoff = 0.8):
+def autocorrect_stem_words(text, cutoff = 0.85):
     """Autocorrect words after rough stemming"""
     with open("words_alpha.txt") as f:
         english_words = f.read().splitlines()
 
-    words = text.lower().split()
+    words = basic_stem_words(text).lower().split()
     corrected = []
 
     for w in words:
@@ -97,13 +98,16 @@ def textdata_all_transform(text, custom_stopword = None, cutoff = 0.8):
 
     no_stop = remove_stopwords(text, custom_stopword = custom_stopword)
     stemmed = basic_stem_words(no_stop)
-    autocorrected = autocorrect_words(stemmed, cutoff = cutoff)
+    autocorrected = autocorrect_text(stemmed, cutoff = cutoff)
 
     return autocorrected
+
 def dataframe_all_transform(df, text_column, custom_stopword = None, cutoff = 0.8, new_column = "Transformed Text"):
     """ Takes in a dataframe and text column and does all the data transformation steps
         Removes Stopwords, Stems Words, Autocorrects Words """
-    df[new_column] = df[text_column].apply(lambda x: textdata_all_transform(x, custom_stopword = custom_stopword, cutoff = cutoff))
+    df[new_column] = df[text_column].apply(
+        lambda x: textdata_all_transform(x, custom_stopword = custom_stopword, cutoff = cutoff))
+
     return df
 
 def label_data_sentiment(df, text_column, new_column = "Sentiment"):
