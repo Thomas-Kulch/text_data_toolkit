@@ -6,6 +6,9 @@ import re
 import difflib
 import pandas as pd
 
+with open("words_alpha.txt") as f:
+    english_words = f.read().splitlines()
+
 def tokenize_text(text):
     """Split text into tokens (words)"""
     tokens = re.split(r'[^A-Za-z0-9]+', text.lower())
@@ -54,34 +57,41 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
     else:
         raise TypeError("Data must be a string or a pandas dataframe")
 
-def basic_stem_words(text):
+def basic_stem_words(text, exception_words = None):
     """Stem words returns a string"""
     suffixes = ['ed', 'ing', 'ly', 's', 'es']
+    exception_words = {"this", "has", "his", "was", "thus", "gas", "class"}
     word_list = tokenize_text(text)
-    stemmed_words, og_words = [], []
+    stemmed_words = []
+
+    if exception_words is not None:
+        exception_words.update(exception_words)
 
     for word in word_list:
-        og_word = word
+        if word.lower in exception_words:
+            stemmed_words.append(word)
+            continue
+
         for suffix in suffixes:
-            if word.endswith(suffix) and len(word) > len(suffix) + 1 :
+            if word.endswith(suffix) and len(word) > len(suffix) + 2 :
                 word = word[:-len(suffix)]
                 break
         stemmed_words.append(word)
-        og_words.append(og_word)
 
     stemmed_words_string = " ".join(stemmed_words)
-
     return stemmed_words_string
 
 def autocorrect_stem_words(text, cutoff = 0.85):
     """Autocorrect words after rough stemming"""
-    with open("words_alpha.txt") as f:
-        english_words = f.read().splitlines()
-
+    english_set = set(english_words)
     words = basic_stem_words(text).lower().split()
     corrected = []
 
     for w in words:
+        if w in english_set:
+            corrected.append(w)
+            continue
+
         matches = difflib.get_close_matches(w, english_words, n=1, cutoff=cutoff)
         if matches:
             corrected.append(matches[0])
@@ -98,7 +108,7 @@ def textdata_all_transform(text, custom_stopword = None, cutoff = 0.8):
 
     no_stop = remove_stopwords(text, custom_stopword = custom_stopword)
     stemmed = basic_stem_words(no_stop)
-    autocorrected = autocorrect_text(stemmed, cutoff = cutoff)
+    autocorrected = autocorrect_stem_words(stemmed, cutoff = cutoff)
 
     return autocorrected
 
