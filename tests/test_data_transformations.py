@@ -77,3 +77,5 @@ def test_dataframe_all_transform():
 def test_label_data_sentiment():
     pass
 
+def test_label_job_skills():
+    pass
