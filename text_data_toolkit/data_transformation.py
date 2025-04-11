@@ -5,9 +5,19 @@ Data transformation module
 import re
 import difflib
 import pandas as pd
+from text_data_toolkit import data_cleaning as clean
 
-with open("words_alpha.txt") as f:
-    english_words = f.read().splitlines()
+english_datafiles = ["../data/unigram_freq.csv", "../data/words_alpha.txt"]
+dfs = clean.load_text_to_df(english_datafiles, line_length = 1)
+df_unigrams, df_validwords = dfs['unigram_freq'], dfs['words_alpha']
+df_validwords = df_validwords.rename(columns={"Column 0": "word" })
+
+english_df = pd.merge(df_unigrams, df_validwords, on='word', how='inner')
+english_df = clean.clean_dataframe_no_dups(english_df, "word")
+
+english_words = english_df["word"].tolist()
+print(difflib.get_close_matches("wrld", english_words, n=5, cutoff=0.75))
+
 
 def tokenize_text(text):
     """Split text into tokens (words)"""
@@ -36,7 +46,7 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
         "we", "so"}
 
     if custom_stopword is not None:
-        base_stopwords.update(custom_stopword)
+        base_stopwords.update(set(custom_stopword))
 
     def remove_singular_stopword(text):
         tokens = tokenize_text(text)
@@ -55,20 +65,23 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
         return data
 
     else:
-        raise TypeError("Data must be a string or a pandas dataframe")
+        for i in range(len(data)):
+            data[i] = remove_singular_stopword(data[i])
+        return data
 
 def basic_stem_words(text, exception_words = None):
     """Stem words returns a string"""
     suffixes = ['ed', 'ing', 'ly', 's', 'es']
-    exception_words = {"this", "has", "his", "was", "thus", "gas", "class"}
+    exceptions = {"this", "has", "his", "was", "thus", "gas", "class"}
+
+    if exception_words is not None:
+        exceptions.update(exception_words)
+
     word_list = tokenize_text(text)
     stemmed_words = []
 
-    if exception_words is not None:
-        exception_words.update(exception_words)
-
     for word in word_list:
-        if word.lower in exception_words:
+        if word.lower() in exceptions:
             stemmed_words.append(word)
             continue
 
@@ -81,42 +94,44 @@ def basic_stem_words(text, exception_words = None):
     stemmed_words_string = " ".join(stemmed_words)
     return stemmed_words_string
 
-def autocorrect_stem_words(text, cutoff = 0.85):
+def autocorrect_text(text, exception_words = None):
     """Autocorrect words after rough stemming"""
-    english_set = set(english_words)
-    words = basic_stem_words(text).lower().split()
+    english_words = english_df["word"].tolist()
+    words = text.lower().split()
     corrected = []
 
     for w in words:
-        if w in english_set:
+        if exception_words != None and w in exception_words:
             corrected.append(w)
-            continue
 
-        matches = difflib.get_close_matches(w, english_words, n=1, cutoff=cutoff)
-        if matches:
-            corrected.append(matches[0])
         else:
-            corrected.append(w)
+            matches = difflib.get_close_matches(w, english_words, n=5, cutoff=0.75)
+            if matches:
+                match_df = english_df[english_df["word"].isin(matches)]
+                best_match = match_df.sort_values(by = "count", ascending = False).iloc[0]["word"]
+                corrected.append(best_match)
+            else:
+                corrected.append(w)
 
     corrected_string = " ".join(corrected)
     return corrected_string
 
 
-def textdata_all_transform(text, custom_stopword = None, cutoff = 0.8):
+def textdata_all_transform(text, text_column = None, custom_stopword = None, exception_words = None):
     """ Takes in text and does all the data transformation steps
         Removes Stopwords, Stems Words, Autocorrects Words """
 
-    no_stop = remove_stopwords(text, custom_stopword = custom_stopword)
-    stemmed = basic_stem_words(no_stop)
-    autocorrected = autocorrect_stem_words(stemmed, cutoff = cutoff)
+    no_stop = remove_stopwords(text, text_column = text_column, custom_stopword = custom_stopword)
+    stemmed = basic_stem_words(no_stop, exception_words = None)
+    autocorrected = autocorrect_text(stemmed, exception_words = None)
 
     return autocorrected
 
-def dataframe_all_transform(df, text_column, custom_stopword = None, cutoff = 0.8, new_column = "Transformed Text"):
+def dataframe_all_transform(df, text_column, custom_stopword = None, exception_words = None, new_column = "Transformed Text"):
     """ Takes in a dataframe and text column and does all the data transformation steps
         Removes Stopwords, Stems Words, Autocorrects Words """
     df[new_column] = df[text_column].apply(
-        lambda x: textdata_all_transform(x, custom_stopword = custom_stopword, cutoff = cutoff))
+        lambda x: textdata_all_transform(x, custom_stopword = custom_stopword, exception_words = exception_words))
 
     return df
 

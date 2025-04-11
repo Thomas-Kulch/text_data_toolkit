@@ -9,7 +9,7 @@ from fuzzywuzzy import fuzz
 import numpy as np
 
 
-def load_text_to_df(files, columns=None, line_length = 0):
+def load_text_to_df(files, columns=None, line_length = 1):
     """Load text files into a pandas DataFrame
     files - list of file paths
     columns - list of column names, default ["filename", "text"]
