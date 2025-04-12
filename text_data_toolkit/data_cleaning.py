@@ -118,6 +118,9 @@ def handle_missing_values(df, text_column = None):
 
 def clean_dataframe_no_dups(df, text_column = None):
     """Apply all cleaning steps to a dataframe without duplicates"""
+    # Homogenize Columns
+    df = homogenize_columns(df)
+
     # Normalize Text
     df = normalize_data(df, text_column)
 
@@ -128,6 +131,8 @@ def clean_dataframe_no_dups(df, text_column = None):
 
 def clean_dataframe(df, text_column, threshold = 90):
     """Apply all cleaning steps to a dataframe"""
+    # Homogenize Columns
+    df = homogenize_columns(df)
 
     # Normalize Text
     df = normalize_data(df, text_column)

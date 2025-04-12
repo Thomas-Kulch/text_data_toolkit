@@ -6,6 +6,7 @@ import re
 import difflib
 import pandas as pd
 from text_data_toolkit import data_cleaning as clean
+from text_data_toolkit import eda as eda
 
 english_datafiles = ["../data/unigram_freq.csv", "../data/words_alpha.txt"]
 dfs = clean.load_text_to_df(english_datafiles, line_length = 1)
@@ -67,8 +68,8 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
 
 def basic_stem_words(text, exception_words = None):
     """Stem words returns a string"""
-    suffixes = ['ed', 'ing', 'ly', 's', 'es']
-    exceptions = {"this", "has", "his", "was", "thus", "gas", "class"}
+    suffixes = ['ed', 'ing', 'ly', 's', 'es', 'tion', 'er']
+    exceptions = {"this", "has", "his", "was", "thus", "gas", "class", 'during', 'better'}
 
     if exception_words is not None:
         exceptions.update(exception_words)
@@ -97,7 +98,7 @@ def autocorrect_text(text, exception_words = None):
     corrected = []
 
     for w in words:
-        if exception_words != None and w in exception_words:
+        if (exception_words is not None and w in exception_words) or w in english_words:
             corrected.append(w)
 
         else:
@@ -131,17 +132,42 @@ def dataframe_all_transform(df, text_column, custom_stopword = None, exception_w
 
     return df
 
-def label_data_sentiment(data, text_column = None, new_column = "Sentiment"):
+def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
+                         custom_positive = None, custom_negative = None):
     """Label text data into categories (sentiment analysis)"""
     positive_words = {"amazing", "love", "like", "good", "great", "awesome", "suck", "wonderful"}
     negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible", "disappointing", "suck"}
+    negation_words = {"not", "never", "no", "don't", "didn't", "isn't", "wasn't", "won't", "can't"}
+
+    if custom_pos is not None:
+        positive_words.update(set(custom_positive))
+
+    if custom_neg is not None:
+        negative_words.update(set(custom_negative))
 
     def lexicon_score(text):
         if not isinstance(text, str):
             return "Neutral"
+
         tokens = tokenize_text(text)
+        bigrams = eda.generate_ngrams(tokens, 2)
+
         score = 0
-        for t in tokens:
+        skip_index = set()
+
+        # First Check for Bigrams
+        for i, (first, second) in enumerate(bigrams):
+            if first in negation_words and second in positive_words:
+                score -= 1
+                skip_index.update({i, i+1})
+
+            elif first in negation_words and second in negative_words:
+                score += 1
+                skip_index.update({i, i+1})
+
+        for i, t in enumerate(tokens):
+            if i in skip_index:
+                continue
             if t in positive_words:
                 score += 1
             elif t in negative_words:

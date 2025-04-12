@@ -183,6 +183,12 @@ def plot_sentiment_distribution(df, text_column):
 
     return df_plot
 
+def generate_ngrams(tokens, n = 2):
+    result = []
+    for i in range(n):
+        result.append(tokens[i:])
+    zipped = list(zip(*result))
+    return zipped
 
 def top_ngrams(data, stopwords=None, n=2, top_k=10):
     """Extract and count the most frequent word combinations (n-grams) from text data to
