@@ -29,7 +29,7 @@ def generate_wordcloud(data, custom_stopwords=None):
 
     if custom_stopwords is not None:
         # homogenize stopwords and update list
-        if isinstance(custom_stopwords, str):
+        if isinstance(custom_stopwords, str): # check if string
             custom_stopwords = [custom_stopwords.lower()]
         else:
             for i in range(len(custom_stopwords)):
@@ -44,7 +44,7 @@ def generate_wordcloud(data, custom_stopwords=None):
         final_text_data = " ".join(data)
     elif isinstance(data, str):
         final_text_data = data
-    else:
+    else: # incorrect input dtype
         raise TypeError("Data must be a string, list, or pandas series")
 
     # homogenize string and get rid of punctuation
@@ -88,10 +88,10 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
 
     mean = len_total / df_copy[text_column].shape[0]
 
-    len_list.sort()
+    len_list.sort() # sort the list
 
     # find median
-    if len(len_list) % 2 == 1: # odd length
+    if len(len_list) % 2 == 1: # list is odd length
         middle_index = len(len_list) // 2
         median = len_list[middle_index]
     else:
@@ -99,6 +99,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
         middle_index_2 = len(len_list) // 2
         median = (len_list[middle_index_1] + len_list[middle_index_2]) / 2
 
+    # calculate the length stats
     output_dict["length_stats"]["min_length"] = min(len_list)
     output_dict["length_stats"]["max_length"] = max(len_list)
     output_dict["length_stats"]["total_length"] = len_total
@@ -125,6 +126,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
         for x in i.split():
             word_len_list.append(len(x))
 
+    # calculate the word stats
     output_dict["word_stats"]["avg_words_per_doc"] = word_count_sum / df_copy[text_column].shape[0]
     output_dict["word_stats"]["total_words"] = word_count_sum
     output_dict["word_stats"]["unique_words"] = len(unique_words)
@@ -158,6 +160,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     # get top 10 words
     top_10_counts = word_counts.most_common(10)
 
+    # output frequent words to stats dict
     output_dict["frequent_words"] = {word: count for word, count in top_10_counts}
 
     return output_dict
@@ -176,6 +179,7 @@ def plot_sentiment_distribution(df, text_column):
     # label sentiments using method from data_cleaning
     df_plot = dt.label_data_sentiment(df, text_column)
 
+    # plot results
     sns.catplot(data=df_plot, x="Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
 
     plt.title("Sentiment Count Distribution")
@@ -231,6 +235,7 @@ def top_ngrams(data, stopwords=None, n=2, top_k=10):
     if not ngrams_list:
         return []
 
+    # generate counts
     ngram_counts = Counter(ngrams_list)
 
     # get top k ngrams

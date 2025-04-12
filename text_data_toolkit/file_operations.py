@@ -60,7 +60,7 @@ def move_files(source_dir, target_dir, extension=None):
     if not os.path.exists(source_dir):
         raise FileNotFoundError(f"Directory '{source_dir}' does not exist.")
 
-    if not os.path.exists(target_dir):
+    if not os.path.exists(target_dir): # create target dir if doesn't exist
         os.mkdir(target_dir)
 
     # homogenize extension
@@ -69,6 +69,7 @@ def move_files(source_dir, target_dir, extension=None):
 
     for file in os.listdir(source_dir):
 
+        # make copy of file
         modified_file = file
 
         # skip directories
@@ -88,7 +89,7 @@ def move_files(source_dir, target_dir, extension=None):
             modified_file = file_name + "_" + str(counter) + file_ext
             counter += 1
 
-        try:
+        try: # move the file
             os.rename(os.path.join(source_dir, file), os.path.join(target_dir, modified_file))
             file_count += 1
         except Exception as e:
