@@ -15,10 +15,6 @@ df_validwords = df_validwords.rename(columns={"Column 0": "word" })
 english_df = pd.merge(df_unigrams, df_validwords, on='word', how='inner')
 english_df = clean.clean_dataframe_no_dups(english_df, "word")
 
-english_words = english_df["word"].tolist()
-print(difflib.get_close_matches("wrld", english_words, n=5, cutoff=0.75))
-
-
 def tokenize_text(text):
     """Split text into tokens (words)"""
     tokens = re.split(r'[^A-Za-z0-9]+', text.lower())
@@ -135,12 +131,14 @@ def dataframe_all_transform(df, text_column, custom_stopword = None, exception_w
 
     return df
 
-def label_data_sentiment(df, text_column, new_column = "Sentiment"):
+def label_data_sentiment(data, text_column = None, new_column = "Sentiment"):
     """Label text data into categories (sentiment analysis)"""
-    positive_words = {"amazing", "love", "like", "good", "great", "awesome", "amazingly"}
-    negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible", "disappointing"}
+    positive_words = {"amazing", "love", "like", "good", "great", "awesome", "suck", "wonderful"}
+    negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible", "disappointing", "suck"}
 
     def lexicon_score(text):
+        if not isinstance(text, str):
+            return "Neutral"
         tokens = tokenize_text(text)
         score = 0
         for t in tokens:
@@ -156,22 +154,41 @@ def label_data_sentiment(df, text_column, new_column = "Sentiment"):
         else:
             return "Neutral"
 
-    df[new_column] = df[text_column].apply(lexicon_score)
-    return df
+    if isinstance(data, pd.DataFrame):
+        data[new_column] = data[text_column].apply(lexicon_score)
+        return data
 
-def label_job_skills(df, text_column, custom_skills = None):
+    else:
+        return lexicon_score(data)
+
+def label_job_skills(data, text_column = None, custom_skills = None):
     """Label text data into categories (job skills analysis)"""
-    common_skills = {"python", "nlp", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
+    common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
+
     if custom_skills is not None:
         common_skills.update(custom_skills)
 
     skill_count_dict = {skill: 0 for skill in common_skills}
 
-    for text in df[text_column]:
+    def label_job_text(text):
         if not isinstance(text, str):
-            continue
+            return
         for skill in common_skills:
-            occurrence = len(re.findall(skill, text))
-            skill_count_dict[skill] += occurrence
+            if re.search(rf'\b{skill}\b', text):
+                skill_count_dict[skill] += 1
 
+    if isinstance(data, pd.DataFrame):
+        for text in data[text_column]:
+            label_job_text(text)
+
+    else:
+        label_job_text(data)
+
+    filtered_dict = {}
+
+    for skill, count in skill_count_dict.items():
+        if count > 0:
+            filtered_dict[skill] = count
+
+    skill_count_dict = filtered_dict
     return skill_count_dict

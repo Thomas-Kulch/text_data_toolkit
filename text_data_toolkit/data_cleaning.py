@@ -58,7 +58,7 @@ def load_text_to_df(files, columns=None, line_length = 1):
 
     return dfs_dict
 
-def remove_duplicates_fuzzy(df, text_column, threshold = 90):
+def remove_duplicates_fuzzy(df, text_column = None, threshold = 90):
     """Detect and remove duplicate texts
     df - pandas dataframe
     text_column - name of the column containing text data
@@ -86,21 +86,23 @@ def remove_duplicates_fuzzy(df, text_column, threshold = 90):
     df.reset_index(drop=True, inplace=True)
     return df
 
-def normalize_text(df, text_column):
+def normalize_data(data, text_column = None):
     """Basic text normalization (lowercase, remove punctuation, etc.)"""
 
-    # Convert to lowercase
-    df[text_column] = df[text_column].str.lower()
+    def normalize_text(text):
+        text = text.lower()
+        text = re.sub(r'[^\w\s]', '', text)
+        text = re.sub(r'\s+', ' ', text)
+        return text
 
-    # Remove Punctuation
-    df[text_column] = df[text_column].str.replace(r'[^\w\s]', '', regex=True)
+    if isinstance(data, str):
+        return normalize_text(data)
 
-    # Remove Whitespaces
-    df[text_column] = df[text_column].str.replace(r'\s+', ' ', regex=True)
+    else:
+        data[text_column] = data[text_column].astype(str).apply(normalize_text)
+        return data
 
-    return df
-
-def handle_missing_values(df, text_column):
+def handle_missing_values(df, text_column = None):
     """Handle missing values in text data (NaN, empty strings)
     Run after text data is normalized to remove whitespace"""
 
@@ -110,10 +112,10 @@ def handle_missing_values(df, text_column):
 
     return df
 
-def clean_dataframe_no_dups(df, text_column):
+def clean_dataframe_no_dups(df, text_column = None):
     """Apply all cleaning steps to a dataframe without duplicates"""
     # Normalize Text
-    df = normalize_text(df, text_column)
+    df = normalize_data(df, text_column)
 
     # Handle Missing Values
     df = handle_missing_values(df, text_column)
@@ -124,7 +126,7 @@ def clean_dataframe(df, text_column, threshold = 90):
     """Apply all cleaning steps to a dataframe"""
 
     # Normalize Text
-    df = normalize_text(df, text_column)
+    df = normalize_data(df, text_column)
 
     # Remove_Duplicates
     df = remove_duplicates_fuzzy(df, text_column, threshold = threshold)
