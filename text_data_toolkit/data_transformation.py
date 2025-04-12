@@ -16,9 +16,14 @@ df_validwords = df_validwords.rename(columns={"Column 0": "word" })
 english_df = pd.merge(df_unigrams, df_validwords, on='word', how='inner')
 english_df = clean.clean_dataframe_no_dups(english_df, "word")
 
+contractions = {"don't", "doesn't", "didn't", "isn't", "aren't", "wasn't", "weren't", "won't",
+                "wouldn't", "couldn't", "can't", "i'm", "you're", "we're", "they're", "it's",
+                "i've", "you've", "we've", "they've", "i'll", "you'll", "he'll", "she'll", "we'll", "they'll",
+                "there's", "that's", "what's", "who's", "where's", "how's", "let's", "hadn't", "shouldn't"}
+
 def tokenize_text(text):
     """Split text into tokens (words)"""
-    tokens = re.split(r'[^A-Za-z0-9]+', text.lower())
+    tokens = re.split(r"[^A-Za-z0-9']+", text.lower())
     # Remove empty strings
     for i in tokens:
         if i == '':
@@ -93,22 +98,33 @@ def basic_stem_words(text, exception_words = None):
 
 def autocorrect_text(text, exception_words = None):
     """Autocorrect words after rough stemming"""
+    if exception_words is None:
+        exception_words = set()
+
     english_words = english_df["word"].tolist()
+    stemmed = basic_stem_words(text, exception_words = exception_words)
+
+    original = tokenize_text(text.lower())
+    stemmed = tokenize_text(stemmed.lower())
+
     words = text.lower().split()
     corrected = []
 
-    for w in words:
-        if (exception_words is not None and w in exception_words) or w in english_words:
-            corrected.append(w)
+    for stem, original in zip(stemmed, original):
+        if ((stem and original in exception_words)
+            or stem in english_words\
+            or stem in contractions\
+            or stem == original):
+            corrected.append(stem)
+            continue
 
+        matches = difflib.get_close_matches(stem, english_words, n=5, cutoff=0.75)
+        if matches:
+            match_df = english_df[english_df["word"].isin(matches)]
+            best_match = match_df.sort_values(by = "count", ascending = False).iloc[0]["word"]
+            corrected.append(best_match)
         else:
-            matches = difflib.get_close_matches(w, english_words, n=5, cutoff=0.75)
-            if matches:
-                match_df = english_df[english_df["word"].isin(matches)]
-                best_match = match_df.sort_values(by = "count", ascending = False).iloc[0]["word"]
-                corrected.append(best_match)
-            else:
-                corrected.append(w)
+            corrected.append(stem)
 
     corrected_string = " ".join(corrected)
     return corrected_string
@@ -133,11 +149,23 @@ def dataframe_all_transform(df, text_column, custom_stopword = None, exception_w
     return df
 
 def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
-                         custom_positive = None, custom_negative = None):
+                         custom_positive = None, custom_negative = None,
+                         negation_bigram = None):
     """Label text data into categories (sentiment analysis)"""
-    positive_words = {"amazing", "love", "like", "good", "great", "awesome", "suck", "wonderful"}
-    negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible", "disappointing", "suck"}
-    negation_words = {"not", "never", "no", "dont", "didnt", "isnt", "wasnt", "wont", "cant"}
+    positive_words = {
+        "amazing", "love", "like", "good", "great", "awesome", "wonderful", "fantastic",
+        "fabulous", "excellent", "outstanding", "brilliant", "superb", "delightful",
+        "pleased", "enjoy", "charming", "cheerful", "happy", "satisfied", "nice", "cool",
+        "impressive", "terrific", "marvelous", "splendid", "adorable", "beautiful", "best"}
+    negative_words = {
+        "bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible",
+        "disappointing", "suck", "worst", "nasty", "gross", "angry", "depressing", "dreadful",
+        "lame", "poor", "boring", "annoying", "mediocre", "painful", "unhappy", "regret",
+        "frustrating", "cringe", "crappy", "pathetic"}
+    negation_words = {
+        "not", "never", "no", "don't", "didn't", "isn't", "wasn't", "won't", "can't",
+        "doesn't", "hasn't", "hadn't", "couldn't", "wouldn't", "shouldn't", "ain't",
+        "mightn't", "mustn't", "neither", "nor"}
 
     if custom_positive is not None:
         positive_words.update(set(custom_positive))
@@ -145,18 +173,51 @@ def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
     if custom_negative is not None:
         negative_words.update(set(custom_negative))
 
+
+    negation_bigrams = set(negation_bigram or [])
+
+    if negation_bigrams:
+        temp_negation_bigrams = set()
+        for neg_word in negation_words:
+            for bigram in negation_bigrams:
+                temp_negation_bigrams.add((f"{neg_word}", bigram))
+
+        negation_bigrams = temp_negation_bigrams
+    else:
+        negation_bigrams = set()
+
     def lexicon_score(text):
         if not isinstance(text, str):
             return "Neutral"
 
         tokens = tokenize_text(text)
         bigrams = eda.generate_ngrams(tokens, 2)
+        trigrams = eda.generate_ngrams(tokens, 3)
 
         score = 0
         skip_index = set()
 
-        # First Check for Bigrams
+        # First Check for Trigrams
+        for i, (first, second, third) in enumerate(trigrams):
+            if first in negation_words and third in positive_words:
+                score -= 1
+                skip_index.update({i, i+1, i+2})
+
+            elif first in negation_words and third in negative_words:
+                score -= 1
+                skip_index.update({i, i+1, i+2})
+
+            elif f"{first} {second}" in negation_bigrams:
+                score -= 1
+                skip_index.update({i, i+1, i+2})
+            elif third in negative_words:
+                score -= 1
+                skip_index.update({i+2})
+
         for i, (first, second) in enumerate(bigrams):
+            if i in skip_index or (i+1) in skip_index:
+                continue
+
             if first in negation_words and second in positive_words:
                 score -= 1
                 skip_index.update({i, i+1})

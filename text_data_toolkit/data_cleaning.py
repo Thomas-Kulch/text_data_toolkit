@@ -25,7 +25,7 @@ def load_text_to_df(files, columns=None, line_length = 1):
         if extension == '.csv':
             df_temp = pd.read_csv(file, sep=',', quotechar ='"')
         elif extension == '.tsv':
-            df_temp = pd.read_csv(file, sep="\t", quoting = 3)
+            df_temp = pd.read_csv(file, sep="\t")
         else:
             with open(file, 'r', encoding='utf-8') as f:
                 lines = f.read().splitlines()
@@ -95,7 +95,7 @@ def normalize_data(data, text_column = None):
 
     def normalize_text(text):
         text = text.lower()
-        text = re.sub(r'[^\w\s]', '', text)
+        text = re.sub(r"[^\w\s']", '', text)
         text = re.sub(r'\s+', ' ', text)
         return text
 
