@@ -161,7 +161,7 @@ def label_data_sentiment(data, text_column = None, new_column = "Sentiment"):
     else:
         return lexicon_score(data)
 
-def label_job_skills(data, text_column = None, custom_skills = None):
+def label_unique_total_job_skills(data, text_column = None, custom_skills = None):
     """Label text data into categories (job skills analysis)"""
     common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
 
@@ -176,6 +176,38 @@ def label_job_skills(data, text_column = None, custom_skills = None):
         for skill in common_skills:
             if re.search(rf'\b{skill}\b', text):
                 skill_count_dict[skill] += 1
+
+    if isinstance(data, pd.DataFrame):
+        for text in data[text_column]:
+            label_job_text(text)
+
+    else:
+        label_job_text(data)
+
+    filtered_dict = {}
+
+    for skill, count in skill_count_dict.items():
+        if count > 0:
+            filtered_dict[skill] = count
+
+    skill_count_dict = filtered_dict
+    return skill_count_dict
+
+def label_total_job_skills(data, text_column = None, custom_skills = None):
+    """Label text data into categories (job skills analysis)"""
+    common_skills = {"python", "nlp", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
+
+    if custom_skills is not None:
+        common_skills.update(custom_skills)
+
+    skill_count_dict = {skill: 0 for skill in common_skills}
+
+    def label_job_text(text):
+        if not isinstance(text, str):
+            return
+        for skill in common_skills:
+            occurrence = len(re.findall(skill, text))
+            skill_count_dict[skill] += occurrence
 
     if isinstance(data, pd.DataFrame):
         for text in data[text_column]:

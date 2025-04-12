@@ -72,7 +72,7 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     output_dict = {"document_stats": {}, "length_stats": {}, "word_stats": {}, "frequent_words": {}}
 
     # normalize data using method from data_cleaning
-    df_copy = dc.normalize_text(df, text_column)
+    df_copy = dc.normalize_data(df, text_column)
 
     # document stats
     output_dict["document_stats"]["total_docs"] = df_copy[text_column].shape[0]
@@ -171,7 +171,7 @@ def plot_sentiment_distribution(df, text_column):
             raise TypeError("Text column must be of type 'object'")
 
     # normalize data using method from data_cleaning
-    df = dc.normalize_text(df, text_column)
+    df = dc.normalize_data(df, text_column)
 
     # label sentiments using method from data_cleaning
     df_plot = dt.label_data_sentiment(df, text_column)

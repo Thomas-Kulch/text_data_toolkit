@@ -58,6 +58,10 @@ def load_text_to_df(files, columns=None, line_length = 1):
 
     return dfs_dict
 
+def homogenize_columns(df):
+    df.columns = df.columns.str.lower().str.replace(r'\s', '_', regex=True)
+    return df
+
 def remove_duplicates_fuzzy(df, text_column = None, threshold = 90):
     """Detect and remove duplicate texts
     df - pandas dataframe
