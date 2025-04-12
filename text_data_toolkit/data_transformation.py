@@ -137,12 +137,12 @@ def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
     """Label text data into categories (sentiment analysis)"""
     positive_words = {"amazing", "love", "like", "good", "great", "awesome", "suck", "wonderful"}
     negative_words = {"bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible", "disappointing", "suck"}
-    negation_words = {"not", "never", "no", "don't", "didn't", "isn't", "wasn't", "won't", "can't"}
+    negation_words = {"not", "never", "no", "dont", "didnt", "isnt", "wasnt", "wont", "cant"}
 
-    if custom_pos is not None:
+    if custom_positive is not None:
         positive_words.update(set(custom_positive))
 
-    if custom_neg is not None:
+    if custom_negative is not None:
         negative_words.update(set(custom_negative))
 
     def lexicon_score(text):
