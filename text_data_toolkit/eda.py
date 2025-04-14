@@ -177,15 +177,13 @@ def plot_sentiment_distribution(df, text_column):
     df = dc.normalize_data(df, text_column)
 
     # label sentiments using method from data_cleaning
-    df_plot = dt.label_data_sentiment(df, text_column)
+    df[f"{text_column}_Sentiment"] = df[f"{text_column}"].apply(lambda x: dt.label_data_sentiment(x))
 
     # plot results
-    sns.catplot(data=df_plot, x="Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
+    s = sns.catplot(data=df, x=f"{text_column}_Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
+    plt.title("Sentiment Count Distribution", fontsize = 20)
 
-    plt.title("Sentiment Count Distribution")
     plt.show()
-
-    return df_plot
 
 def generate_ngrams(tokens, n = 2):
     result = []

@@ -7,6 +7,8 @@ import difflib
 import pandas as pd
 from text_data_toolkit import data_cleaning as clean
 from text_data_toolkit import eda as eda
+import json
+import os
 
 english_datafiles = ["../data/unigram_freq.csv", "../data/words_alpha.txt"]
 dfs = clean.load_text_to_df(english_datafiles, line_length = 1)
@@ -20,6 +22,18 @@ contractions = {"don't", "doesn't", "didn't", "isn't", "aren't", "wasn't", "were
                 "wouldn't", "couldn't", "can't", "i'm", "you're", "we're", "they're", "it's",
                 "i've", "you've", "we've", "they've", "i'll", "you'll", "he'll", "she'll", "we'll", "they'll",
                 "there's", "that's", "what's", "who's", "where's", "how's", "let's", "hadn't", "shouldn't"}
+
+positive_words = {
+        "amazing", "love", "loved", "like", "liked", "good", "great", "awesome", "wonderful", "fantastic",
+        "fabulous", "excellent", "outstanding", "brilliant", "superb", "delightful",
+        "pleased", "enjoy", "charming", "cheerful", "happy", "satisfied", "nice", "cool",
+        "impressive", "terrific", "marvelous", "splendid", "adorable", "beautiful", "best"}
+
+negative_words = {
+        "bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible",
+        "disappointing", "suck", "worst", "nasty", "gross", "angry", "depressing", "dreadful",
+        "lame", "poor", "boring", "annoying", "mediocre", "painful", "unhappy", "regret",
+        "frustrating", "cringe", "crappy", "pathetic"}
 
 def tokenize_text(text):
     """Split text into tokens (words)"""
@@ -73,7 +87,7 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
 
 def basic_stem_words(text, exception_words = None):
     """Stem words returns a string"""
-    suffixes = ['ed', 'ing', 'ly', 's', 'es', 'tion', 'er']
+    suffixes = ["tion", "ment", "ness", "ing", "ion", "ful", "ous", "ly", "ed", "es", "er", "s"]
     exceptions = {"this", "has", "his", "was", "thus", "gas", "class", 'during', 'better'}
 
     if exception_words is not None:
@@ -82,19 +96,26 @@ def basic_stem_words(text, exception_words = None):
     word_list = tokenize_text(text)
     stemmed_words = []
 
-    for word in word_list:
-        if word.lower() in exceptions:
-            stemmed_words.append(word)
+    for w in word_list:
+        original_word = w
+        if w in exceptions:
+            stemmed_words.append(w)
             continue
 
         for suffix in suffixes:
-            if word.endswith(suffix) and len(word) > len(suffix) + 2 :
-                word = word[:-len(suffix)]
-                break
-        stemmed_words.append(word)
+            if w.endswith(suffix) and len(w) > len(suffix) + 2 :
+                new_word = w[:-len(suffix)]
 
-    stemmed_words_string = " ".join(stemmed_words)
-    return stemmed_words_string
+                if new_word in english_df["word"].tolist():
+                    w = new_word
+                    break
+
+        else:
+            w = original_word
+
+        stemmed_words.append(w)
+
+    return " ".join(stemmed_words)
 
 def autocorrect_text(text, exception_words = None):
     """Autocorrect words after rough stemming"""
@@ -118,7 +139,7 @@ def autocorrect_text(text, exception_words = None):
             corrected.append(stem)
             continue
 
-        matches = difflib.get_close_matches(stem, english_words, n=5, cutoff=0.75)
+        matches = difflib.get_close_matches(stem, english_words, n=5, cutoff=0.8    )
         if matches:
             match_df = english_df[english_df["word"].isin(matches)]
             best_match = match_df.sort_values(by = "count", ascending = False).iloc[0]["word"]
@@ -148,43 +169,35 @@ def dataframe_all_transform(df, text_column, custom_stopword = None, exception_w
 
     return df
 
-def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
-                         custom_positive = None, custom_negative = None,
-                         negation_bigram = None):
+def label_data_sentiment(data, custom_positive = None, custom_negative = None,
+                         filename = None):
+
     """Label text data into categories (sentiment analysis)"""
-    positive_words = {
-        "amazing", "love", "like", "good", "great", "awesome", "wonderful", "fantastic",
-        "fabulous", "excellent", "outstanding", "brilliant", "superb", "delightful",
-        "pleased", "enjoy", "charming", "cheerful", "happy", "satisfied", "nice", "cool",
-        "impressive", "terrific", "marvelous", "splendid", "adorable", "beautiful", "best"}
-    negative_words = {
-        "bad", "terrible", "hate", "awful", "disgusting", "sad", "unpleasant", "horrible",
-        "disappointing", "suck", "worst", "nasty", "gross", "angry", "depressing", "dreadful",
-        "lame", "poor", "boring", "annoying", "mediocre", "painful", "unhappy", "regret",
-        "frustrating", "cringe", "crappy", "pathetic"}
     negation_words = {
         "not", "never", "no", "don't", "didn't", "isn't", "wasn't", "won't", "can't",
         "doesn't", "hasn't", "hadn't", "couldn't", "wouldn't", "shouldn't", "ain't",
-        "mightn't", "mustn't", "neither", "nor"}
+        "mightn't", "mustn't", "neither", "nor", "like"}
+
+    pos_lex = positive_words.copy()
+    neg_lex = negative_words.copy()
+
+    if filename:
+        if os.path.isfile(filename):
+            with open(filename, 'r', encoding="utf-8") as f:
+                existing_words = json.load(f)
+
+            load_pos = set(existing_words.get("positive", []))
+            load_neg = set(existing_words.get("negative", []))
+            pos_lex.update(set(load_pos))
+            neg_lex.update(set(load_neg))
+    else:
+        pass
 
     if custom_positive is not None:
-        positive_words.update(set(custom_positive))
+        pos_lex.update(set(custom_positive))
 
     if custom_negative is not None:
-        negative_words.update(set(custom_negative))
-
-
-    negation_bigrams = set(negation_bigram or [])
-
-    if negation_bigrams:
-        temp_negation_bigrams = set()
-        for neg_word in negation_words:
-            for bigram in negation_bigrams:
-                temp_negation_bigrams.add((f"{neg_word}", bigram))
-
-        negation_bigrams = temp_negation_bigrams
-    else:
-        negation_bigrams = set()
+        neg_lex.update(set(custom_negative))
 
     def lexicon_score(text):
         if not isinstance(text, str):
@@ -192,46 +205,28 @@ def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
 
         tokens = tokenize_text(text)
         bigrams = eda.generate_ngrams(tokens, 2)
-        trigrams = eda.generate_ngrams(tokens, 3)
 
         score = 0
         skip_index = set()
-
-        # First Check for Trigrams
-        for i, (first, second, third) in enumerate(trigrams):
-            if first in negation_words and third in positive_words:
-                score -= 1
-                skip_index.update({i, i+1, i+2})
-
-            elif first in negation_words and third in negative_words:
-                score -= 1
-                skip_index.update({i, i+1, i+2})
-
-            elif f"{first} {second}" in negation_bigrams:
-                score -= 1
-                skip_index.update({i, i+1, i+2})
-            elif third in negative_words:
-                score -= 1
-                skip_index.update({i+2})
 
         for i, (first, second) in enumerate(bigrams):
             if i in skip_index or (i+1) in skip_index:
                 continue
 
-            if first in negation_words and second in positive_words:
+            if first in negation_words and second in pos_lex:
                 score -= 1
                 skip_index.update({i, i+1})
 
-            elif first in negation_words and second in negative_words:
+            elif first in negation_words and second in neg_lex:
                 score += 1
                 skip_index.update({i, i+1})
 
         for i, t in enumerate(tokens):
             if i in skip_index:
                 continue
-            if t in positive_words:
+            if t in pos_lex:
                 score += 1
-            elif t in negative_words:
+            elif t in neg_lex:
                 score -= 1
 
         if score > 0:
@@ -241,9 +236,13 @@ def label_data_sentiment(data, text_column = None, new_column = "Sentiment",
         else:
             return "Neutral"
 
-    if isinstance(data, pd.DataFrame):
-        data[new_column] = data[text_column].apply(lexicon_score)
-        return data
+    if filename:
+        updated_data = {"positive": list(pos_lex), "negative": list(neg_lex)}
+
+        with open(filename, 'w', encoding="utf-8") as f:
+            json.dump(updated_data, f, indent=4, ensure_ascii=False)
+
+        return lexicon_score(data)
 
     else:
         return lexicon_score(data)
@@ -311,5 +310,3 @@ def label_total_job_skills(data, text_column = None, custom_skills = None):
 
     skill_count_dict = filtered_dict
     return skill_count_dict
-
-# Test push
