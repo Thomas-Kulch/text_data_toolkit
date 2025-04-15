@@ -9,6 +9,9 @@ from text_data_toolkit import data_cleaning as clean
 from text_data_toolkit import eda as eda
 import json
 import os
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+
 
 english_datafiles = ["../data/unigram_freq.csv", "../data/words_alpha.txt"]
 dfs = clean.load_text_to_df(english_datafiles, line_length = 1)
@@ -150,7 +153,6 @@ def autocorrect_text(text, exception_words = None):
     corrected_string = " ".join(corrected)
     return corrected_string
 
-
 def textdata_all_transform(text, text_column = None, custom_stopword = None, exception_words = None):
     """ Takes in text and does all the data transformation steps
         Removes Stopwords, Stems Words, Autocorrects Words """
@@ -170,7 +172,7 @@ def dataframe_all_transform(df, text_column, custom_stopword = None, exception_w
     return df
 
 def label_data_sentiment(data, custom_positive = None, custom_negative = None,
-                         filename = None):
+                         filename = None, return_counts = False):
 
     """Label text data into categories (sentiment analysis)"""
     negation_words = {
@@ -201,12 +203,13 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
 
     def lexicon_score(text):
         if not isinstance(text, str):
-            return "Neutral"
+            return "Neutral, 0 , 0, 0"
 
         tokens = tokenize_text(text)
         bigrams = eda.generate_ngrams(tokens, 2)
 
-        score = 0
+        pos_count = 0
+        neg_count = 0
         skip_index = set()
 
         for i, (first, second) in enumerate(bigrams):
@@ -214,27 +217,29 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
                 continue
 
             if first in negation_words and second in pos_lex:
-                score -= 1
+                neg_count += 1
                 skip_index.update({i, i+1})
 
             elif first in negation_words and second in neg_lex:
-                score += 1
+                pos_count += 1
                 skip_index.update({i, i+1})
 
         for i, t in enumerate(tokens):
             if i in skip_index:
                 continue
             if t in pos_lex:
-                score += 1
+                pos_count += 1
             elif t in neg_lex:
-                score -= 1
+                neg_count += 1
+
+        score = pos_count - neg_count
 
         if score > 0:
-            return "Positive"
+            return ("Positive", pos_count, neg_count, score)
         if score < 0:
-            return "Negative"
+            return ("Negative", pos_count, neg_count, score)
         else:
-            return "Neutral"
+            return ("Neutral", pos_count, neg_count, score)
 
     if filename:
         updated_data = {"positive": list(pos_lex), "negative": list(neg_lex)}
@@ -242,10 +247,18 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
         with open(filename, 'w', encoding="utf-8") as f:
             json.dump(updated_data, f, indent=4, ensure_ascii=False)
 
-        return lexicon_score(data)
+    label, pos_count, neg_count, score = lexicon_score(data)
+
+    if return_counts == False:
+        return label
 
     else:
-        return lexicon_score(data)
+        return (pos_count, neg_count, score)
+
+def sentiment_features(text, filename = None):
+    pos_count, neg_count, score = label_data_sentiment(text, filename = filename, return_counts = True)
+
+    return pd.Series([pos_count, neg_count, score])
 
 def label_unique_total_job_skills(data, text_column = None, custom_skills = None):
     """Label text data into categories (job skills analysis)"""
@@ -310,3 +323,31 @@ def label_total_job_skills(data, text_column = None, custom_skills = None):
 
     skill_count_dict = filtered_dict
     return skill_count_dict
+
+def split_data(df, target_column, train_size = 0.7, test_size = 0.15, random_state = 42):
+    """Split data into train and test sets"""
+    val_size = 1 - train_size - test_size
+    if val_size < 0:
+        raise ValueError("train_size + test_size must be less than 1")
+
+    df_train_val, df_test = train_test_split(df, test_size = test_size,
+                                             random_state = random_state, stratify = df[target_column])
+
+    val_fraction = val_size / (train_size + val_size)
+    df_train, df_val = train_test_split(df_train_val, test_size = val_fraction,
+                                        random_state = random_state, stratify = df_train_val[target_column])
+
+    return df_train, df_val, df_test
+
+def vectorize_text(series, method = "tfidf", max_features = 10000):
+    if method == "tfidf":
+        vectorizer = TfidfVectorizer(max_features = max_features)
+    elif method == "count":
+        vectorizer = CountVectorizer(max_features = max_features)
+    else:
+        raise ValueError("Invalid method. Please choose from 'tfidf' or 'count'")
+
+    vectorized_text = vectorizer.fit_transform(series)
+
+    return vectorized_text, vectorizer
+
