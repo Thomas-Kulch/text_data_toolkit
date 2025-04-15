@@ -112,7 +112,9 @@ def basic_stem_words(text, exception_words = None):
                 if new_word in english_df["word"].tolist():
                     w = new_word
                     break
-
+                else:
+                    w = new_word
+                    break
         else:
             w = original_word
 
@@ -142,7 +144,7 @@ def autocorrect_text(text, exception_words = None):
             corrected.append(stem)
             continue
 
-        matches = difflib.get_close_matches(stem, english_words, n=5, cutoff=0.8    )
+        matches = difflib.get_close_matches(stem, english_words, n=5, cutoff=0.75    )
         if matches:
             match_df = english_df[english_df["word"].isin(matches)]
             best_match = match_df.sort_values(by = "count", ascending = False).iloc[0]["word"]
@@ -158,18 +160,9 @@ def textdata_all_transform(text, text_column = None, custom_stopword = None, exc
         Removes Stopwords, Stems Words, Autocorrects Words """
 
     no_stop = remove_stopwords(text, text_column = text_column, custom_stopword = custom_stopword)
-    stemmed = basic_stem_words(no_stop, exception_words = None)
-    autocorrected = autocorrect_text(stemmed, exception_words = None)
+    autocorrected = autocorrect_text(no_stop, exception_words = exception_words)
 
     return autocorrected
-
-def dataframe_all_transform(df, text_column, custom_stopword = None, exception_words = None, new_column = "Transformed Text"):
-    """ Takes in a dataframe and text column and does all the data transformation steps
-        Removes Stopwords, Stems Words, Autocorrects Words """
-    df[new_column] = df[text_column].apply(
-        lambda x: textdata_all_transform(x, custom_stopword = custom_stopword, exception_words = exception_words))
-
-    return df
 
 def label_data_sentiment(data, custom_positive = None, custom_negative = None,
                          filename = None, return_counts = False):
@@ -294,7 +287,7 @@ def label_unique_total_job_skills(data, text_column = None, custom_skills = None
 
 def label_total_job_skills(data, text_column = None, custom_skills = None):
     """Label text data into categories (job skills analysis)"""
-    common_skills = {"python", "nlp", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
+    common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
 
     if custom_skills is not None:
         common_skills.update(custom_skills)
@@ -350,4 +343,3 @@ def vectorize_text(series, method = "tfidf", max_features = 10000):
     vectorized_text = vectorizer.fit_transform(series)
 
     return vectorized_text, vectorizer
-

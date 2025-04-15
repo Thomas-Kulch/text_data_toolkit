@@ -89,12 +89,12 @@ def test_remove_duplicates_fuzzy():
         returned = no_dups_df.iloc[i]["text"]
         assert returned == expected
 
-def test_normalize_text():
+def test_normalize_data():
     test_data = {'text': ["Hello world.?", "This     is    a test", "WOrdclOud teSt/^&"]}
     test_df = pd.DataFrame(test_data)
     expected_output = {'text': ["hello world", "this is a test", "wordcloud test"]}
 
-    normalized_df = clean.normalize_text(test_df, "text")
+    normalized_df = clean.normalize_data(test_df, "text")
     for i, expected in enumerate(expected_output["text"]):
         returned = normalized_df.iloc[i]["text"]
         assert returned == expected
@@ -132,7 +132,7 @@ def test_clean_dataframe():
 
 def main():
     test_remove_duplicates_fuzzy()
-    test_normalize_text()
+    test_normalize_data()
     test_handle_missing_values()
     test_clean_dataframe_no_dups()
     test_clean_dataframe()
