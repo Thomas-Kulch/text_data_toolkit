@@ -180,7 +180,7 @@ def plot_sentiment_distribution(df, text_column):
     df[f"{text_column}_Sentiment"] = df[f"{text_column}"].apply(lambda x: dt.label_data_sentiment(x))
 
     # plot results
-    s = sns.catplot(data=df, x=f"{text_column}_Sentiment", kind="count", hue="Sentiment", palette="viridis", height=7, aspect=1.5)
+    s = sns.catplot(data=df, x=f"{text_column}_Sentiment", kind="count", hue=f"{text_column}_Sentiment", palette="viridis", height=7, aspect=1.5)
     plt.title("Sentiment Count Distribution", fontsize = 20)
 
     plt.show()
