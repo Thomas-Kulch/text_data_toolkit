@@ -78,8 +78,9 @@ def test_text_summary_stats_frequent_words_with_stopwords():
 
 # plot_sentiment_distribution testing
 def test_plot_sentiment_distribution_column():
+    text_column = "text_column"
     output = eda.plot_sentiment_distribution(df, "text_column")
-    assert 'Sentiment' in output.columns
+    assert f'{text_column}_sentiment' in output.columns
 
 # top_ngrams testing
 def test_top_ngrams_series():

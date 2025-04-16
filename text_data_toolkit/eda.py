@@ -9,6 +9,7 @@ import pandas as pd
 from collections import Counter
 from text_data_toolkit import data_transformation as dt
 from text_data_toolkit import data_cleaning as dc
+from text_data_toolkit import label_sentiment as lst
 import re
 from nltk.util import ngrams
 
@@ -177,13 +178,15 @@ def plot_sentiment_distribution(df, text_column):
     df = dc.normalize_data(df, text_column)
 
     # label sentiments using method from data_cleaning
-    df[f"{text_column}_sentiment"] = df[f"{text_column}"].apply(lambda x: dt.label_data_sentiment(x))
+    df[f"{text_column}_sentiment"] = df[f"{text_column}"].apply(lambda x: lst.label_data_sentiment(x))
 
     # plot results
     s = sns.catplot(data=df, x=f"{text_column}_sentiment", kind="count", hue=f"{text_column}_sentiment", palette="viridis", height=7, aspect=1.5)
     plt.title("Sentiment Count Distribution", fontsize = 20)
 
     plt.show()
+
+    return df
 
 def generate_ngrams(tokens, n = 2):
     result = []

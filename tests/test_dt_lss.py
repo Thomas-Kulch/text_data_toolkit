@@ -1,9 +1,10 @@
-"""Unit tests for data_transformation module"""
+"""Unit tests for data_transformation and label sentiment modules"""
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 from text_data_toolkit import data_transformation as transform
 from text_data_toolkit import data_cleaning as clean
+from text_data_toolkit import label_sentiment as lss
 
 def test_tokenize_text():
     test_text = ["Hello world", "This is a test", "WOrdcloud test"]
@@ -70,7 +71,7 @@ def test_label_data_sentiment_str():
     expected_output = ["Positive", "Negative", "Negative"]
 
     for i, expected in enumerate(expected_output):
-        returned = transform.label_data_sentiment(test_text[i])
+        returned = lss.label_data_sentiment(test_text[i])
         assert returned == expected
 
 def test_label_data_sentiment_df():
@@ -81,7 +82,7 @@ def test_label_data_sentiment_df():
 
     test_df['text'] = test_df['text'].apply(transform.basic_stem_words)
     test_df['text'] = test_df['text'].apply(transform.autocorrect_text)
-    test_df["Sentiment"] = test_df['text'].apply(transform.label_data_sentiment)
+    test_df["Sentiment"] = test_df['text'].apply(lss.label_data_sentiment)
     expected_output = ["Positive", "Negative", "Negative"]
 
     for i, expected in enumerate(expected_output):
@@ -91,7 +92,7 @@ def test_label_data_sentiment_df():
 def test_sentiment_features():
     test_text = "test so bad yet great"
     expected_output = pd.Series([1, 1, 0])
-    returned = transform.sentiment_features(test_text)
+    returned = lss.sentiment_features(test_text)
 
     assert returned.equals(expected_output)
 
