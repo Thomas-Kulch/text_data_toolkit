@@ -7,7 +7,8 @@
 - **Data Cleaning**: Functions to preprocess and clean text data, including removal of stopwords, punctuation, and special characters.
 - **Text Transformation**: Utilities for tokenization, stemming, lemmatization, and vectorization.
 - **Visualization**: Tools to generate word clouds and other graphical representations of text data.
-- **File Operations**: Functions to move, bulk rename, delete, and list files
+- **File Operations**: Functions to move, bulk rename, delete, and list files.
+- **Sentiment Labeling**: Label text data into categories: positive, negative, neutral.
 
 ## Installation
 
@@ -33,6 +34,10 @@ seaborn>=0.13.0
 python-Levenshtein>=0.27.0
 
 nltk>=3.9.0
+
+pytest>=8.3.0
+
+scikit-learn>=1.6.0
 
 These dependencies will be installed automatically when you install the package.
 
