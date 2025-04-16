@@ -30,6 +30,7 @@ setup(
         "seaborn>=0.13.0",
         "python-Levenshtein>=0.27.0",
         "nltk>=3.9.0",
+        "scikit-learn>=1.6.0",
         "fuzzywuzzy @ git+https://github.com/seatgeek/fuzzywuzzy.git@0.18.0"
     ],
     extras_require={
