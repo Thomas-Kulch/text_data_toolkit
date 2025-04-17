@@ -158,10 +158,7 @@ def textdata_all_transform(text, text_column = None, custom_stopword = None, exc
 
     no_stop = remove_stopwords(text, text_column = text_column, custom_stopword = custom_stopword)
     autocorrected = autocorrect_text(no_stop, exception_words = exception_words)
-
     return autocorrected
-
-
 
 def label_unique_total_job_skills(data, text_column = None, custom_skills = None):
     """Label text data into categories (job skills analysis)"""
