@@ -9,7 +9,6 @@ from text_data_toolkit import data_cleaning as clean
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
-
 english_datafiles = ["../data/unigram_freq.csv", "../data/words_alpha.txt"]
 dfs = clean.load_text_to_df(english_datafiles, line_length = 1)
 df_unigrams, df_validwords = dfs['unigram_freq'], dfs['words_alpha']
@@ -36,7 +35,10 @@ negative_words = {
         "frustrating", "cringe", "crappy", "pathetic"}
 
 def tokenize_text(text):
-    """Split text into tokens (words)"""
+    """Split text into lowercase characters, remove any non-alphanumeric characters,
+    :param text: (str) text to tokenize
+    :return: tokenized text (lowercase)
+    """
     tokens = re.split(r"[^A-Za-z0-9']+", text.lower())
     # Remove empty strings
     for i in tokens:
@@ -46,11 +48,23 @@ def tokenize_text(text):
     return tokens
 
 def tokenize_dataframe(df, column, new_column = "Tokenized Text"):
+    """ Tokenizes text in a  dataframe column and stores it in a new column
+    :param df: pandas dataframe
+    :param column: column name containing text
+    :param new_column: new column name to store tokenized text
+    :return: modified dataframe with new tokenized column
+    """
     df[new_column] = df[column].apply(tokenize_text).str.join(', ')
     return df
 
 def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Removed Stopwords"):
-    """Remove common stopwords"""
+    """Remove common and custom stopwords from text. Supports input of string, list, or dataframe
+    :param data: string, list, or pandas dataframe
+    :param text_column: column name containing text if data is a dataframe
+    :param custom_stopword: custom stopwords to remove
+    :param new_column: new column name to store text if data is a dataframe
+    :return: modified data with removed stopwords
+    """
     base_stopwords = {
         'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
         'at', 'from', 'by', 'up', 'about', 'into', 'over', 'after', 'under',
@@ -86,7 +100,11 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
         return data
 
 def basic_stem_words(text, exception_words = None):
-    """Stem words returns a string"""
+    """ Applies simple stemming by removing common suffixes, except for exception words
+    :param text: (str) text for basic stemming
+    :param exception_words: (list) list of words to exempt from stemming
+    :return: modified text
+    """
     suffixes = ["tion", "ment", "ness", "ing", "ion", "ful", "ous", "ly", "ed", "es", "er", "s"]
     exceptions = {"this", "has", "his", "was", "thus", "gas", "class", 'during', 'better'}
 
@@ -120,7 +138,12 @@ def basic_stem_words(text, exception_words = None):
     return " ".join(stemmed_words)
 
 def autocorrect_text(text, exception_words = None):
-    """Autocorrect words after rough stemming"""
+    """ Autocorrect text after stemming, uses difflib to get the closest match from
+    an english dataframe containing the most frequent words.
+    :param text: input string
+    :param exception_words: set of words to exclude from autocorrection
+    :return: modified text
+    """
     if exception_words is None:
         exception_words = set()
 
@@ -153,15 +176,20 @@ def autocorrect_text(text, exception_words = None):
     return corrected_string
 
 def textdata_all_transform(text, text_column = None, custom_stopword = None, exception_words = None):
-    """ Takes in text and does all the data transformation steps
-        Removes Stopwords, Stems Words, Autocorrects Words """
-
+    """
+    Applies full NLP preprocessing: remove stopwords, stem, and autocorrect. Works on strings and DataFrames.
+    :return: modified text
+    """
     no_stop = remove_stopwords(text, text_column = text_column, custom_stopword = custom_stopword)
     autocorrected = autocorrect_text(no_stop, exception_words = exception_words)
     return autocorrected
 
 def label_unique_total_job_skills(data, text_column = None, custom_skills = None):
-    """Label text data into categories (job skills analysis)"""
+    """ Identify presence of predefined job skills in text data. Each skill counted once per text.
+    :param data: string, list, or pandas dataframe
+    :param text_column: column name containing text if data is a dataframe
+    :param custom_skills: (list) list of custom skills to label more unique job skills
+    """
     common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
 
     if custom_skills is not None:
@@ -193,7 +221,12 @@ def label_unique_total_job_skills(data, text_column = None, custom_skills = None
     return skill_count_dict
 
 def label_total_job_skills(data, text_column = None, custom_skills = None):
-    """Label text data into categories (job skills analysis)"""
+    """ Identify presence of predefined job skills in text data.
+    Count total occurrences of job skills in text data (frequency-based).
+    :param data: string, list, or pandas dataframe
+    :param text_column: column name containing text if data is a dataframe
+    :param custom_skills: (list) list of custom skills to label more unique job skills
+    """
     common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
 
     if custom_skills is not None:
@@ -225,7 +258,10 @@ def label_total_job_skills(data, text_column = None, custom_skills = None):
     return skill_count_dict
 
 def split_data(df, target_column, train_size = 0.7, test_size = 0.15, random_state = 42):
-    """Split data into train and test sets"""
+    """Splits a dataframe into training, testing, and validation sets.
+    :param df: pandas dataframe
+    :param target_column: target column name
+    """
     val_size = 1 - train_size - test_size
     if val_size < 0:
         raise ValueError("train_size + test_size must be less than 1")
@@ -240,6 +276,12 @@ def split_data(df, target_column, train_size = 0.7, test_size = 0.15, random_sta
     return df_train, df_val, df_test
 
 def vectorize_text(series, method = "tfidf", max_features = 10000):
+    """ Vectorize a series of text data in tfidf or count mode.
+    :param series: text data
+    :param method: 'tfidf' or 'count'
+    :param max_features: limit number of features to return
+    :return: Sparse matrix of features and the vectorizer object
+    """
     if method == "tfidf":
         vectorizer = TfidfVectorizer(max_features = max_features)
     elif method == "count":
