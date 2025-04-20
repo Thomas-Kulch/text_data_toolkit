@@ -23,8 +23,12 @@ STOPWORDS = {'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on
         "we", "so", "as"}
 
 def generate_wordcloud(data, custom_stopwords=None):
-    """Generate a word cloud from text data"""
-
+    """ Generate a word cloud visualization from text data.
+    Supports string, list of strings, or pandas Series as input.
+    :param data: A pandas Series, list or string
+    :param custom_stopwords: A list of strings representing words to be excluded..
+    :return: A word cloud visualization.
+    """
     # handle stopwords
     base_stopwords = STOPWORDS
 
@@ -51,7 +55,6 @@ def generate_wordcloud(data, custom_stopwords=None):
     # homogenize string and get rid of punctuation
     final_text_data = re.sub(r'[^\w\s]', '', final_text_data.lower())
 
-
     # create word cloud object and return it
     word_cloud = WordCloud(width=800, height=400, background_color="white", max_words=100, stopwords=base_stopwords)
     word_cloud.generate_from_text(final_text_data.lower())
@@ -63,7 +66,15 @@ def generate_wordcloud(data, custom_stopwords=None):
     return word_cloud
 
 def text_summary_stats(df, text_column, custom_stopwords=None):
-    """Generate basic statistics for text data"""
+    """
+    Generate basic text statistics: Document stats, text length stats (min, max, avg, median),
+    word stats (count, unique, avg word length),  and most frequent words
+    :param df: (DataFrame) pandas DataFrame
+    :param text_column: (str) column name of text data
+    :param custom_stopwords: (list) list of strings representing words to be excluded.
+    :return: (Dictionary): Dictionary of statistics about the text data.
+    """
+
     if text_column is None:
         raise TypeError("text_column cannot be None")
     else:
@@ -133,7 +144,6 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     output_dict["word_stats"]["unique_words"] = len(unique_words)
     output_dict["word_stats"]["avg_word_length"] = sum(word_len_list) / len(word_len_list)
 
-    # frequent words
     # handle stopwords
     base_stopwords = STOPWORDS
 
@@ -167,7 +177,11 @@ def text_summary_stats(df, text_column, custom_stopwords=None):
     return output_dict
 
 def plot_sentiment_distribution(df, text_column):
-    """Visualize sentiment distribution"""
+    """ Plot sentiment distribution for text data using sentiment labeling.
+    :param df: (DataFrame) pandas DataFrame
+    :param text_column: (str) column name of text data
+    :return df: (DataFrame) original pandas DataFrame
+    """
     if text_column is None:
         raise ValueError("text_column cannot be None")
     else:
@@ -189,6 +203,11 @@ def plot_sentiment_distribution(df, text_column):
     return df
 
 def generate_ngrams(tokens, n = 2):
+    """ Generate a list of n-gram tuples from tokenized text.
+    :param tokens: (list) tokenized text
+    :param n: (int) number for n-gram tuples
+    :return ngrams: (list) list of n-gram tuples
+    """
     result = []
     for i in range(n):
         result.append(tokens[i:])
@@ -196,8 +215,14 @@ def generate_ngrams(tokens, n = 2):
     return zipped
 
 def top_ngrams(data, stopwords=None, n=2, top_k=10):
-    """Extract and count the most frequent word combinations (n-grams) from text data to
-    identify common phrases and collocations."""
+    """ Extract and count the most frequent word combinations (n-grams) from text data to
+    identify common phrases and collocations.
+    :param data: A panda series, list, or string
+    :param stopwords: (list) list of stopwords
+    :param n: (int) number for n-gram tuples
+    :param top_k: (int) number of n-gram tuples
+    :return ngrams: (list) list of n-gram tuples
+    """
 
     if stopwords is not None:
         # homogenize stopwords and update list
@@ -219,7 +244,6 @@ def top_ngrams(data, stopwords=None, n=2, top_k=10):
     # homogenize string and get rid of punctuation
     text_data = re.sub(r'[^\w\s]', '', text_data.lower())
 
-
     # tokenize text using method from data_transformation
     tokenized_final_text_data = dt.tokenize_text(text_data)
 
@@ -228,7 +252,6 @@ def top_ngrams(data, stopwords=None, n=2, top_k=10):
         filtered_text_data = [word for word in tokenized_final_text_data if word not in stopwords_set]
     else:
         filtered_text_data = tokenized_final_text_data
-
 
     # generate n-grams from tokens
     ngrams_list = list(ngrams(filtered_text_data, n=n))
