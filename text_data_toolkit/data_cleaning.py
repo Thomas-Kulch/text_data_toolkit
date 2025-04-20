@@ -10,10 +10,12 @@ import numpy as np
 
 
 def load_text_to_df(files, columns=None, line_length = 1):
-    """Load text files into a pandas DataFrame
-    files - list of file paths
-    columns - list of column names, default ["filename", "text"]
-    df: pd.DataFrame, dataframe with each row containing a filename and text
+    """
+    Load text files (csv, tsv, txt) into a dictionary of pandas DataFrame
+    :param: files (list)- list of file paths
+    columns (list) - Optional list of column names
+    line_length (int) - Optional line length
+    :return: dfs-dict - dictionary where keys are filename (w/out ext) and values are pandas DataFrame
     """
     dfs_dict = {}
 
@@ -35,6 +37,7 @@ def load_text_to_df(files, columns=None, line_length = 1):
 
             records = []
             i = 0
+
             while i + line_length <= len(lines):
                 record = []
                 for j in range(line_length):
@@ -59,17 +62,20 @@ def load_text_to_df(files, columns=None, line_length = 1):
     return dfs_dict
 
 def homogenize_columns(df):
+    """
+    Homogenizes the columns of a dataframe in the format of first_column
+    :param df (DataFrame): pandas dataframe
+    :return: df - The modified dataframe with the homogenized columns
+    """
     df.columns = df.columns.str.lower().str.replace(r'\s', '_', regex=True)
     return df
 
 def remove_duplicates_fuzzy(df, text_column = None, threshold = 90):
-    """Detect and remove duplicate texts
-    df - pandas dataframe
-    text_column - name of the column containing text data
-    threshold = threshold for fuzzy matching, higher = stricter
-
-    Uses a nested loop where each row i is compared with every row j, (i+1, i+2...)
-    if the fuzzy ratio is above the threshold, the row is dropped.
+    """ Detect and remove duplicate texts
+    :param: df (DataFrame) - pandas dataframe
+    text_column (str) - name of the column containing text data
+    threshold (int) - threshold for fuzzy matching (higher = stricter_
+    :return: df - The modified dataframe with duplicates removed
     """
     drop = set()
 
@@ -91,12 +97,15 @@ def remove_duplicates_fuzzy(df, text_column = None, threshold = 90):
     return df
 
 def normalize_data(data, text_column = None):
-    """Basic text normalization (lowercase, remove punctuation, etc.)"""
-
+    """ Normalize text data : lowercase, remove punctuation (except apostrophes) adn whitespace
+    :param: data  (DataFrame)- pandas dataframe
+    text_column (str) - name of the column containing text data
+    :return: data - pandas dataframe
+    """
     def normalize_text(text):
         text = text.lower()
-        text = re.sub(r"[^\w\s']", '', text)
-        text = re.sub(r'\s+', ' ', text)
+        text = re.sub(r"[^\w\s']", '', text) # Remove Punctuation
+        text = re.sub(r'\s+', ' ', text) # Normalize whitespace
         return text
 
     if isinstance(data, str):
@@ -107,8 +116,11 @@ def normalize_data(data, text_column = None):
         return data
 
 def handle_missing_values(df, text_column = None):
-    """Handle missing values in text data (NaN, empty strings)
-    Run after text data is normalized to remove whitespace"""
+    """ Drop rows with missing values or empty strings
+    :param: df (DataFrame) - pandas dataframe
+    text_column (str) - name of the column containing text data
+    :return: df - modified  dataframe without missing values
+    """
 
     df[text_column] = df[text_column].replace(r'^\s*$', np.nan, regex=True)
     df.dropna(subset=[text_column], inplace=True)
@@ -117,7 +129,12 @@ def handle_missing_values(df, text_column = None):
     return df
 
 def clean_dataframe_no_dups(df, text_column = None):
-    """Apply all cleaning steps to a dataframe without duplicates"""
+    """ Clean a dataframe without duplicate values: Homogenize column names, normalize text.
+     and handle missing values
+     :param: df (DataFrame) - pandas dataframe
+     text_column (str) - name of the column containing text data
+     :return: df - modified, cleaned dataframe
+     """
     # Homogenize Columns
     df = homogenize_columns(df)
 
@@ -130,7 +147,13 @@ def clean_dataframe_no_dups(df, text_column = None):
     return df
 
 def clean_dataframe(df, text_column, threshold = 90):
-    """Apply all cleaning steps to a dataframe"""
+    """ Clean a dataframe with duplicate values: Homogenize column names, normalize text, remove duplicates
+    and handle missing values
+    :param: df (DataFrame) - pandas dataframe
+    text_column (str) - name of the column containing text data
+    threshold (int) - threshold for fuzzy matching
+    :return: df - modified, cleaned dataframe
+    """
     # Homogenize Columns
     df = homogenize_columns(df)
 
