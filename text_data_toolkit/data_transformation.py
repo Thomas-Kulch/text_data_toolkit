@@ -63,7 +63,7 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
     :param text_column: column name containing text if data is a dataframe
     :param custom_stopword: custom stopwords to remove
     :param new_column: new column name to store text if data is a dataframe
-    :return: modified data with removed stopwords
+    :return: Modified data with removed stopwords
     """
     base_stopwords = {
         'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
@@ -103,7 +103,7 @@ def basic_stem_words(text, exception_words = None):
     """ Applies simple stemming by removing common suffixes, except for exception words
     :param text: (str) text for basic stemming
     :param exception_words: (list) list of words to exempt from stemming
-    :return: modified text
+    :return: Modified text
     """
     suffixes = ["tion", "ment", "ness", "ing", "ion", "ful", "ous", "ly", "ed", "es", "er", "s"]
     exceptions = {"this", "has", "his", "was", "thus", "gas", "class", 'during', 'better'}
@@ -176,8 +176,7 @@ def autocorrect_text(text, exception_words = None):
     return corrected_string
 
 def textdata_all_transform(text, text_column = None, custom_stopword = None, exception_words = None):
-    """
-    Applies full NLP preprocessing: remove stopwords, stem, and autocorrect. Works on strings and DataFrames.
+    """ Applies full NLP preprocessing: remove stopwords, stem, and autocorrect. Works on strings and DataFrames.
     :return: modified text
     """
     no_stop = remove_stopwords(text, text_column = text_column, custom_stopword = custom_stopword)
@@ -190,7 +189,8 @@ def label_unique_total_job_skills(data, text_column = None, custom_skills = None
     :param text_column: column name containing text if data is a dataframe
     :param custom_skills: (list) list of custom skills to label more unique job skills
     """
-    common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
+    common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake",
+                     "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
 
     if custom_skills is not None:
         common_skills.update(custom_skills)
@@ -221,13 +221,14 @@ def label_unique_total_job_skills(data, text_column = None, custom_skills = None
     return skill_count_dict
 
 def label_total_job_skills(data, text_column = None, custom_skills = None):
-    """ Identify presence of predefined job skills in text data.
-    Count total occurrences of job skills in text data (frequency-based).
+    """ Identify every occurence of predefined job skills in text data.
+Count total occurrences of job skills in text data.
     :param data: string, list, or pandas dataframe
     :param text_column: column name containing text if data is a dataframe
     :param custom_skills: (list) list of custom skills to label more unique job skills
     """
-    common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake", "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
+    common_skills = {"python", "nlp", "java", "javascript", "sql", "html", "cloud", "react", "snowflake",
+                     "pyspark", "tableau", "pytorch", "scikit", "regex", "spark", "machine learning"}
 
     if custom_skills is not None:
         common_skills.update(custom_skills)
@@ -261,6 +262,10 @@ def split_data(df, target_column, train_size = 0.7, test_size = 0.15, random_sta
     """Splits a dataframe into training, testing, and validation sets.
     :param df: pandas dataframe
     :param target_column: target column name
+    :param train_size: size of training set
+    :param test_size: size of test set
+    :param random_state: random seed
+    :return: train, test, and validation sets
     """
     val_size = 1 - train_size - test_size
     if val_size < 0:

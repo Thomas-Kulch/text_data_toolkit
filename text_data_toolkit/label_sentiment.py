@@ -10,7 +10,14 @@ import pandas as pd
 def label_data_sentiment(data, custom_positive = None, custom_negative = None,
                          filename = None, return_counts = False):
 
-    """Label text data into categories (sentiment analysis)"""
+    """ Label text data into sentiment categories using a basic lexicon-based approach
+    :param data: (str) input text to be labeled
+    :param custom_positive: (list) Optional list of custom positive words
+    :param custom_positive: (list) Optional list of custom negative words
+    :param filename: (str) Optional path to a json file with additional positive/negative words
+    :param return_counts: (bool) Whether to return counts (pos, neg, score) or just the label)
+    :return: Sentiment label or return_counts (pos, neg, score))
+    """
     negation_words = {
         "not", "never", "no", "don't", "didn't", "isn't", "wasn't", "won't", "can't",
         "doesn't", "hasn't", "hadn't", "couldn't", "wouldn't", "shouldn't", "ain't",
@@ -92,6 +99,11 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
         return (pos_count, neg_count, score)
 
 def sentiment_features(text, filename = None):
+    """ Generate the positive count, negative count, and difference score for text to be used in ML models.
+    :param text: (str) input text to be labeled
+    :param filename: Optional path to a json file with additional positive/negative words
+    :return: Series of sentiment features (pos, neg, score)
+    """
     pos_count, neg_count, score = label_data_sentiment(text, filename = filename, return_counts = True)
 
     return pd.Series([pos_count, neg_count, score])

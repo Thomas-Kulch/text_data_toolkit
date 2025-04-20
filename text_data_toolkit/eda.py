@@ -26,7 +26,7 @@ def generate_wordcloud(data, custom_stopwords=None):
     """ Generate a word cloud visualization from text data.
     Supports string, list of strings, or pandas Series as input.
     :param data: A pandas Series, list or string
-    :param custom_stopwords: A list of strings representing words to be excluded..
+    :param custom_stopwords: A list of strings representing words to be excluded.
     :return: A word cloud visualization.
     """
     # handle stopwords

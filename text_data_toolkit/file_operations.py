@@ -1,11 +1,16 @@
 """
 File handling module
- Manage file operations for text data files.
+Manage file operations for text data files.
 """
 import os
 
 def bulk_rename(directory, prefix, extension=None):
-    """Rename all files in a directory using a prefix and incrementing index"""
+    """ Rename all files in a directory using a prefix and incrementing index
+    :param directory: (str) Path to the directory containing the files
+    :param prefix: (str) Prefix to use for renamed files
+    :param extension: (str) Optional file extension to filter files
+    :return: (int) Number of files renamed
+    """
     file_count = 0  # for returning how many files were renamed
 
     # ensure directory exists
@@ -53,7 +58,12 @@ def bulk_rename(directory, prefix, extension=None):
     return file_count
 
 def move_files(source_dir, target_dir, extension=None):
-    """Move files from source to target directory with optional extension"""
+    """ Move files from source to target directory with optional extension
+    :param source_dir: (str) Source directory path
+    :param target_dir: (str) Target directory path
+    :param extension: (str) Optional file extension to filter files
+    :return: (int) Number of files moved
+    """
     file_count = 0
 
     # ensure directory exists
@@ -98,9 +108,12 @@ def move_files(source_dir, target_dir, extension=None):
     print(f"Moved {file_count} files.")
     return file_count
 
-
 def delete_files(directory, extension):
-    """Delete all files in a directory matching an extension"""
+    """ Delete all files in a directory matching an extension
+    :param directory: (str) Path to the directory
+    :param extension: (str) Extension of files to delete
+    :return: (int) Number of files deleted
+    """
     file_count = 0
 
     # ensure directory exists
@@ -120,7 +133,11 @@ def delete_files(directory, extension):
     return file_count
 
 def list_files(directory, extension=None):
-    """List all files in a directory with optional extension filtering"""
+    """ List all files in a directory with optional extension filtering
+    :param directory: (str) Path to the directory
+    :param extension: (str) Optional extension to filter files
+    :return: (list) List of file names
+    """
     files_list = [] # initiate empty files list
 
     # ensure directory exists

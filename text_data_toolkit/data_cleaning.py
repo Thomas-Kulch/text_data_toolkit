@@ -10,8 +10,7 @@ import numpy as np
 
 
 def load_text_to_df(files, columns=None, line_length = 1):
-    """
-    Load text files (csv, tsv, txt) into a dictionary of pandas DataFrame
+    """ Load text files (csv, tsv, txt) into a dictionary of pandas DataFrame
     :param: files (list)- list of file paths
     columns (list) - Optional list of column names
     line_length (int) - Optional line length
@@ -62,9 +61,8 @@ def load_text_to_df(files, columns=None, line_length = 1):
     return dfs_dict
 
 def homogenize_columns(df):
-    """
-    Homogenizes the columns of a dataframe in the format of first_column
-    :param df (DataFrame): pandas dataframe
+    """ Homogenizes the columns of a dataframe in the format of first_column
+    :param df: (DataFrame): pandas dataframe
     :return: df - The modified dataframe with the homogenized columns
     """
     df.columns = df.columns.str.lower().str.replace(r'\s', '_', regex=True)
@@ -72,9 +70,9 @@ def homogenize_columns(df):
 
 def remove_duplicates_fuzzy(df, text_column = None, threshold = 90):
     """ Detect and remove duplicate texts
-    :param: df (DataFrame) - pandas dataframe
-    text_column (str) - name of the column containing text data
-    threshold (int) - threshold for fuzzy matching (higher = stricter_
+    :param df:  (DataFrame) - pandas dataframe
+    :param text_column: (str) - name of the column containing text data
+    :param threshold: (int) - threshold for fuzzy matching (higher = stricter_
     :return: df - The modified dataframe with duplicates removed
     """
     drop = set()
@@ -97,9 +95,9 @@ def remove_duplicates_fuzzy(df, text_column = None, threshold = 90):
     return df
 
 def normalize_data(data, text_column = None):
-    """ Normalize text data : lowercase, remove punctuation (except apostrophes) adn whitespace
-    :param: data  (DataFrame)- pandas dataframe
-    text_column (str) - name of the column containing text data
+    """ Normalize text data : lowercase, remove punctuation (except apostrophes) and whitespaces
+    :param data:  (DataFrame)- pandas dataframe
+    Lparam text_columnL (str) - name of the column containing text data
     :return: data - pandas dataframe
     """
     def normalize_text(text):
@@ -132,7 +130,7 @@ def clean_dataframe_no_dups(df, text_column = None):
     """ Clean a dataframe without duplicate values: Homogenize column names, normalize text.
      and handle missing values
      :param: df (DataFrame) - pandas dataframe
-     text_column (str) - name of the column containing text data
+     :param text_column: (str) - name of the column containing text data
      :return: df - modified, cleaned dataframe
      """
     # Homogenize Columns
@@ -149,9 +147,9 @@ def clean_dataframe_no_dups(df, text_column = None):
 def clean_dataframe(df, text_column, threshold = 90):
     """ Clean a dataframe with duplicate values: Homogenize column names, normalize text, remove duplicates
     and handle missing values
-    :param: df (DataFrame) - pandas dataframe
-    text_column (str) - name of the column containing text data
-    threshold (int) - threshold for fuzzy matching
+    :param df:  (DataFrame) - pandas dataframe
+    :param text_column: (str) - name of the column containing text data
+    :param threshold: (int) - threshold for fuzzy matching
     :return: df - modified, cleaned dataframe
     """
     # Homogenize Columns
