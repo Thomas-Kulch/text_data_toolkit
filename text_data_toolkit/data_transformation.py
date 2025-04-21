@@ -40,6 +40,7 @@ def tokenize_text(text):
     :return: tokenized text (lowercase)
     """
     tokens = re.split(r"[^A-Za-z0-9']+", text.lower())
+
     # Remove empty strings
     for i in tokens:
         if i == '':
@@ -65,6 +66,7 @@ def remove_stopwords(data, text_column, custom_stopword = None, new_column = "Re
     :param new_column: new column name to store text if data is a dataframe
     :return: Modified data with removed stopwords
     """
+    # Default Stopwords
     base_stopwords = {
         'a', 'an', 'the', 'and', 'or', 'in', 'of', 'to', 'for', 'with', 'on',
         'at', 'from', 'by', 'up', 'about', 'into', 'over', 'after', 'under',
@@ -116,14 +118,15 @@ def basic_stem_words(text, exception_words = None):
 
     for w in word_list:
         original_word = w
+        # Skip stemming for exception words
         if w in exceptions:
             stemmed_words.append(w)
             continue
-
+        # Try removing every suffix
         for suffix in suffixes:
             if w.endswith(suffix) and len(w) > len(suffix) + 2 :
                 new_word = w[:-len(suffix)]
-
+                # Check if the stemmed word is valid
                 if new_word in english_df["word"].tolist():
                     w = new_word
                     break
@@ -138,7 +141,7 @@ def basic_stem_words(text, exception_words = None):
     return " ".join(stemmed_words)
 
 def autocorrect_text(text, exception_words = None):
-    """ Autocorrect text after stemming, uses difflib to get the closest match from
+    """ Autocorrect text with stemming, uses difflib to get the closest match from
     an english dataframe containing the most frequent words.
     :param text: input string
     :param exception_words: set of words to exclude from autocorrection
@@ -157,6 +160,7 @@ def autocorrect_text(text, exception_words = None):
     corrected = []
 
     for stem, original in zip(stemmed, original):
+        # Skip autocorrect for exception words or valid cases.
         if ((stem and original in exception_words)
             or stem in english_words\
             or stem in contractions\
@@ -179,7 +183,10 @@ def textdata_all_transform(text, text_column = None, custom_stopword = None, exc
     """ Applies full NLP preprocessing: remove stopwords, stem, and autocorrect. Works on strings and DataFrames.
     :return: modified text
     """
+    # Remove Stopwords
     no_stop = remove_stopwords(text, text_column = text_column, custom_stopword = custom_stopword)
+
+    # Autocorrect text
     autocorrected = autocorrect_text(no_stop, exception_words = exception_words)
     return autocorrected
 
@@ -195,6 +202,7 @@ def label_unique_total_job_skills(data, text_column = None, custom_skills = None
     if custom_skills is not None:
         common_skills.update(custom_skills)
 
+    # Skill counter
     skill_count_dict = {skill: 0 for skill in common_skills}
 
     def label_job_text(text):
@@ -212,7 +220,7 @@ def label_unique_total_job_skills(data, text_column = None, custom_skills = None
         label_job_text(data)
 
     filtered_dict = {}
-
+    # Filter out skills that never appeared
     for skill, count in skill_count_dict.items():
         if count > 0:
             filtered_dict[skill] = count
@@ -267,13 +275,14 @@ def split_data(df, target_column, train_size = 0.7, test_size = 0.15, random_sta
     :param random_state: random seed
     :return: train, test, and validation sets
     """
+    # Calculate validation size
     val_size = 1 - train_size - test_size
     if val_size < 0:
         raise ValueError("train_size + test_size must be less than 1")
-
+    # 1st Split: Train + Val vs Test
     df_train_val, df_test = train_test_split(df, test_size = test_size,
                                              random_state = random_state, stratify = df[target_column])
-
+    # 2nd Split: Train vs Validation
     val_fraction = val_size / (train_size + val_size)
     df_train, df_val = train_test_split(df_train_val, test_size = val_fraction,
                                         random_state = random_state, stratify = df_train_val[target_column])
@@ -293,7 +302,7 @@ def vectorize_text(series, method = "tfidf", max_features = 10000):
         vectorizer = CountVectorizer(max_features = max_features)
     else:
         raise ValueError("Invalid method. Please choose from 'tfidf' or 'count'")
-
+    # Fit the vectorizer and transform the text data
     vectorized_text = vectorizer.fit_transform(series)
 
     return vectorized_text, vectorizer

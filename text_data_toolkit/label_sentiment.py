@@ -9,7 +9,6 @@ import pandas as pd
 
 def label_data_sentiment(data, custom_positive = None, custom_negative = None,
                          filename = None, return_counts = False):
-
     """ Label text data into sentiment categories using a basic lexicon-based approach
     :param data: (str) input text to be labeled
     :param custom_positive: (list) Optional list of custom positive words
