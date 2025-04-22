@@ -75,7 +75,7 @@ pip install -e .[dev]
 ## Authors
 **Thomas Kulch** - kulch.t@northeastern.edu
 
-**Ben Lin** - lin.benj@northeastern.edu
+**Ben Lin** - lin.benja@northeastern.edu
 
 ## License
 This project is licensed under the MIT License.

@@ -44,7 +44,7 @@ def test_basic_stem_words():
         assert returned == expected
 
 def test_autocorrect_text():
-    test_text = ["hello wonderful world", "i am loving this test", "this wordcloud test work"]
+    test_text = ["hello wonderful world", "i am loving this test", "this wordcloud test works"]
     expected_output = ["hello wonder world", "i am love this test", "this wordcloud test work"]
 
     for i, expected in enumerate(expected_output):
