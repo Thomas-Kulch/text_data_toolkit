@@ -302,6 +302,7 @@ def vectorize_text(series, method = "tfidf", max_features = 10000):
         vectorizer = CountVectorizer(max_features = max_features)
     else:
         raise ValueError("Invalid method. Please choose from 'tfidf' or 'count'")
+
     # Fit the vectorizer and transform the text data
     vectorized_text = vectorizer.fit_transform(series)
 

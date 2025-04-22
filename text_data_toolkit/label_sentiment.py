@@ -25,6 +25,7 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
     pos_lex = dt.positive_words.copy()
     neg_lex = dt.negative_words.copy()
 
+    # Load additional lexicons from a JSON file
     if filename:
         if os.path.isfile(filename):
             with open(filename, 'r', encoding="utf-8") as f:
@@ -54,6 +55,7 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
         neg_count = 0
         skip_index = set()
 
+        # Negation Based sentiment flip
         for i, (first, second) in enumerate(bigrams):
             if i in skip_index or (i+1) in skip_index:
                 continue
@@ -66,6 +68,7 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
                 pos_count += 1
                 skip_index.update({i, i+1})
 
+        # Count remaining words in the lexicon
         for i, t in enumerate(tokens):
             if i in skip_index:
                 continue
@@ -74,6 +77,7 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
             elif t in neg_lex:
                 neg_count += 1
 
+        # Calculate sentiment score and label
         score = pos_count - neg_count
 
         if score > 0:
@@ -83,6 +87,7 @@ def label_data_sentiment(data, custom_positive = None, custom_negative = None,
         else:
             return ("Neutral", pos_count, neg_count, score)
 
+    # Save updated lexicon to the provided file
     if filename:
         updated_data = {"positive": list(pos_lex), "negative": list(neg_lex)}
 

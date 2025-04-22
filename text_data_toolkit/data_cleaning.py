@@ -27,6 +27,7 @@ def load_text_to_df(files, columns=None, line_length = 1):
             df_temp = pd.read_csv(file, sep=',', quotechar ='"')
         elif extension == '.tsv':
             df_temp = pd.read_csv(file, sep="\t")
+        # Read and group txt files by line length
         else:
             with open(file, 'r', encoding='utf-8') as f:
                 lines = f.read().splitlines()
@@ -50,6 +51,7 @@ def load_text_to_df(files, columns=None, line_length = 1):
 
             df_temp = pd.DataFrame(records, columns=columns)
 
+            # Remove Byte Order Mark if present
             for i in df_temp.columns:
                 df_temp[i] = df_temp[i].str.replace('\uFEFF', '', regex=False)
 
@@ -119,8 +121,9 @@ def handle_missing_values(df, text_column = None):
     text_column (str) - name of the column containing text data
     :return: df - modified  dataframe without missing values
     """
-
+    # Replace empty strings with nan
     df[text_column] = df[text_column].replace(r'^\s*$', np.nan, regex=True)
+    # Drop rows with nan in the target column
     df.dropna(subset=[text_column], inplace=True)
     df.reset_index(drop=True, inplace=True)
 
